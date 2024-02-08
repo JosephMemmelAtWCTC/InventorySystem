@@ -1,0 +1,16 @@
+{
+  "name": "vueappprototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass scss/Custom.scss css/Custom.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "sass": "^1.70.0"
+  }
+}

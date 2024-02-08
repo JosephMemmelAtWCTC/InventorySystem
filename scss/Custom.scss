@@ -1,0 +1,65 @@
+//// Option A: Include all of Bootstrap
+//
+//@import "../node_modules/bootstrap/scss/bootstrap";
+//
+//// Required
+//@import "../node_modules/bootstrap/scss/functions";
+//
+//// Required
+//@import "../node_modules/bootstrap/scss/variables";
+////@import "../node_modules/bootstrap/scss/mixins";
+//
+//// Default variable overrides
+//
+////$custom-colors: (
+////        "primary": #4a9900
+////);
+//
+//$primary: #0074d9;
+//$secondary: #46ffd4;
+//$danger: #ff4136;
+//
+//// Merge the maps
+////$theme-colors: map-merge($theme-colors, $custom-colors);
+//
+//// Optional Bootstrap components here
+//@import "../node_modules/bootstrap/scss/root";
+//@import "../node_modules/bootstrap/scss/reboot";
+//@import "../node_modules/bootstrap/scss/type";
+//// etc
+//
+//
+//
+//$primary: $orange; // set the $primary variable
+//
+//// merge with existing $theme-colors map
+//$theme-colors: map-merge($theme-colors, (
+//        "primary": $primary
+//));
+//
+//
+//// set changes
+//@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+// required to get $orange variable
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$primary: "#fff"; // set the $primary variable
+
+//// merge with existing $theme-colors map
+//$theme-colors: map-merge($theme-colors, (
+//        "primary": "#fff"
+//));
+
+$primary: #7700d9;
+
+// Merge with existing $theme-colors map
+$theme-colors: map-merge($theme-colors, (
+        "primary": $primary
+));
+// Thank you https://stackoverflow.com/a/50253707/16041898
+
+// set changes
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
