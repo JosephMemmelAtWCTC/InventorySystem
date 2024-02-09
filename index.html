@@ -10,36 +10,121 @@
 <body class="d-flex flex-column h-100 vsc-initialized">
 
 
-    <main class="flex-shrink-0">
+    <header id="header" class="head fixed-top bg-primary">
+        TESt
+    </header>
 
+    <main class="flex-shrink-0">
+        Test
+        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test        <br>
+        Test
     </main>
-    <footer id="bottomFooterFull" class="bg-secondary footer mt-auto bg-body-tertiary">
+    <footer id="bottomFooterFull" class="footer fixed-bottom bg-transparent">
 
         <div class="container-fluid justify-content-center align-content-center row m-0 p-0">
-            <div class="container text-center">
+            <div class="container">
                 <div class="row d-flex">
 
-                    <div class="col d-flex flex-column align-items-center mt-5 p-0">
+                    <div class="navbarSide1 col d-flex flex-column align-items-center mt-5 p-0">
                         <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                            <button type="button" class="btn btn-primary  my-auto">A</button>
+                            <button id="addButton" type="button" class="btn btn-primary my-auto">
+                                <i class="bi bi-plus"></i>
+                            </button>
                         </div>
-                        <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary">
-                            <button type="button" class="btn btn-primary my-auto">B</button>
+
+                        <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
+                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0 border-end">
+                                <i class="bi bi-house"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0">
+<!--                                <i class="bi bi-archive"></i>-->
+                                <i class="bi bi-grid"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="col-4 p-0">
-                        <button id="scanButton" type="button" class="btn btn-primary w-100">B</button>
+                    <div class="navbarScan col-4 p-0">
+                        <button id="scanButton" type="button" class="btn btn-primary w-100 rounded-top-pill">
+                            <div class="icon-container">
+<!--                                <span class="bi bi-upc-scan w-100"></span>-->
+                                <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
+                            </div>
+                        </button>
+
                     </div>
 
-                    <div class="col d-flex flex-column align-items-center mt-5 p-0">
+                    <div class="navbarSide2 col d-flex flex-column align-items-center mt-5 p-0">
                         <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                            <button type="button" class="btn btn-primary  my-auto">C</button>
+                            <button id="editButton" type="button" class="btn btn-primary my-auto">
+<!--                                <i class="bi bi-pencil-square"></i>-->
+                                <i class="bi bi-pencil"></i>
+                            </button>
                         </div>
-                        <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary">
-                            <button type="button" class="btn btn-primary my-auto">D</button>
+
+                        <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
+                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0 border-end">
+                                <i class="bi bi-arrow-left-right"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0">
+                                <i class="bi bi-person"></i>
+                            </button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
