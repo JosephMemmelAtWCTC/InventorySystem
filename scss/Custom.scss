@@ -46,14 +46,12 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
-$primary: "#fff"; // set the $primary variable
-
 //// merge with existing $theme-colors map
 //$theme-colors: map-merge($theme-colors, (
 //        "primary": "#fff"
 //));
 
-$primary: #7700d9;
+$primary: #d9a600;
 
 // Merge with existing $theme-colors map
 $theme-colors: map-merge($theme-colors, (
