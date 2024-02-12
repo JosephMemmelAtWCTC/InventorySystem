@@ -8,13 +8,16 @@
 //        "primary": "#fff"
 //));
 
-$primary: #d9a600;
+$primary: #20A39E;
+//$secondary: #7b9694;
+$secondary: #D9F4C7;
 
 $breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
 
 // Merge with existing $theme-colors map
 $theme-colors: map-merge($theme-colors, (
-        "primary": $primary
+        "primary": $primary,
+        "secondary": $secondary
 ));
 //  https://stackoverflow.com/a/50253707/16041898
 
