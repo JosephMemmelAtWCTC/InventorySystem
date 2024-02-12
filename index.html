@@ -155,7 +155,7 @@
 
         </div>
         <div data-navPage="recents" data-pageTitle="Recents" class="page container-fluid mt-5 m-0 p-0"><!--flex-shrink-0-->
-            <div id="inventoryCards m-0">
+            <div id="inventoryCards" class="m-0">
                 <div class="rounded-0 row bg-secondary"><!--card-->
 
                     <div class="bi-3x col-2 p-0 my-auto text-center">
@@ -176,6 +176,25 @@
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div data-navPage="account" data-pageTitle="Profile" class="page container-fluid mt-5 m-0 p-0"><!--flex-shrink-0-->
+            <div id="account" class="m-0">
+                <img width="15%" src="./staticImages/person-circle.svg" class="border-secondary p-2 border-2 mx-auto d-block" alt="Profile Picture">
+                <div class="rounded-0 row bg-secondary">
+                    <div class="col-12">
+                        <label for="profile-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="profile-name">
+                    </div>
+                    <div id="permissionsChips" class="col-12 bg-body-tertiary">
+                        <span class="badge text-bg-secondary">Admin</span>
+                        <span class="badge text-bg-secondary">Add Items</span>
+                    </div>
+                    <div class="col-auto pt-4 mx-auto">
+                        <button type="button" class="btn btn-danger">Sign Out</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
