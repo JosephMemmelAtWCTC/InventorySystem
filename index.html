@@ -5,74 +5,182 @@
     <title>Vue App Prototype</title>
 <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">-->
     <link href="./css/custom.css" rel="stylesheet">
+<!--    <link href="./css/customVueAppPrototype.css" rel="stylesheet">-->
     <link href="./css/InventorySystem.css" rel="stylesheet">
 </head>
-<body class="d-flex flex-column h-100 vsc-initialized">
+<body class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+
+<!-- LOCATION - UNSPECIFIC START -->
+    <div id="newCategoryModel" class="modal fade" tabindex="-1" aria-labelledby="newCategoryModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newCategoryModelLabel">New Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="new-category-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="new-category-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-category-description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="new-category-description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer row justify-content-center">
+                    <button type="button" class="col-auto btn btn-primary justify-content-center">Create Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newItemModel" class="modal fade" tabindex="-1" aria-labelledby="newItemModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newItemModelLabel">New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
+                        <div class="mb-3">
+                            <label for="new-item-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="new-item-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-item-id" class="col-form-label">Product ID:</label>
+                            <input type="text" class="form-control" id="new-item-id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-item-description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="new-item-description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
+                            <input type="number" class="form-control" id="new-item-reorderLevel" value="0">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer row justify-content-center">
+                    <button type="button" class="col-auto btn btn-primary justify-content-center">Create Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- LOCATION - UNSPECIFIC END-->
+
 
 
     <header id="header" class="head fixed-top bg-primary">
-        TESt
+        TEST
     </header>
+    <p id="pageTitle" class="mt-4 text-center">
+        Page Title Label
+    </p>
 
-    <main class="flex-shrink-0">
-        Test
-        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test        <br>
-        Test
+    <main id="pageHolder">
+        <div data-navPage="home" data-pageTitle="" class="page container-fluid m-0 p-0">
+            <!--  HERO/JUMBOTRON  -->
+            <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center">
+                <h1 class="display-6 d-md-none d-col-block p-3 text-secondary fw-bold w-100">APP TITLE</h1>
+            </div>
+        </div>
+
+        <div data-navPage="items" data-pageTitle="Explorer" class="page container-fluid mt-5 m-0 p-0">
+            <header id="searchRibbon" class="bg-body-tertiary">
+                <div class="row">
+                    <div class="col-12">
+<!--                        <label for="" class="form-label">Email address</label>-->
+                        <input type="text" class="form-control" id="" aria-describedby="">
+<!--                        <div id="" class="form-text">We'll never share your email with anyone else.</div>-->
+                    </div>
+                    <div class="col">
+                        Filter Search
+                    </div>
+                    <div class="col-1 m-0 p-0">
+                        <i class="bi ms-1 bi-search"></i>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Checkbox button filter options">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btncheck1">Include Categories</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btncheck2">Include Items</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btncheck3">Under Threashold</label>
+                    </div>
+                    <div class="col-12 ps-3 mb-0 pb-0">
+                        <nav aria-label="Inventory Explorer Breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Warehouse</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Perishable</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <div id="items" class="row row-cols-3 g-2 m-1">
+<!--                <h4 class="d-md-none d-col-block p-3 text-secondary fw-bold w-100">Category Name</h4>-->
+
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="card-header bg-transparent">Category Name</div>
+                        <img src="./staticImages/folder.svg" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
+                        <div class="card-body">
+<!--                            <h5 class="card-title"></h5>-->
+                            <p class="card-text">Info.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">Footer</div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="card-header bg-transparent">Item Name</div>
+                        <img src="https://picsum.photos/300" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="TODO">
+                        <div class="card-body">
+                            <p class="card-text">Info.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">Footer</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div data-navPage="recents" data-pageTitle="Recents" class="page container-fluid mt-5 m-0 p-0"><!--flex-shrink-0-->
+            <div id="inventoryCards m-0">
+                <div class="rounded-0 row bg-secondary"><!--card-->
+
+                    <div class="bi-3x col-2 p-0 my-auto text-center">
+                        <i class="recentsArrowIn bi ms-1 bi-box-arrow-in-right"></i>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">Item Name</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+                <div class="rounded-0 row bg-secondary">
+
+                    <div class="bi-3x col-2 p-0 my-auto text-center">
+                        <i class="recentsArrowIn ms-3 bi bi-box-arrow-in-left"></i>
+                    </div>
+                    <div class="col">
+                        <h5 class="card-title">Item Name</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
+
     <footer id="bottomFooterFull" class="footer fixed-bottom bg-transparent">
 
         <div class="container-fluid justify-content-center align-content-center row m-0 p-0">
@@ -81,16 +189,41 @@
 
                     <div class="navbarSide1 col d-flex flex-column align-items-center mt-5 p-0">
                         <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                            <button id="addButton" type="button" class="btn btn-primary my-auto">
-                                <i class="bi bi-plus"></i>
-                            </button>
+<!--                            <button id="addButton" type="button" class="btn btn-primary my-auto">-->
+<!--&lt;!&ndash;                                <i class="bi bi-plus"></i>&ndash;&gt;-->
+<!--                            </button>-->
+                            <div class="dropup-center dropup">
+                                <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
+                                            <a class="icon-link">
+                                                <span class="p-2"><i class="bi bi-archive"></i></span>
+                                                Category
+                                            </a>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                            <a class="icon-link">
+                                                <span class="p-2"><i class="bi bi-box"></i></span>
+                                                Item
+                                            </a>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0 border-end">
+                            <button type="button" data-navPageTarget="home" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
                                 <i class="bi bi-house"></i>
                             </button>
-                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0">
+                            <button type="button" data-navPageTarget="items" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
 <!--                                <i class="bi bi-archive"></i>-->
                                 <i class="bi bi-grid"></i>
                             </button>
@@ -116,10 +249,10 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0 border-end">
+                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
                                 <i class="bi bi-arrow-left-right"></i>
                             </button>
-                            <button type="button" class="btn btn-primary my-auto h-100 rounded-0">
+                            <button type="button" data-navPageTarget="account" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
                                 <i class="bi bi-person"></i>
                             </button>
                         </div>
@@ -133,7 +266,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="./AddComponents.js"></script>
+    <script src="InventorySystem.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
