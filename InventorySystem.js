@@ -1,5 +1,8 @@
 $(function(){
     $pages = $(".page");
+    $pageTitle = $('#pageTitle');
+
+    $pageTitle.text("Connected to Database Name");
 
     $('.primaryNavMovePage').on('click', function (e){
         const $this = $(this);
@@ -8,6 +11,7 @@ $(function(){
             const $page = $(page);
             if($page.attr("data-navPage") === openPageTarget) {
                 $page.removeClass("d-none");
+                // $pageTitle.text(openPageTarget);
             }else{
                 $page.addClass("d-none");
             }

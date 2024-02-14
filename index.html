@@ -46,7 +46,8 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
+                        <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
+                        <img id="cameraModelTakePhoto" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <div class="mb-3">
                             <label for="new-item-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="new-item-name">
@@ -75,134 +76,216 @@
 
 
 
-    <header id="header" class="head fixed-top bg-primary">
-        TEST
+    <header id="header" class="head fixed-top bg-primary text-center">
+        <span id="pageTitle" class="mt-4 text-center">
+            Page Title Label
+        </span>
     </header>
-    <p id="pageTitle" class="mt-4 text-center">
-        Page Title Label
-    </p>
 
-    <main id="pageHolder">
-        <div data-navPage="home" data-pageTitle="" class="page container-fluid m-0 p-0">
-            <!--  HERO/JUMBOTRON  -->
-            <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center">
-                <h1 class="display-6 d-md-none d-col-block p-3 text-secondary fw-bold w-100">APP TITLE</h1>
+    <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
+        <div class="col-auto d-none d-md-block m-0 p-0">
+
+            <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <span class="fs-4">Dabase Name</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item p-2 mb-2">
+                        <button type="button" data-navPageTarget="home" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                            <i class="bi bi-house"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item p-2 mb-2">
+                        <button type="button" data-navPageTarget="items" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                            <i class="bi bi-grid"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item p-2 mb-2">
+                        <button type="button" data-navPageTarget="recents" class="primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                            <i class="bi bi-arrow-left-right"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+<!--                                99+-->
+                                2
+                            <span class="visually-hidden">Changes to inventory</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="nav-item p-2 mb-2">
+                        <button type="button" data-navPageTarget="account" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                            <i class="bi bi-person"></i>
+                        </button>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+<!--                    <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+<!--                        <strong>mdo</strong>-->
+<!--                    </a>-->
+                    <button type="button" class="btn btn-primary rounded-0 p-0">
+                        <a class="icon-link">
+                            <span class="p-2"><i class="bi bi-phone"></i></span>
+                            <strong><a href="#">Download our app</a></strong>
+                        </a>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div data-navPage="items" data-pageTitle="Explorer" class="page container-fluid mt-5 m-0 p-0">
-            <header id="searchRibbon" class="bg-body-tertiary">
-                <div class="row">
-                    <div class="col-12">
-<!--                        <label for="" class="form-label">Email address</label>-->
-                        <input type="text" class="form-control" id="" aria-describedby="">
-<!--                        <div id="" class="form-text">We'll never share your email with anyone else.</div>-->
-                    </div>
-                    <div class="col">
-                        Filter Search
-                    </div>
-                    <div class="col-1 m-0 p-0">
-                        <i class="bi ms-1 bi-search"></i>
-                    </div>
-                    <div class="btn-group" role="group" aria-label="Checkbox button filter options">
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck1">Include Categories</label>
 
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck2">Include Items</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck3">Under Threashold</label>
-                    </div>
-                    <div class="col-12 ps-3 mb-0 pb-0">
-                        <nav aria-label="Inventory Explorer Breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Warehouse</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Perishable</li>
-                            </ol>
-                        </nav>
-                    </div>
+        <div class="col m-0 p-0">
+            <div data-navPage="home" data-pageTitle="" class="page container-fluid m-0 p-0">
+                <!--  HERO/JUMBOTRON  -->
+                <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5">
+                    <h1 class="display-6 d-md-none d-col-block p-3 text-secondary fw-bold w-100">APP TITLE</h1>
                 </div>
-            </header>
+            </div>
 
-            <div id="items" class="row row-cols-3 g-2 m-1">
-<!--                <h4 class="d-md-none d-col-block p-3 text-secondary fw-bold w-100">Category Name</h4>-->
-
-                <div class="col">
-                    <div class="card mb-3">
-                        <div class="card-header bg-transparent">Category Name</div>
-                        <img src="./staticImages/folder.svg" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
-                        <div class="card-body">
-<!--                            <h5 class="card-title"></h5>-->
-                            <p class="card-text">Info.</p>
+            <div data-navPage="items" data-pageTitle="Explorer" class="d-none page container-fluid mt-5 m-0 flex-grow-1">
+                <header id="searchRibbon" class="bg-body-tertiary">
+                    <div class="row">
+                        <div class="col">
+                            Filter Search
                         </div>
-                        <div class="card-footer bg-transparent">Footer</div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card mb-3">
-                        <div class="card-header bg-transparent">Item Name</div>
-                        <img src="https://picsum.photos/300" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="TODO">
-                        <div class="card-body">
-                            <p class="card-text">Info.</p>
+                        <div class="col-1 m-0 p-0 col-md-0 justify-content-end">
+                            <span class="bi ms-1 bi-search"></span>
                         </div>
-                        <div class="card-footer bg-transparent">Footer</div>
+                        <div class="col-12 col-md-5 d-none d-md-block">
+                            <!--                        <label for="" class="form-label">Email address</label>-->
+                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Search bar hidden by default on small screens">
+                            <!--                        <div id="" class="form-text">We'll never share your email with anyone else.</div>-->
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Checkbox button filter options">
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck1">Include Categories</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck2">Include Items</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck3">Under Threashold</label>
+                        </div>
+                        <div class="col-12 ps-3 mb-0 pb-0">
+                            <nav aria-label="Inventory Explorer Breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Warehouse</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Perishable</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
+                </header>
+
+                <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
+    <!--                <h4 class="d-md-none d-col-block p-3 text-secondary fw-bold w-100">Category Name</h4>-->
+
+                    <div class="col">
+                        <div class="card mb-3">
+                            <div class="card-header bg-transparent">Category Name</div>
+                            <img src="./staticImages/folder.svg" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
+                            <div class="card-body">
+    <!--                            <h5 class="card-title"></h5>-->
+                                <p class="card-text">Info.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">Footer</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mb-3">
+                            <div class="card-header bg-transparent">Item Name</div>
+                            <img src="https://picsum.photos/300" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="TODO">
+                            <div class="card-body">
+                                <p class="card-text">Info.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">Footer</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="addFab" class="dropup-center dropup fixed-bottom mb-3">
+                    <button type="button" class="rounded-circle btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
+                                <a class="icon-link">
+                                    <span class="p-2"><i class="bi bi-archive"></i></span>
+                                    Category
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                <a class="icon-link">
+                                    <span class="p-2"><i class="bi bi-box"></i></span>
+                                    Item
+                                </a>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
+            <div data-navPage="recents" data-pageTitle="Recents" class="d-none page container-fluid mt-5"><!--flex-shrink-0-->
+                <div id="inventoryCards" class="m-0">
+                    <div class="rounded-0 row bg-secondary border-2 border-primary border-bottom"><!--card-->
 
-        </div>
-        <div data-navPage="recents" data-pageTitle="Recents" class="page container-fluid mt-5 m-0 p-0"><!--flex-shrink-0-->
-            <div id="inventoryCards" class="m-0">
-                <div class="rounded-0 row bg-secondary"><!--card-->
+                        <div class="bi-3x col-2 p-0 my-auto text-center">
+                            <i class="recentsArrowIn bi ms-1 bi-box-arrow-in-right"></i>
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title">Item Name</h5>
+                            <p class="card-text">Time<br>
+                            <p class="card-text">Category<br>
+                            # of items<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="rounded-0 row bg-secondary border-2 border-primary border-bottom">
 
-                    <div class="bi-3x col-2 p-0 my-auto text-center">
-                        <i class="recentsArrowIn bi ms-1 bi-box-arrow-in-right"></i>
-                    </div>
-                    <div class="col">
-                        <h5 class="card-title">Item Name</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-                <div class="rounded-0 row bg-secondary">
-
-                    <div class="bi-3x col-2 p-0 my-auto text-center">
-                        <i class="recentsArrowIn ms-3 bi bi-box-arrow-in-left"></i>
-                    </div>
-                    <div class="col">
-                        <h5 class="card-title">Item Name</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="bi-3x col-2 p-0 my-auto text-center">
+                            <i class="recentsArrowIn ms-3 bi bi-box-arrow-in-left"></i>
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title">Item Name</h5>
+                            <p class="card-text">Time<br>
+                            <p class="card-text">Category<br>
+                            # of items<br>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div data-navPage="account" data-pageTitle="Profile" class="page container-fluid mt-5 m-0 p-0"><!--flex-shrink-0-->
-            <div id="account" class="m-0">
-                <img width="15%" src="./staticImages/person-circle.svg" class="border-secondary p-2 border-2 mx-auto d-block" alt="Profile Picture">
-                <div class="rounded-0 row bg-secondary">
-                    <div class="col-12">
-                        <label for="profile-name" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="profile-name">
+            <div data-navPage="account" data-pageTitle="Profile" class="d-none page container-fluid m-0 p-0 h-100 overflow-y-hidden pt-sm-4 pt-4"><!--flex-shrink-0-->
+                <div id="account" class="m-0 h-100 bg-secondary position-relative">
+                    <div class="p-md-4 p-md-0 rounded-0 row bg-secondary h-auto d-flex align-items-start bg-white">
+                        <div class="col-12 h-auto bg-white">
+                            <img width="15%" src="./staticImages/person-circle.svg" class="border-secondary p-2 border-2 mx-auto d-block bg-white" alt="Profile Picture">
+                        </div>
+                        <div class="col-12 col-md-12 h-auto bg-white">
+                            <label for="profile-name" class="col-12 col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="profile-name">
+                        </div>
+                        <div id="permissionsChips" class="col-12 bg-body-tertiary h-auto">
+                            <p>Permissions
+                                <span class="badge text-bg-secondary">Admin</span>
+                                <span class="badge text-bg-secondary">Add Items</span>
+                            </p>
+                        </div>
                     </div>
-                    <div id="permissionsChips" class="col-12 bg-body-tertiary">
-                        <p>Permissions
-                            <span class="badge text-bg-secondary">Admin</span>
-                            <span class="badge text-bg-secondary">Add Items</span>
-                        </p>
-                    </div>
-                    <div class="col-auto pt-4 mx-auto">
+                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+<!--                    <div class="col-auto pt-4 mx-auto h-auto position-absolute bottom-0 start-100 mb-5 translate-middle-x">-->
                         <button type="button" class="btn btn-danger">Sign Out</button>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-
     </main>
 
-    <footer id="bottomFooterFull" class="footer fixed-bottom bg-transparent">
+    <footer id="bottomFooterFull" class="d-block d-md-none footer fixed-bottom bg-transparent">
 
         <div class="container-fluid justify-content-center align-content-center row m-0 p-0">
             <div class="container">
@@ -214,7 +297,7 @@
 <!--&lt;!&ndash;                                <i class="bi bi-plus"></i>&ndash;&gt;-->
 <!--                            </button>-->
                             <div class="dropup-center dropup">
-                                <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-plus"></i>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -244,7 +327,7 @@
                             <button type="button" data-navPageTarget="home" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
                                 <i class="bi bi-house"></i>
                             </button>
-                            <button type="button" data-navPageTarget="items" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
+                            <button type="button" data-navPageTarget="items" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
 <!--                                <i class="bi bi-archive"></i>-->
                                 <i class="bi bi-grid"></i>
                             </button>
@@ -252,11 +335,13 @@
                     </div>
 
                     <div class="navbarScan col-4 p-0">
-                        <button id="scanButton" type="button" class="btn btn-primary w-100 rounded-top-pill">
-                            <div class="icon-container">
+                        <button id="scanButton" data-navPageTarget="items" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
+
+<!--                            <div class="icon-container">-->
 <!--                                <span class="bi bi-upc-scan w-100"></span>-->
-                                <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
-                            </div>
+                                    <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
+
+<!--                            </div>-->
                         </button>
 
                     </div>
@@ -270,7 +355,7 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
+                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
                                 <i class="bi bi-arrow-left-right"></i>
                             </button>
                             <button type="button" data-navPageTarget="account" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">

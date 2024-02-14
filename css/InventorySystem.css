@@ -11,6 +11,11 @@
 }
 
 /*TESTING - DEV*/
-.col, .col-auto, .col-12, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6 {
-    border: 1px solid red;
+/*.col, .col-auto, .col-12, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6 {*/
+/*    border: 1px solid red;*/
+/*}*/
+
+/*TODO: get working correct way*/
+#addFab{
+    transform: translateX(240px);
 }
