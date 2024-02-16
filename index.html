@@ -151,25 +151,30 @@
                     </div>
 
                 </div>
-                <div class="w-100 m-5 bg-body-tertiary p-2">
-                    General info about the database, order #'s in / out, sticking to just one database to specialize.
+                <div class="w-100 justify-content-center">
+                    <div class="m-5 bg-body-tertiary w-25 mx-auto">
+                        General info about the database, order #'s in / out, sticking to just one database to specialize.
+                    </div>
                 </div>
+
             </div>
 
-            <div data-navPage="items" data-pageTitle="Explorer" class="d-none page container-fluid mt-5 m-0 flex-grow-1">
+            <div data-navPage="items" data-pageTitle="Explorer" class="position-relative d-none page container-fluid mt-5 m-0 flex-grow-1">
                 <header id="searchRibbon" class="bg-body-tertiary">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-auto justify-content-center justify-content-around">
                             Filter Search
                         </div>
-                        <div class="col-1 m-0 p-0 col-md-0 justify-content-end">
-                            <span class="bi ms-1 bi-search"></span>
+
+                        <div class="col end-0">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="searchTextDescribe"><i class="bi ms-1 bi-search"></i></span>
+                                <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe">
+                            </div>
                         </div>
-                        <div class="col-12 col-md-5 d-none d-md-block">
-                            <!--                        <label for="" class="form-label">Email address</label>-->
-                            <input type="text" class="form-control" id="" aria-describedby="" placeholder="Search bar hidden by default on small screens">
-                            <!--                        <div id="" class="form-text">We'll never share your email with anyone else.</div>-->
-                        </div>
+
+
+
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
                             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck1">Include Categories</label>
@@ -202,7 +207,7 @@
     <!--                            <h5 class="card-title"></h5>-->
                                 <p class="card-text">Info.</p>
                             </div>
-                            <div class="card-footer bg-transparent">Footer</div>
+                            <div class="card-footer bg-transparent"># in stock</div>
                         </div>
                     </div>
 
@@ -213,34 +218,38 @@
                             <div class="card-body">
                                 <p class="card-text">Info.</p>
                             </div>
-                            <div class="card-footer bg-transparent">Footer</div>
+                            <div class="card-footer bg-transparent"># in stock</div>
                         </div>
                     </div>
 
                 </div>
-                <div id="addFab" class="dropup-center dropup fixed-bottom mb-3">
-                    <button type="button" class="rounded-circle btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-plus"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
-                                <a class="icon-link">
-                                    <span class="p-2"><i class="bi bi-archive"></i></span>
-                                    Category
-                                </a>
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModel">
-                                <a class="icon-link">
-                                    <span class="p-2"><i class="bi bi-box"></i></span>
-                                    Item
-                                </a>
-                            </button>
-                        </li>
-                    </ul>
+
+                <div class="position-fixed bottom-0 end-0 p-3">
+                    <div id="addFab" class="dropup-center dropup rounded-circle">
+                        <button class="rounded-circle btn btn-primary end-0 m-4 p-4" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
+                                    <a class="icon-link">
+                                        <span class="p-2"><i class="bi bi-archive"></i></span>
+                                        Category
+                                    </a>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                    <a class="icon-link">
+                                        <span class="p-2"><i class="bi bi-box"></i></span>
+                                        Item
+                                    </a>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
 
             </div>
             <div data-navPage="recents" data-pageTitle="Recents" class="d-none page container-fluid mt-5"><!--flex-shrink-0-->
@@ -368,10 +377,19 @@
                             </button>
                         </div>
 
-                        <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
+                        <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
+                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="position-relative primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
                                 <i class="bi bi-arrow-left-right"></i>
+                                <i class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-3">
+                                    2
+                                    <span class="visually-hidden">Changes to inventory</span>
+                                </i>
+
                             </button>
+<!--                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">-->
+<!--                                <i class="bi bi-arrow-left-right"></i>-->
+<!--                            </button>-->
+
                             <button type="button" data-navPageTarget="account" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
                                 <i class="bi bi-person"></i>
                             </button>

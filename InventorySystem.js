@@ -18,6 +18,8 @@ $(function(){
         });
     });
 
+    $('*[data-navPageTarget="items"]').first().trigger('click');
+
 
     const $model = $('.model');
     $model.on('show.bs.modal', event => {
