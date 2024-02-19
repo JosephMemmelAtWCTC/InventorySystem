@@ -15,6 +15,8 @@
 /*    border: 1px solid red;*/
 /*}*/
 
-.card-img-top{
-
+body div#addFab > ul#dropupAddHolder{
+    /*Taken from inspector then modified*/
+    /*transform: translate(-51px, -100px);*/
+    transform: translate(-35px, -100px) !important;
 }

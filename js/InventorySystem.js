@@ -4,21 +4,21 @@ $(function(){
 
     $pageTitle.text("Connected to Database Name");
 
-    $('.primaryNavMovePage').on('click', function (e){
-        const $this = $(this);
-        const openPageTarget = $this.attr("data-navPageTarget");
-        $pages.each( (index, page) => {
-            const $page = $(page);
-            if($page.attr("data-navPage") === openPageTarget) {
-                $page.removeClass("d-none");
-                // $pageTitle.text(openPageTarget);
-            }else{
-                $page.addClass("d-none");
-            }
-        });
-    });
+    // $('.primaryNavMovePage').on('click', function (e){
+    //     const $this = $(this);
+    //     const openPageTarget = $this.attr("data-navPageTarget");
+    //     $pages.each( (index, page) => {
+    //         const $page = $(page);
+    //         if($page.attr("data-navPage") === openPageTarget) {
+    //             $page.removeClass("d-none");
+    //             // $pageTitle.text(openPageTarget);
+    //         }else{
+    //             $page.addClass("d-none");
+    //         }
+    //     });
+    // });
 
-    $('*[data-navPageTarget="items"]').first().trigger('click');
+    // $('*[data-navPageTarget="items"]').first().trigger('click');
 
 
     const $model = $('.model');
