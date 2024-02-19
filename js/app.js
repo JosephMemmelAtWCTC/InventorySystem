@@ -21,9 +21,11 @@ const app = Vue.createApp({
     methods: {
         openNavPage(pageLabel){
             console.log(`opening page ${pageLabel}`);
-            $(`*[data-navPage]`).addClass('d-none');
-            $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
-
+            this.currentPage = `${pageLabel}`;
+            $(function() {
+                $(`*[data-navPage]`).addClass('d-none');
+                $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
+            });
         },
         // decrementToQty: function(item){
         //     // item.qty > 0? item.qty-- : "";
@@ -72,8 +74,10 @@ const app = Vue.createApp({
         //     this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
         // }
         if(localStorage.getItem('openPage')){
-            $(`*[data-navPageTarget="${localStorage.getItem('openPage')}"]`).first().trigger('click');
-
+            console.log("1111");
+            // this.currentPage = localStorage.getItem('openPage');
+            this.openNavPage(localStorage.getItem('openPage'));
+            // $(`*[data-navPageTarget="${localStorage.getItem('openPage')}"]`).first().trigger('click');
         }
 
     },
@@ -91,7 +95,7 @@ const app = Vue.createApp({
         // },
         currentPage:{
             handler(){//newList){
-                localStorage.setItem('openPage', this.openPage);
+                localStorage.setItem('openPage', this.currentPage);
             },
         }
     }
