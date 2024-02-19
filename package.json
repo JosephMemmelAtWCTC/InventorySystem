@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "sass scss/Custom.scss css/Custom.css"
+    "build": "sass scss/Custom.scss:css/Custom.css --style=compressed --watch"
   },
   "keywords": [],
   "author": "",
