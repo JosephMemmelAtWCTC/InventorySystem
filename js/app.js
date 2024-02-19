@@ -20,32 +20,14 @@ const app = Vue.createApp({
     // methods: usually "events" triggered by v-on:
     methods: {
         openNavPage(pageLabel){
+            this.currentPage = pageLabel;
             console.log(`opening page ${pageLabel}`);
-            this.currentPage = `${pageLabel}`;
-            $(function() {
-                $(`*[data-navPage]`).addClass('d-none');
-                $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
-            });
+            // this.currentPage = `${pageLabel}`;
+            // $(function() {
+            //     $(`*[data-navPage]`).addClass('d-none');
+            //     $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
+            // });
         },
-        // decrementToQty: function(item){
-        //     // item.qty > 0? item.qty-- : "";
-        //     if(item.qty > 0){
-        //         item.qty--;
-        //     }else{
-        //         this.shoppingList.splice(this.shoppingList.indexOf(item), 1)
-        //     }
-        // },
-        // addIt(e){
-        //     this.shoppingList.push(this.newItem);
-        //
-        //     // Clear the form
-        //     this.newItem = {
-        //         name: '',
-        //             qty: 1,
-        //             category: 'need',
-        //             purchased: false,
-        //     };
-        // }
     },
 
     // computed: values that are updated and cached if dependencies change
@@ -75,9 +57,9 @@ const app = Vue.createApp({
         // }
         if(localStorage.getItem('openPage')){
             console.log("1111");
-            // this.currentPage = localStorage.getItem('openPage');
-            this.openNavPage(localStorage.getItem('openPage'));
-            // $(`*[data-navPageTarget="${localStorage.getItem('openPage')}"]`).first().trigger('click');
+            this.currentPage = localStorage.getItem('openPage');
+            console.log("2222"+this.currentPage);
+            // this.openNavPage(localStorage.getItem('openPage'));
         }
 
     },
@@ -85,14 +67,6 @@ const app = Vue.createApp({
     // watch:   calls the function if the value changes
     // https://travishorn.com/add-localstorage-to-your-vue-app-in-2-lines-of-code-56eb2c9f371b
     watch: {
-        // shoppingList:{
-        //     // Call this every time a value changes in shoppingList
-        //     handler(){//newList){
-        //         localStorage.setItem('shoppingList', JSON.stringify(this.shoppingList));
-        //     },
-        //     // Watch all nested properties as well
-        //     deep: true,
-        // },
         currentPage:{
             handler(){//newList){
                 localStorage.setItem('openPage', this.currentPage);

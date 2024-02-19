@@ -136,7 +136,7 @@
 
 
         <div class="col m-0 p-0">
-            <div data-navPage="home" data-pageTitle="" class="page container-fluid m-0 p-0 ">
+            <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="" class="page container-fluid m-0 p-0 ">
                 <!--  HERO/JUMBOTRON  -->
                 <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
                     <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">APP TITLE</h1>
@@ -160,7 +160,7 @@
 
             </div>
 
-            <div data-navPage="items" data-pageTitle="Explorer" class="position-relative d-none page container-fluid mt-5 m-0 flex-grow-1">
+            <div data-navPage="items" v-if="currentPage==='items'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
                 <header id="searchRibbon" class="bg-body-tertiary">
                     <div class="row">
                         <div class="col-auto justify-content-center justify-content-around">
@@ -253,7 +253,7 @@
 
 
             </div>
-            <div data-navPage="recents" data-pageTitle="Recents" class="d-none page container-fluid mt-5"><!--flex-shrink-0-->
+            <div data-navPage="recents" v-if="currentPage==='recents'" data-pageTitle="Recents" class="page container-fluid mt-5"><!--flex-shrink-0-->
                 <div id="inventoryCards" class="m-0">
                     <div class="rounded-0 row bg-secondary border-2 border-primary border-bottom"><!--card-->
 
@@ -282,7 +282,7 @@
                     </div>
                 </div>
             </div>
-            <div data-navPage="account" data-pageTitle="Profile" class="d-none page container-fluid m-0 p-0 h-100 overflow-y-hidden pt-sm-4 pt-4"><!--flex-shrink-0-->
+            <div data-navPage="account" v-if="currentPage==='account'" data-pageTitle="Profile" class="page container-fluid m-0 p-0 h-100 overflow-y-hidden pt-sm-4 pt-4"><!--flex-shrink-0-->
                 <div id="account" class="m-0 h-100 bg-secondary position-relative">
                     <div class="p-md-4 p-md-0 rounded-0 row bg-secondary h-auto d-flex align-items-start bg-white">
                         <div class="col-12 h-auto bg-white">
