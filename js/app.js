@@ -3,17 +3,49 @@ const app = Vue.createApp({
     data: function() {
         return {
             currentPage: -1,
-            // newItem: {
-            //     name: '',
-            //     qty: 1,
-            //     category: 'need',
-            //     purchased: false,
-            // },
-            // shoppingList: [
-            //     {name: 'Hammer', qty: 1, purchased: true, category: 'need'},
-            //     {name: 'Nails', qty: 10, purchased: false, category: 'need'},
-            //     {name: 'Sliding Compound Miter Saw', qty: 1, purchased: false, category: 'want'},
-            // ],
+            newCategory: {
+                id: -1,
+                title: '',
+                description: '',
+                image: './staticImages/folder.svg',
+            },
+            categoriesList: [
+                {
+                    id: -1,
+                    title: '',
+                    description: 'An example category description.',
+                    image: './staticImages/folder.svg',
+                    items: [
+                        {},
+                        {},
+                        {}
+                    ]
+                },{
+                    id: -1,
+                    title: '',
+                    description: 'An example category description.',
+                    image: './staticImages/folder.svg',
+                    items: [
+                        {},
+                        {},
+                        {}
+                    ]
+                },
+            ],
+            itemsList: [
+                {
+                    // "id": 1,
+                    // "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                    // "price": 109.95,
+                    // "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+                    // "category": "men's clothing",
+                    // "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                    // "rating": {
+                    //     "rate": 3.9,
+                    //     "count": 120
+                    // }
+                }
+            ]
         }
     },
 
@@ -32,11 +64,9 @@ const app = Vue.createApp({
 
     // computed: values that are updated and cached if dependencies change
     computed: {
-        // needList(){
-        //     return this.shoppingList.filter(function(item){
-        //         return !item.purchased && item.category === 'need';
-        //     });
-        // },
+        currentCategoriesList(){
+            return this.categoriesList;
+        },
         // gotList(){
         //     return this.shoppingList.filter(function(item){
         //         return item.purchased;

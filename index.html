@@ -48,7 +48,7 @@
                 <div class="modal-body">
                     <form>
                         <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
-                        <img id="cameraModelTakePhoto" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
+                        <img id="cameraModelTakeFile" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <div class="mb-3">
                             <label for="new-item-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="new-item-name">
@@ -201,17 +201,39 @@
 
 
 
-                    <div class="col category">
+                    <div v-for="(category, i) in currentCategoriesList" :key="category.name" class="col category">
                         <div class="card mb-3">
                             <div class="card-header bg-transparent">Category Name</div>
-                            <img src="./staticImages/folder.svg" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
+                            <img :src="category.image" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
                             <div class="card-body">
-    <!--                            <h5 class="card-title"></h5>-->
-                                <p class="card-text">Short description</p>
+                                <p class="card-text">{{ category.description }}</p>
                             </div>
-                            <div class="card-footer bg-transparent"># of unique items</div>
+                            <div class="card-footer bg-transparent">{{ category.items.length }} unique items</div>
                         </div>
                     </div>
+
+
+<!--                    <li v-for="(item, i) in needList" :key="item.name" class="list-group-item">-->
+<!--                        <div class="form-check">-->
+<!--                            <input type="checkbox" v-bind:id="'need-it' + i" class="form-check-input"-->
+<!--                                   v-model="item.purchased">-->
+<!--                            <label v-bind:for="'need-it' + i"-->
+<!--                                   class="form-check-label"-->
+<!--                                   v-bind:class="{'purchased': item.purchased}"-->
+<!--                            >{{ item.name }}</label>-->
+<!--                            &lt;!&ndash;                                   v-bind:class="item.purchased ? 'purchased' : ''"&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="d-flex justify-content-between">-->
+<!--                            <div>-->
+<!--                                <small>Qty: {{ item.qty }}</small>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <button class="btn btn-tiny" v-on:click="item.qty++"><i class="fas fa-plus-circle"></i></button>-->
+<!--                                &lt;!&ndash;                                @ is short for v-on &ndash;&gt;-->
+<!--                                <button class="btn btn-tiny" @click="decrementToQty(item)"><i class="fas fa-minus-circle"></i></button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
 
 
 
@@ -320,6 +342,10 @@
             <div class="container">
                 <div class="row d-flex">
 
+                    <div id="test" class="bg-secondary">
+
+                    </div>
+
                     <div class="navbarSide1 col d-flex flex-column align-items-center mt-5 p-0">
                         <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
 <!--                            <button id="addButton" type="button" class="btn btn-primary my-auto">-->
@@ -330,19 +356,19 @@
                                     <i class="bi bi-plus"></i>
                                 </button>
                                 <div id="">
-                                    <ul class="dropdown-menu position-relative">
+                                    <ul class="dropdown-menu pe-2">
                                         <li>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
+                                            <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
                                                 <a class="icon-link link-secondary text-decoration-none">
-                                                    <span class=""><i class="bi bi-archive"></i></span>
+                                                    <span class="p-2"><i class="bi bi-archive"></i></span>
                                                     Category
                                                 </a>
                                             </button>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                            <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
                                                 <a class="icon-link link-secondary text-decoration-none">
-                                                    <span class=""><i class="bi bi-box"></i></span>
+                                                    <span class="p-2"><i class="bi bi-box"></i></span>
                                                     Item
                                                 </a>
                                             </button>
