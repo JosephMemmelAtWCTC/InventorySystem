@@ -1,10 +1,30 @@
 const app = Vue.createApp({
     // data: all the data for the app, must return an object
     data: function() {
+        class Item{
+            constructor(id, title, description, image, qty, productId, reorderLevel){
+                this.id = id;
+                this.title = title;
+                this.description = description;
+                this.image = image;
+                this.qty = qty;
+                this.productId = productId;
+                this.reorderLevel = reorderLevel;
+
+                this.needsReorder = ()=> {
+                    return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
+                }
+
+                console.log(this.id);
+            }
+        }
+
+        let categoryIdCounter = -1;
+        let itemIdCounter = 1;
         return {
             currentPage: -1,
             newCategory: {
-                id: -1,
+                id: null,
                 title: '',
                 description: '',
                 image: './staticImages/folder.svg',
@@ -12,7 +32,7 @@ const app = Vue.createApp({
             categoriesList: [
                 {
                     id: -1,
-                    title: '',
+                    title: 'Category 1',
                     description: 'An example category description.',
                     image: './staticImages/folder.svg',
                     items: [
@@ -21,30 +41,34 @@ const app = Vue.createApp({
                         {}
                     ]
                 },{
-                    id: -1,
-                    title: '',
-                    description: 'An example category description.',
+                    id: -2,
+                    title: 'Category 2',
+                    description: 'Another example category description.',
                     image: './staticImages/folder.svg',
                     items: [
-                        {},
-                        {},
                         {}
                     ]
                 },
             ],
             itemsList: [
-                {
-                    // "id": 1,
-                    // "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-                    // "price": 109.95,
-                    // "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-                    // "category": "men's clothing",
-                    // "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-                    // "rating": {
-                    //     "rate": 3.9,
-                    //     "count": 120
-                    // }
-                }
+                new Item(
+                    itemIdCounter++,
+                    'Fjallraven - Foldsack No. 1 Backpack',
+                    'Your perfect pack for everyday use and walks in the forest.',
+                    'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                    4,
+                    923087,
+                    -1
+                ),
+                new Item(
+                    itemIdCounter++,
+                    'Mens Casual Premium Slim Fit T-Shirts',
+                    'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
+                    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+                    3,
+                    872892,
+                    5,
+                ),
             ]
         }
     },
@@ -60,12 +84,26 @@ const app = Vue.createApp({
             //     $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
             // });
         },
+        addIt(e){
+            this.shoppingList.push(this.newItem);
+
+            // Clear the form
+            this.newItem = {
+                name: '',
+                qty: 1,
+                category: 'need',
+                purchased: false,
+            };
+        }
     },
 
     // computed: values that are updated and cached if dependencies change
     computed: {
         currentCategoriesList(){
             return this.categoriesList;
+        },
+        currentItemsList(){
+            return this.itemsList;
         },
         // gotList(){
         //     return this.shoppingList.filter(function(item){
