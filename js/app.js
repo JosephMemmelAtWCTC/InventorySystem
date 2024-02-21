@@ -14,8 +14,15 @@ const app = Vue.createApp({
                 this.needsReorder = ()=> {
                     return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
                 }
-
-                console.log(this.id);
+            }
+        }
+        class Category{
+            constructor(id, title, description, items){
+                this.id = id;
+                this.title = title;
+                this.description = description;
+                this.image = './staticImages/folder.svg';
+                this.items = items;
             }
         }
 
@@ -30,25 +37,24 @@ const app = Vue.createApp({
                 image: './staticImages/folder.svg',
             },
             categoriesList: [
-                {
-                    id: -1,
-                    title: 'Category 1',
-                    description: 'An example category description.',
-                    image: './staticImages/folder.svg',
-                    items: [
+                new Category(
+                    categoryIdCounter--,
+                    'Category 1',
+                    'An example category description.',
+                    [
                         {},
                         {},
-                        {}
+                        {},
                     ]
-                },{
-                    id: -2,
-                    title: 'Category 2',
-                    description: 'Another example category description.',
-                    image: './staticImages/folder.svg',
-                    items: [
-                        {}
+                ),
+                new Category(
+                    categoryIdCounter--,
+                    'Category 1',
+                    'Another example category description.',
+                    [
+                        {},
                     ]
-                },
+                ),
             ],
             itemsList: [
                 new Item(
@@ -68,6 +74,15 @@ const app = Vue.createApp({
                     3,
                     872892,
                     5,
+                ),
+                new Item(
+                    itemIdCounter++,
+                    'Mens Cotton Jacket',
+                    'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.',
+                    'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
+                    5,
+                    872892,
+                    2,
                 ),
             ]
         }
