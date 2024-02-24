@@ -15,7 +15,6 @@ class Item{
 }
 class Category{
     constructor(id, title, description, items){
-        // Debug.log
         this.id = (id === undefined)? -1 : id;
         this.title = title;
         this.description = description;
@@ -37,6 +36,15 @@ const app = Vue.createApp({
                 title: '',
                 description: '',
                 image: './staticImages/folder.svg',
+            },
+            newItem: {
+                id: null,
+                title: '',
+                description: '',
+                image: 'https://picsum.photos/300',
+                qty: 0,
+                productId: null,
+                reorderLevel: null,
             },
             categoriesList: [
                 new Category(
@@ -83,10 +91,24 @@ const app = Vue.createApp({
                     'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.',
                     'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
                     5,
-                    872892,
+                    872893,
                     2,
                 ),
-            ]
+            ],
+            addCategoryForm: undefined,
+            addItemForm: undefined,
+            getAddCategoryForm: function(){
+                if(this.addCategoryForm === undefined){
+                    this.addCategoryForm = document.querySelector('#newCategoryModel form');
+                }
+                return this.addCategoryForm;
+            },
+            getAddItemForm: function(){
+                if(this.addItemForm === undefined){
+                    this.addItemForm = document.querySelector('#newItemModel form');
+                }
+                return this.addItemForm;
+            }
         }
     },
 
@@ -102,31 +124,53 @@ const app = Vue.createApp({
             // });
         },
         addCategory(e){
-            this.categoriesList.push(new Category(
-                this.newCategory.id,
-                this.newCategory.title,
-                this.newCategory.description,
-                this.newCategory.image
-            ));
-            // Clear the form
-            this.newItem = {
-                name: '',
-                qty: 1,
-                category: 'need',
-                purchased: false,
-            };
+            if(this.getAddCategoryForm().checkValidity()){
+                this.categoriesList.push(new Category(
+                    this.newCategory.id,
+                    this.newCategory.title,
+                    this.newCategory.description,
+                    this.newCategory.image
+                ));
+                // Clear the form
+                this.newCategory = {
+                    id: null,
+                    title: '',
+                    description: '',
+                    image: './staticImages/folder.svg',
+                };
+                console.log(this.getAddCategoryForm().classList)
+                document.querySelector('#newCategoryModel form').classList.remove("was-validated");
+                console.log(this.getAddCategoryForm().classList)
+                // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
+                $('#newCategoryModel').modal('hide');
+            }
         },
         addItem(e){
-            this.shoppingList.push(this.newItem);
+            if(this.getAddItemForm().checkValidity()){
+                this.itemsList.push(new Item(
+                    this.newItem.id,
+                    this.newItem.title,
+                    this.newItem.description,
+                    this.newItem.image,
+                    this.newItem.qty,
+                    this.newItem.productId,
+                    this.newItem.reorderLevel
+                ));
+                // Clear the form
+                this.newItem = {
+                    title: '',
+                    description: '',
+                    // image: 'https://picsum.photos/300',
+                    // qty: 0,
+                    productId: null,
+                    reorderLevel: null,
+                };
+                this.getAddItemForm().classList.remove("was-validated");
+                // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
+                $('#newItemModel').modal('hide');
 
-            // Clear the form
-            this.newItem = {
-                name: '',
-                qty: 1,
-                category: 'need',
-                purchased: false,
-            };
-        }
+            }
+        },
     },
 
     // computed: values that are updated and cached if dependencies change
@@ -171,6 +215,15 @@ const app = Vue.createApp({
             handler(){//newList){
                 localStorage.setItem('openPage', this.currentPage);
             },
+        },
+        newItem:{
+            handler() {
+                console.log(this.newItem.reorderLevel);
+                if(this.newItem.reorderLevel === -1){
+                    this.newItem.reorderLevel = undefined;
+                }
+            },
+            deep: true,
         }
     }
 });

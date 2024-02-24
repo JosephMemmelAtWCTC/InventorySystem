@@ -49,33 +49,38 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="addItem" class="needs-validation" novalidate>
+                    <form @submit.prevent="addItem" ref="form" class="needs-validation" novalidate>
                         <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <img id="cameraModelTakeFile" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <div class="mb-3">
                             <label for="new-item-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control focus-ring-primary" id="new-item-name" required>
+                            <input type="text" class="form-control focus-ring-primary" id="new-item-name" required v-model="newItem.title">
                             <div class="invalid-feedback">
                                 A name is required for the item
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-item-id" class="col-form-label">Product ID:</label>
-                            <input type="text" class="form-control focus-ring-primary" id="new-item-id" required>
+                            <input type="text" class="form-control focus-ring-primary" id="new-item-id" required v-model="newItem.productId">
                             <div class="invalid-feedback">
                                 A product id is required for the item
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-item-description" class="col-form-label">Description:</label>
-                            <textarea class="form-control focus-ring-primary" id="new-item-description" required></textarea>
+                            <textarea class="form-control focus-ring-primary" id="new-item-description" required  v-model="newItem.description"></textarea>
                             <div class="invalid-feedback">
                                 A description is required for the item
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
-                            <input type="number" class="form-control focus-ring-primary" id="new-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0">
+                        <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control focus-ring-primary" id="new-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0"  v-model="newItem.reorderLevel">
+                            <span class="input-group-text">
+                                <button type="button" @click="newItem.reorderLevel=-1" class="col-auto btn btn-secondary justify-content-center">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </span>
                         </div>
 
                         <div class="modal-footer row justify-content-center">
@@ -175,9 +180,14 @@
 
             <div data-navPage="items" v-if="currentPage==='items'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
                 <header id="searchRibbon" class="bg-body-tertiary">
-                    <div class="row">
-                        <div class="col-auto justify-content-center justify-content-around">
-                            Filter Search
+                    <div class="row align-items-center">
+<!--                        <div class="col-auto justify-content-center justify-content-around text-center">-->
+<!--                            <p class="text-center">-->
+<!--                                Filter Search-->
+<!--                            </p>-->
+<!--                        </div>-->
+                        <div class="col-auto d-flex text-center align-items-center">
+                            <p class="ms-4">Filter Search</p>
                         </div>
 
                         <div class="col end-0">
