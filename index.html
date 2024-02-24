@@ -20,19 +20,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form @submit.prevent="addCategory" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <label for="new-category-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="new-category-name">
+                            <input type="text" class="form-control focus-ring-primary" id="new-category-name" required v-model="newCategory.title">
+                            <div class="invalid-feedback">
+                                A name is required for the category
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-category-description" class="col-form-label">Description:</label>
-                            <textarea class="form-control" id="new-category-description"></textarea>
+                            <textarea class="form-control focus-ring-primary" id="new-category-description"  v-model="newCategory.description"></textarea>
+                        </div>
+                        <div class="modal-footer row justify-content-center">
+                            <button type="submit" class="col-auto btn btn-primary justify-content-center">Create Category</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer row justify-content-center">
-                    <button type="button" class="col-auto btn btn-primary justify-content-center">Create Category</button>
                 </div>
             </div>
         </div>
@@ -46,29 +49,39 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form @submit.prevent="addItem" class="needs-validation" novalidate>
                         <img id="cameraModelTakePhoto" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <img id="cameraModelTakeFile" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
                         <div class="mb-3">
                             <label for="new-item-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="new-item-name">
+                            <input type="text" class="form-control focus-ring-primary" id="new-item-name" required>
+                            <div class="invalid-feedback">
+                                A name is required for the item
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-item-id" class="col-form-label">Product ID:</label>
-                            <input type="text" class="form-control" id="new-item-id">
+                            <input type="text" class="form-control focus-ring-primary" id="new-item-id" required>
+                            <div class="invalid-feedback">
+                                A product id is required for the item
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-item-description" class="col-form-label">Description:</label>
-                            <textarea class="form-control" id="new-item-description"></textarea>
+                            <textarea class="form-control focus-ring-primary" id="new-item-description" required></textarea>
+                            <div class="invalid-feedback">
+                                A description is required for the item
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
-                            <input type="number" class="form-control" id="new-item-reorderLevel" value="0">
+                            <input type="number" class="form-control focus-ring-primary" id="new-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0">
+                        </div>
+
+                        <div class="modal-footer row justify-content-center">
+                            <button type="submit" class="col-auto btn btn-primary justify-content-center">Create Item</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer row justify-content-center">
-                    <button type="button" class="col-auto btn btn-primary justify-content-center">Create Item</button>
                 </div>
             </div>
         </div>
@@ -170,20 +183,20 @@
                         <div class="col end-0">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="searchTextDescribe"><i class="bi ms-1 bi-search"></i></span>
-                                <input type="text" class="form-control" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe">
+                                <input type="text" class="form-control focus-ring-primary" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe">
                             </div>
                         </div>
 
 
 
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
-                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <input type="checkbox" class="btn-check focus-ring-primary" id="btncheck1" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck1">Include Categories</label>
 
-                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <input type="checkbox" class="btn-check focus-ring-primary" id="btncheck2" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck2">Include Items</label>
 
-                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <input type="checkbox" class="btn-check focus-ring-primary" id="btncheck3" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck3">Under Threashold</label>
                         </div>
                         <div class="col-12 ps-3 mb-0 pb-0">
@@ -204,7 +217,7 @@
                     <div v-for="(category, i) in currentCategoriesList" :key="category.name" class="col category">
                         <div class="card mb-3">
                             <div class="card-header bg-transparent">{{category.title}}</div>
-                            <img :src="category.image" class="displayImage card-img-top p-0 m-0 rounded-0 border-bottom" alt="Folder">
+                            <img :src="category.image" class="displayImage card-img-top p-0 m-0 rounded-0 border-bottom mw-100 w-auto" alt="Folder">
                             <div class="card-body overflow-x-scroll">
                                 <p class="card-text">{{ category.description }}</p>
                             </div>
@@ -216,7 +229,7 @@
                         <div class="card mb-3">
                             <div class="card-header bg-transparent">Item Name</div>
                             <div class="border-bottom text-center">
-                                <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto" alt="TODO:">
+                                <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">
                             </div>
                             <div class="card-body overflow-x-scroll">
                                 <p class="card-text">{{ item.description }}</p>
@@ -312,7 +325,7 @@
                         </div>
                         <div class="col-12 col-md-12 h-auto bg-white">
                             <label for="profile-name" class="col-12 col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="profile-name">
+                            <input type="text" class="form-control focus-ring-primary" id="profile-name">
                         </div>
                         <div id="permissionsChips" class="col-12 bg-body-tertiary h-auto">
                             <p>Permissions
@@ -437,7 +450,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/InventorySystem.js"></script>
-<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
         // start the app after all the other JS has been loaded
         app.mount('#app');

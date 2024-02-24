@@ -1,30 +1,32 @@
+class Item{
+    constructor(id, title, description, image, qty, productId, reorderLevel){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.qty = qty;
+        this.productId = productId;
+        this.reorderLevel = reorderLevel;
+
+        this.needsReorder = ()=> {
+            return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
+        }
+    }
+}
+class Category{
+    constructor(id, title, description, items){
+        // Debug.log
+        this.id = (id === undefined)? -1 : id;
+        this.title = title;
+        this.description = description;
+        this.image = './staticImages/folder.svg';
+        this.items = (items === undefined)? [] : items;
+    }
+}
+
 const app = Vue.createApp({
     // data: all the data for the app, must return an object
     data: function() {
-        class Item{
-            constructor(id, title, description, image, qty, productId, reorderLevel){
-                this.id = id;
-                this.title = title;
-                this.description = description;
-                this.image = image;
-                this.qty = qty;
-                this.productId = productId;
-                this.reorderLevel = reorderLevel;
-
-                this.needsReorder = ()=> {
-                    return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
-                }
-            }
-        }
-        class Category{
-            constructor(id, title, description, items){
-                this.id = id;
-                this.title = title;
-                this.description = description;
-                this.image = './staticImages/folder.svg';
-                this.items = items;
-            }
-        }
 
         let categoryIdCounter = -1;
         let itemIdCounter = 1;
@@ -49,7 +51,7 @@ const app = Vue.createApp({
                 ),
                 new Category(
                     categoryIdCounter--,
-                    'Category 1',
+                    'Category 2',
                     'Another example category description.',
                     [
                         {},
@@ -99,7 +101,22 @@ const app = Vue.createApp({
             //     $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
             // });
         },
-        addIt(e){
+        addCategory(e){
+            this.categoriesList.push(new Category(
+                this.newCategory.id,
+                this.newCategory.title,
+                this.newCategory.description,
+                this.newCategory.image
+            ));
+            // Clear the form
+            this.newItem = {
+                name: '',
+                qty: 1,
+                category: 'need',
+                purchased: false,
+            };
+        },
+        addItem(e){
             this.shoppingList.push(this.newItem);
 
             // Clear the form
