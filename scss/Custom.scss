@@ -1,22 +1,6 @@
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
-//@import "../node_modules/bootstrap/scss/root";
-//@import "../node_modules/bootstrap/scss/mixins";
-//@import "../node_modules/bootstrap/scss/dropdown";
-//
-//@import "../node_modules/bootstrap/scss/utilities";
-//@import "../node_modules/bootstrap/scss/reboot";
-//@import "../node_modules/bootstrap/scss/type";
-//@import "../node_modules/bootstrap/scss/images";
-//@import "../node_modules/bootstrap/scss/containers";
-//@import "../node_modules/bootstrap/scss/grid";
-//@import "../node_modules/bootstrap/scss/helpers";
-
-//// merge with existing $theme-colors map
-//$theme-colors: map-merge($theme-colors, (
-//        "primary": "#fff"
-//));
 
 $primary: #20A39E;
 //$secondary: #7b9694;
@@ -24,8 +8,16 @@ $secondary: #cce8e6;
 //$input-border-color: #7b9694;
 $focus-ring-color: #7b9694;
 $input-focus-color: #7b9694;
-$input-focus-border-color: #7b9694;
-$input-focus-color: #7b9694;
+//$input-focus-border-color: #7b9694;
+//$input-focus-color: #7b9694;
+//$input-focus-bg: #7b9694;
+$focus-ring-color: red;
+
+:root {
+  --bs-focus-ring-color: lime !important;
+  --bs-input-focus-bg: lime !important;
+  --bs-input-focus-border-color: lime !important;
+}
 
 $breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
 

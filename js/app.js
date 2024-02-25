@@ -231,10 +231,42 @@ const app = Vue.createApp({
         //     this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
         // }
         if(localStorage.getItem('openPage')){
-            console.log("1111");
             this.currentPage = localStorage.getItem('openPage');
-            console.log("2222"+this.currentPage);
-            // this.openNavPage(localStorage.getItem('openPage'));
+        }
+
+        const localStorageMap = new Map([
+            ['filterSettings', this.filterSettings],
+            // ['categoriesList', this.categoriesList],
+            // ['itemsList', this.itemsList],
+        ]);
+        localStorageMap.forEach((value, key) => {
+            const storedValue = localStorage.getItem(key);
+            if(storedValue){
+                //         localStorageMap.get(key).value = JSON.parse(localStorage.getItem(key));
+                this[key] = JSON.parse(storedValue);
+            }
+        });
+
+        if(localStorage.getItem('categoriesList')){
+            this.categoriesList = JSON.parse(localStorage.getItem('categoriesList'));
+        }
+        if(localStorage.getItem('itemsList')){
+            this.itemsList = JSON.parse(localStorage.getItem('itemsList'));
+            this.itemsList.map(itemWithoutMethods => {
+                const item = new Item(
+                    itemWithoutMethods.title,
+                    itemWithoutMethods.description,
+                    itemWithoutMethods.image,
+                    itemWithoutMethods.qty,
+                    itemWithoutMethods.productId,
+                    itemWithoutMethods.reorderLevel
+                );
+                // itemWithoutMethods.needsReorder = Item.needsReorder; TODO: Get working without repeating code for method
+                itemWithoutMethods.needsReorder =  ()=> {
+                    return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
+                }
+                return item;
+            });
         }
 
     },
@@ -246,6 +278,24 @@ const app = Vue.createApp({
             handler(){//newList){
                 localStorage.setItem('openPage', this.currentPage);
             },
+        },
+        filterSettings:{
+            handler(){//newList){
+                localStorage.setItem('filterSettings', JSON.stringify(this.filterSettings));
+            },
+            deep: true,
+        },
+        categoriesList:{
+            handler(){//newList){
+                localStorage.setItem('categoriesList', JSON.stringify(this.categoriesList));
+            },
+            deep: true,
+        },
+        itemsList:{
+            handler(){//newList){
+                localStorage.setItem('itemsList', JSON.stringify(this.itemsList));
+            },
+            deep: true,
         },
         newItem:{
             handler() {
