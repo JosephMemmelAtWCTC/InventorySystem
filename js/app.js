@@ -39,6 +39,7 @@ const app = Vue.createApp({
                 includeCategories: true,
                 includeItems: true,
                 underThreshold: false,
+                searchString: "",
             },
 
             newCategory: {
@@ -186,22 +187,28 @@ const app = Vue.createApp({
     // computed: values that are updated and cached if dependencies change
     computed: {
         currentCategoriesList(){
-            let filteredList = {};
+            let filteredList = [];
             if(this.filterSettings.includeCategories){
                 filteredList = this.categoriesList;
             }
             if(this.filterSettings.underThreshold){
                 // filteredList = filteredList.filter(category => category.items.filter(item => item.needsReorder()));
             }
+            if(this.filterSettings.searchString){
+                filteredList = filteredList.filter(item => item.title.includes(this.filterSettings.searchString) || item.description.includes(this.filterSettings.searchString));
+            }
             return filteredList;
         },
         currentItemsList(){
-            let filteredList = {};
+            let filteredList = [];
             if(this.filterSettings.includeItems){
                 filteredList = this.itemsList;
             }
             if(this.filterSettings.underThreshold){
                 filteredList = filteredList.filter(item => item.needsReorder());
+            }
+            if(this.filterSettings.searchString){
+                filteredList = filteredList.filter(item => item.title.includes(this.filterSettings.searchString) || item.description.includes(this.filterSettings.searchString));
             }
             return filteredList;
         },
