@@ -6,7 +6,12 @@ class Item{
         this.image = image;
         this.qty = qty;
         this.productId = productId;
-        this.reorderLevel = reorderLevel;
+        console.log(this.reorderLevel);
+        if(this.reorderLevel === null){
+            this.reorderLevel = -1;
+        }else{
+            this.reorderLevel = reorderLevel;
+        }
 
         this.needsReorder = ()=> {
             return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
@@ -26,11 +31,16 @@ class Category{
 const app = Vue.createApp({
     // data: all the data for the app, must return an object
     data: function() {
-
         let categoryIdCounter = -1;
         let itemIdCounter = 1;
         return {
             currentPage: -1,
+            filterSettings: {
+                includeCategories: true,
+                includeItems: true,
+                underThreshold: false,
+            },
+
             newCategory: {
                 id: null,
                 title: '',
@@ -38,7 +48,7 @@ const app = Vue.createApp({
                 image: './staticImages/folder.svg',
             },
             newItem: {
-                id: null,
+                id: undefined,
                 title: '',
                 description: '',
                 image: 'https://picsum.photos/300',
@@ -163,7 +173,7 @@ const app = Vue.createApp({
                     // image: 'https://picsum.photos/300',
                     // qty: 0,
                     productId: null,
-                    reorderLevel: null,
+                    reorderLevel: undefined,
                 };
                 this.getAddItemForm().classList.remove("was-validated");
                 // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
@@ -176,10 +186,24 @@ const app = Vue.createApp({
     // computed: values that are updated and cached if dependencies change
     computed: {
         currentCategoriesList(){
-            return this.categoriesList;
+            let filteredList = {};
+            if(this.filterSettings.includeCategories){
+                filteredList = this.categoriesList;
+            }
+            if(this.filterSettings.underThreshold){
+                // filteredList = filteredList.filter(category => category.items.filter(item => item.needsReorder()));
+            }
+            return filteredList;
         },
         currentItemsList(){
-            return this.itemsList;
+            let filteredList = {};
+            if(this.filterSettings.includeItems){
+                filteredList = this.itemsList;
+            }
+            if(this.filterSettings.underThreshold){
+                filteredList = filteredList.filter(item => item.needsReorder());
+            }
+            return filteredList;
         },
         // gotList(){
         //     return this.shoppingList.filter(function(item){

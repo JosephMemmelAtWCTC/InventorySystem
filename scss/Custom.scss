@@ -49,6 +49,11 @@ $theme-colors: map-merge($theme-colors, (
 
 #items .card .card-body{
   height: 4.5em;
+
+}
+div.item>.card>.card-header{
+  max-height: 2.5em;
+  //max-height: 4.5em;
 }
 
 .item i.bi-exclamation-diamond-fill{
