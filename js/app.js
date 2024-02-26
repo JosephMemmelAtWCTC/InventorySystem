@@ -250,7 +250,7 @@ const app = Vue.createApp({
         recentItemsList(){
             let filteredList = [];
             const last24hoursCompareTo = new Date() - 86400000;
-            filteredList = this.currentItemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
+            filteredList = this.itemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
             return filteredList;
         }
     },
