@@ -1,11 +1,12 @@
 class Item{
-    constructor(id, title, description, image, qty, productId, reorderLevel){
+    constructor(id, title, description, image, qty, productId, reorderLevel, lastUpdated){
         this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
         this.qty = qty;
         this.productId = productId;
+        this.lastUpdated = lastUpdated;
         console.log(this.reorderLevel);
         if(this.reorderLevel === null){
             this.reorderLevel = -1;
@@ -52,7 +53,7 @@ const app = Vue.createApp({
                 id: undefined,
                 title: '',
                 description: '',
-                image: 'https://picsum.photos/300',
+                image: 'https://picsum.photos/200/300',
                 qty: 0,
                 productId: null,
                 reorderLevel: null,
@@ -85,7 +86,8 @@ const app = Vue.createApp({
                     'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
                     4,
                     923087,
-                    -1
+                    -1,
+                    Date.now()-1000*60*60*9
                 ),
                 new Item(
                     itemIdCounter++,
@@ -95,6 +97,7 @@ const app = Vue.createApp({
                     3,
                     872892,
                     5,
+                    Date(Date.now()-1000*60*60*34)
                 ),
                 new Item(
                     itemIdCounter++,
@@ -104,10 +107,12 @@ const app = Vue.createApp({
                     5,
                     872893,
                     2,
+                    Date.now()
                 ),
             ],
             addCategoryForm: undefined,
             addItemForm: undefined,
+            editItemForm: undefined,
             getAddCategoryForm: function(){
                 if(this.addCategoryForm === undefined){
                     this.addCategoryForm = document.querySelector('#newCategoryModel form');
@@ -119,6 +124,12 @@ const app = Vue.createApp({
                     this.addItemForm = document.querySelector('#newItemModel form');
                 }
                 return this.addItemForm;
+            },
+            getEditItemForm: function(){
+                if(this.editItemForm === undefined){
+                    this.editItemForm = document.querySelector('#editItemModel form');
+                }
+                return this.editItemForm;
             }
         }
     },
@@ -179,9 +190,33 @@ const app = Vue.createApp({
                 this.getAddItemForm().classList.remove("was-validated");
                 // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
                 $('#newItemModel').modal('hide');
-
             }
         },
+        openEditItemModel(){
+            // if(this.getEditItemForm().checkValidity()){
+            //     this.itemsList.push(new Item(
+            //         this.newItem.id,
+            //         this.newItem.title,
+            //         this.newItem.description,
+            //         this.newItem.image,
+            //         this.newItem.qty,
+            //         this.newItem.productId,
+            //         this.newItem.reorderLevel
+            //     ));
+            //     // Clear the form
+            //     this.newItem = {
+            //         title: '',
+            //         description: '',
+            //         // image: 'https://picsum.photos/300',
+            //         // qty: 0,
+            //         productId: null,
+            //         reorderLevel: undefined,
+            //     };
+            //     this.getAddItemForm().classList.remove("was-validated");
+            //     // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
+            //     $('#editItemModel').modal('hide');
+            // }
+        }
     },
 
     // computed: values that are updated and cached if dependencies change
@@ -212,16 +247,12 @@ const app = Vue.createApp({
             }
             return filteredList;
         },
-        // gotList(){
-        //     return this.shoppingList.filter(function(item){
-        //         return item.purchased;
-        //     });
-        // },
-        // wantList(){
-        //     return this.shoppingList.filter(function(item){
-        //         return !item.purchased && item.category === 'want';
-        //     });
-        // },
+        recentItemsList(){
+            let filteredList = [];
+            const last24hoursCompareTo = new Date() - 86400000;
+            filteredList = this.currentItemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
+            return filteredList;
+        }
     },
 
     //mounted:  called after the instance has been mounted,
@@ -259,11 +290,13 @@ const app = Vue.createApp({
                     itemWithoutMethods.image,
                     itemWithoutMethods.qty,
                     itemWithoutMethods.productId,
-                    itemWithoutMethods.reorderLevel
+                    itemWithoutMethods.reorderLevel,
+                    itemWithoutMethods.lastUpdated
                 );
                 // itemWithoutMethods.needsReorder = Item.needsReorder; TODO: Get working without repeating code for method
-                itemWithoutMethods.needsReorder =  ()=> {
-                    return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
+                console.log(itemWithoutMethods.title);
+                itemWithoutMethods.needsReorder = ()=> {
+                    return itemWithoutMethods.reorderLevel !== -1 && itemWithoutMethods.qty < itemWithoutMethods.reorderLevel;
                 }
                 return item;
             });

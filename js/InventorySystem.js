@@ -4,6 +4,8 @@ $(function(){
 
     $pageTitle.text("Connected to Database Name");
 
+    $pageTitle.addClass('d-none');
+
     (() => {
         'use strict'
 
@@ -14,8 +16,8 @@ $(function(){
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
+                    event.preventDefault();
+                    event.stopPropagation();
                 }
 
                 form.classList.add('was-validated')

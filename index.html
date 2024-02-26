@@ -91,6 +91,57 @@
             </div>
         </div>
     </div>
+
+<!--    <div id="editItemModel" class="modal fade" tabindex="-1" aria-labelledby="editItemModelLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-fullscreen">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h1 class="modal-title fs-5" id="editItemModelLabel">Edit Item</h1>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <form @submit.prevent="editItem" ref="form" class="needs-validation" novalidate>-->
+<!--                        <img id="" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">-->
+<!--                        <img id="" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-name" class="col-form-label">Name:</label>-->
+<!--                            <input type="text" class="form-control focus-ring-primary" id="edit-item-name" required v-model="edit.title">-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A name is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-id" class="col-form-label">Product ID:</label>-->
+<!--                            <input type="text" class="form-control focus-ring-primary" id="edit-item-id" required v-model="editItem.productId">-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A product id is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-description" class="col-form-label">Description:</label>-->
+<!--                            <textarea class="form-control focus-ring-primary" id="edit-item-description" required  v-model="editItem.description"></textarea>-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A description is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>-->
+<!--                        <div class="input-group mb-3">-->
+<!--                            <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0"  v-model="newItem.reorderLevel">-->
+<!--                            <span class="input-group-text">-->
+<!--                                <button type="button" @click="newItem.reorderLevel=-1" class="col-auto btn btn-secondary justify-content-center">-->
+<!--                                    <i class="bi bi-x-lg"></i>-->
+<!--                                </button>-->
+<!--                            </span>-->
+<!--                        </div>-->
+
+<!--                        <div class="modal-footer row justify-content-center">-->
+<!--                            <button type="submit" class="col-auto btn btn-primary justify-content-center">Create Item</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!-- LOCATION - UNSPECIFIC END-->
 
 
@@ -123,9 +174,8 @@
                     <li class="nav-item p-2 mb-2">
                         <button type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-end w-100">
                             <i class="bi bi-arrow-left-right"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-<!--                                99+-->
-                                2
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
+                            {{ recentItemsList.length }}
                             <span class="visually-hidden">Changes to inventory</span>
                             </span>
                         </button>
@@ -172,6 +222,35 @@
                 </div>
                 <div class="w-100 justify-content-center">
                     <div class="m-5 bg-body-tertiary mx-auto m-4 p-2">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Cateogry</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
                         General info about the database, order #'s in / out, sticking to just one database to specialize.
                     </div>
                 </div>
@@ -227,14 +306,14 @@
                         <div class="card mb-3">
                             <div class="card-header bg-transparent">{{category.title}}</div>
                             <img :src="category.image" class="displayImage card-img-top p-0 m-0 rounded-0 border-bottom mw-100 w-auto" alt="Folder">
-                            <div class="card-body"><!--overflow-x-scroll-->
+                            <div class="card-body overflow-y-scroll"><!--overflow-x-scroll-->
                                 <p class="card-text">{{ category.description }}</p>
                             </div>
                             <div class="card-footer bg-transparent">{{ category.items.length }} unique item{{ category.items.length === 1? "":"s" }}</div>
                         </div>
                     </div>
 
-                    <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item">
+                    <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item"><!--@click="openEditItemModel()"-->
                         <div class="card mb-3">
                             <div class="card-header bg-transparent overflow-x-scroll p-0">{{ item.title }}</div><!--overflow-x-scroll-->
                             <div class="border-bottom text-center">
@@ -299,31 +378,27 @@
             </div>
             <div data-navPage="recents" v-if="currentPage==='recents'" data-pageTitle="Recents" class="page container-fluid mt-5"><!--flex-shrink-0-->
                 <div id="inventoryCards" class="m-0">
-                    <div class="rounded-0 row bg-secondary border-2 border-primary border-bottom"><!--card-->
+                    <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-secondary border-2 border-primary border-bottom"><!--card-->
 
                         <div class="bi-3x col-2 p-0 my-auto text-center">
-                            <i class="recentsArrowIn bi ms-1 bi-box-arrow-in-right"></i>
+                            <i class="recentsArrowIn bi ms-1 bi-plus"></i>
                         </div>
                         <div class="col">
-                            <h5 class="card-title">Item Name</h5>
-                            <p class="card-text ">Time<br>
-                            <p class="card-text">Category<br>
-                            # of items<br>
-                            </p>
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <span class="card-text ">{{ new Date(item.lastUpdated).toDateString()+" at "+new Date(item.lastUpdated).getHours()+":"+(new Date(item.lastUpdated).getMinutes()<10? "0":"")+new Date(item.lastUpdated).getMinutes() }}</span><br>
+                            <span class="card-text">{{ item.qty+' in stock'}}</span><br>
+                            <p class="card-text badge badge text-bg-info">Category Name</p>
                         </div>
-                    </div>
-                    <div class="rounded-0 row bg-secondary border-2 border-primary border-bottom">
-
                         <div class="bi-3x col-2 p-0 my-auto text-center">
-                            <i class="recentsArrowIn ms-3 bi bi-box-arrow-in-left"></i>
-                        </div>
-                        <div class="col">
-                            <h5 class="card-title">Item Name</h5>
-                            <p class="card-text">Time<br>
-                            <p class="card-text">Category<br>
-                            # of items<br>
+                            <i class="recentsArrowIn bi ms-1 bi-dash"></i>
                         </div>
                     </div>
+
+
+
+
+
+
                 </div>
             </div>
             <div data-navPage="account" v-if="currentPage==='account'" data-pageTitle="Profile" class="page container-fluid m-0 p-0 h-100 overflow-y-hidden pt-sm-4 pt-4"><!--flex-shrink-0-->
@@ -372,7 +447,7 @@
                                 <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-plus"></i>
                                 </button>
-                                <div id="">
+                                <div>
                                     <ul class="dropdown-menu pe-2">
                                         <li>
                                             <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
@@ -431,8 +506,8 @@
                         <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
                             <button id="navRecentsButton" type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="position-relative primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
                                 <i class="bi bi-arrow-left-right"></i>
-                                <i class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-3">
-                                    2
+                                <i class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black mt-3">
+                                    {{ recentItemsList.length }}
                                     <span class="visually-hidden">Changes to inventory</span>
                                 </i>
 
