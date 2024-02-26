@@ -58,6 +58,15 @@ const app = Vue.createApp({
                 productId: null,
                 reorderLevel: null,
             },
+            editItem: {
+                id: undefined,
+                title: '',
+                description: '',
+                image: 'https://picsum.photos/200/300',
+                qty: 0,
+                productId: null,
+                reorderLevel: null,
+            },
             categoriesList: [
                 new Category(
                     categoryIdCounter--,
@@ -193,29 +202,29 @@ const app = Vue.createApp({
             }
         },
         openEditItemModel(){
-            // if(this.getEditItemForm().checkValidity()){
-            //     this.itemsList.push(new Item(
-            //         this.newItem.id,
-            //         this.newItem.title,
-            //         this.newItem.description,
-            //         this.newItem.image,
-            //         this.newItem.qty,
-            //         this.newItem.productId,
-            //         this.newItem.reorderLevel
-            //     ));
-            //     // Clear the form
-            //     this.newItem = {
-            //         title: '',
-            //         description: '',
-            //         // image: 'https://picsum.photos/300',
-            //         // qty: 0,
-            //         productId: null,
-            //         reorderLevel: undefined,
-            //     };
-            //     this.getAddItemForm().classList.remove("was-validated");
-            //     // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
-            //     $('#editItemModel').modal('hide');
-            // }
+            if(this.getEditItemForm().checkValidity()){
+                this.itemsList.push(new Item(
+                    this.newItem.id,
+                    this.newItem.title,
+                    this.newItem.description,
+                    this.newItem.image,
+                    this.newItem.qty,
+                    this.newItem.productId,
+                    this.newItem.reorderLevel
+                ));
+                // Clear the form
+                this.newItem = {
+                    title: '',
+                    description: '',
+                    // image: 'https://picsum.photos/300',
+                    // qty: 0,
+                    productId: null,
+                    reorderLevel: undefined,
+                };
+                this.getAddItemForm().classList.remove("was-validated");
+                // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
+                $('#editItemModel').modal('hide');
+            }
         }
     },
 
