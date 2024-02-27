@@ -1,23 +1,9 @@
-
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-
 $primary: #20A39E;
 //$secondary: #7b9694;
 $secondary: #cce8e6;
-//$input-border-color: #7b9694;
-$focus-ring-color: #7b9694;
-$input-focus-color: #7b9694;
-//$input-focus-border-color: #7b9694;
-//$input-focus-color: #7b9694;
-//$input-focus-bg: #7b9694;
-$focus-ring-color: red;
 
-:root {
-  --bs-focus-ring-color: lime !important;
-  --bs-input-focus-bg: lime !important;
-  --bs-input-focus-border-color: lime !important;
-}
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
 
 $breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
 
@@ -53,6 +39,34 @@ div.item>.card>.card-header{
 }
 .item .text-warning-emphasis i.bi-exclamation-diamond-fill{
   display: inline;
+}
+
+#scanButton {
+  height: 175px;
+}
+
+#cameraModelTakePhoto {
+  /*width*/
+}
+
+.recentsArrowIn {
+  font-size: 3em;
+}
+
+/*TESTING - DEV*/
+/*.col, .col-auto, .col-12, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6 {*/
+/*    border: 1px solid red;*/
+/*}*/
+
+#addFab > button {
+  width: 84px;
+  height: 84px;
+}
+
+body div#addFab > ul#dropupAddHolder{
+  /*Taken from inspector then modified*/
+  /*transform: translate(-51px, -100px);*/
+  transform: translate(-20px, -110px) !important;
 }
 
 // set changes

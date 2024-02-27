@@ -236,7 +236,7 @@ const app = Vue.createApp({
                 filteredList = this.categoriesList;
             }
             if(this.filterSettings.underThreshold){
-                // filteredList = filteredList.filter(category => category.items.filter(item => item.needsReorder()));
+            //     When doings items contained in a list they should be filtered here recursively
             }
             if(this.filterSettings.searchString){
                 filteredList = filteredList.filter(item => item.title.includes(this.filterSettings.searchString) || item.description.includes(this.filterSettings.searchString));
