@@ -81,6 +81,25 @@
                             </span>
                         </div>
 
+                        <label for="new-item-qty" class="col-form-label"># In Stock:</label>
+                        <div class="input-group mb-3 w-100 w-md-100 mx-auto container">
+                            <div class="row w-100 g-0 justify-content-center">
+                                <div class="col-2">
+                                    <button @click="newItem.qty -= (newItem.qty > 0? 1:0)" class="d-md-none d-block rounded-0 rounded-start-3 form-control focus-ring-primary" id="new-item-qty-minus">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-12 col-8">
+                                    <input type="number" class="rounded-md-0 form-control focus-ring-primary" id="new-item-qty" value="" placeholder="" min="0" v-model="newItem.qty">
+                                </div>
+                                <div class="col-2 d-md-none d-block">
+                                    <button @click="newItem.qty++" class="rounded-0 rounded-end-3 form-control focus-ring-primary" id="new-item-qty-plus" >
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="modal-footer row justify-content-center">
                             <button type="submit" class="col-auto btn btn-primary justify-content-center">Create Item</button>
                         </div>
@@ -133,8 +152,27 @@
                             </span>
                         </div>
 
+                        <div class="input-group mb-3 w-100 w-md-100 mx-auto container">
+                            <div class="row w-100 g-0 justify-content-center">
+                                <div class="col-2">
+                                    <button @click="editItem.qty -= (editItem.qty > 0? 1:0)" class="d-md-none d-block rounded-0 rounded-start-3 form-control focus-ring-primary" id="edit-item-qty-minus">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-12 col-8">
+                                    <input type="number" class="rounded-md-0 form-control focus-ring-primary" id="edit-item-qty" value="" placeholder="" min="0" v-model="editItem.qty">
+                                </div>
+                                <div class="col-2 d-md-none d-block">
+                                    <button @click="editItem.qty++" class="rounded-0 rounded-end-3 form-control focus-ring-primary" id="edit-item-qty-plus" >
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="modal-footer row justify-content-center">
                             <button type="submit" class="col-auto btn btn-primary justify-content-center">Update Item</button>
+<!--                            <button type="button" class="col-auto btn btn-danger justify-content-center">Remove Item</button>-->
                         </div>
                     </form>
                 </div>
@@ -318,25 +356,12 @@
 <!--                            </div>-->
                             <div class="card-footer bg-transparent" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
                                 <span>
-                                    {{ item.qty }}{{ item.reorderLevel == -1? "": `/${item.reorderLevel}`}} item{{item.qty==1? "":"s"}} in stock
+                                    {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": `/${item.reorderLevel}`}} item{{item.qty==1? "":"s"}} in stock
                                     <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
-
-
-
-<!--                    <div class="col">-->
-<!--                        <div class="card mb-3">-->
-<!--                            <div class="card-header bg-transparent">Item Name</div>-->
-<!--                            <img src="https://picsum.photos/300" class="card-img-top p-0 m-0 rounded-0 border-bottom" alt="TODO">-->
-<!--                            <div class="card-body">-->
-<!--                                <p class="card-text">Info.</p>-->
-<!--                            </div>-->
-<!--                            <div class="card-footer bg-transparent"># in stock</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
                 </div>
 
