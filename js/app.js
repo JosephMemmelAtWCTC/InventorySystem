@@ -191,8 +191,8 @@ const app = Vue.createApp({
                 this.newItem = {
                     title: '',
                     description: '',
-                    // image: 'https://picsum.photos/300',
-                    // qty: 0,
+                    image: 'https://picsum.photos/200/300',
+                    qty: 1,
                     productId: null,
                     reorderLevel: -1,
                 };
@@ -230,7 +230,7 @@ const app = Vue.createApp({
             //     When doings items contained in a list they should be filtered here recursively
             }
             if(this.filterSettings.searchString){
-                filteredList = filteredList.filter(item => item.title.includes(this.filterSettings.searchString) || item.description.includes(this.filterSettings.searchString));
+                filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
             return filteredList;
         },
@@ -243,13 +243,13 @@ const app = Vue.createApp({
                 filteredList = filteredList.filter(item => item.needsReorder());
             }
             if(this.filterSettings.searchString){
-                filteredList = filteredList.filter(item => item.title.includes(this.filterSettings.searchString) || item.description.includes(this.filterSettings.searchString));
+                filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
             return filteredList;
         },
         recentItemsList(){
             let filteredList = [];
-            const last24hoursCompareTo = new Date() - 86400000;
+            const last24hoursCompareTo = Date.now() - 86400000;
             filteredList = this.itemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
             return filteredList;
         }

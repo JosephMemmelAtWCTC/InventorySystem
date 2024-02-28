@@ -144,7 +144,7 @@
                         </div>
                         <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0"  v-model="newItem.reorderLevel">
+                            <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0" v-model="editItem.reorderLevel">
                             <span class="input-group-text">
                                 <button type="button" @click="editItem.reorderLevel=-1" class="col-auto btn btn-secondary justify-content-center">
                                     <i class="bi bi-x-lg"></i>
@@ -171,8 +171,10 @@
                         </div>
 
                         <div class="modal-footer row justify-content-center">
+                            <button type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">
+                                <i class="bi bi-trash"></i>
+                            </button>
                             <button type="submit" class="col-auto btn btn-primary justify-content-center">Update Item</button>
-<!--                            <button type="button" class="col-auto btn btn-danger justify-content-center">Remove Item</button>-->
                         </div>
                     </form>
                 </div>
