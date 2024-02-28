@@ -42,7 +42,7 @@ const app = Vue.createApp({
                 underThreshold: false,
                 searchString: "",
             },
-
+            itemsViewMode: false,
             newCategory: {
                 id: null,
                 title: '',
@@ -203,15 +203,15 @@ const app = Vue.createApp({
         },
         openEditItemModel(){
             if(this.getEditItemForm().checkValidity()){
-                this.itemsList.push(new Item(
-                    this.newItem.id,
-                    this.newItem.title,
-                    this.newItem.description,
-                    this.newItem.image,
-                    this.newItem.qty,
-                    this.newItem.productId,
-                    this.newItem.reorderLevel
-                ));
+                // this.itemsList.push(new Item(
+                //     this.newItem.id,
+                //     this.newItem.title,
+                //     this.newItem.description,
+                //     this.newItem.image,
+                //     this.newItem.qty,
+                //     this.newItem.productId,
+                //     this.newItem.reorderLevel
+                // ));
                 // Clear the form
                 this.newItem = {
                     title: '',
