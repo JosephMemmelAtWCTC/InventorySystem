@@ -202,20 +202,20 @@ const app = Vue.createApp({
             }
         },
         openEditItemModel(){
-            // if(this.getEditItemForm().checkValidity()){
-            //     // Clear the form
-            //     this.newItem = {
-            //         title: '',
-            //         description: '',
-            //         image: 'https://picsum.photos/300',
-            //         // qty: 0,
-            //         productId: null,
-            //         reorderLevel: -1,
-            //     };
-            //     this.getAddItemForm().classList.remove("was-validated");
-            //     // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
-            //     $('#editItemModel').modal('hide');
-            // }
+            if(this.getEditItemForm().checkValidity()){
+                // Clear the form
+                this.newItem = {
+                    title: '',
+                    description: '',
+                    image: 'https://picsum.photos/300',
+                    // qty: 0,
+                    productId: null,
+                    reorderLevel: -1,
+                };
+                this.getAddItemForm().classList.remove("was-validated");
+                // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
+                $('#editItemModel').modal('hide');
+            }
         }
     },
 
