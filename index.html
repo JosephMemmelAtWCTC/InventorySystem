@@ -75,7 +75,7 @@
                         <div class="input-group mb-3">
                             <input type="number" class="form-control focus-ring-primary" id="new-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0"  v-model="newItem.reorderLevel">
                             <span class="input-group-text">
-                                <button type="button" @click="newItem.reorderLevel=-1" class="col-auto btn btn-secondary justify-content-center">
+                                <button type="button" @click="newItem.reorderLevel=undefined" class="col-auto btn btn-secondary justify-content-center">
                                     <i class="bi bi-x-lg"></i>
                                 </button>
                             </span>
@@ -146,12 +146,13 @@
                         <div class="input-group mb-3">
                             <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0" v-model="editItem.reorderLevel">
                             <span class="input-group-text">
-                                <button type="button" @click="editItem.reorderLevel=-1" class="col-auto btn btn-secondary justify-content-center">
+                                <button type="button" @click="editItem.reorderLevel=undefined" class="col-auto btn btn-secondary justify-content-center">
                                     <i class="bi bi-x-lg"></i>
                                 </button>
                             </span>
                         </div>
 
+                        <label for="new-item-qty" class="col-form-label"># In Stock:</label>
                         <div class="input-group mb-3 w-100 w-md-100 mx-auto container">
                             <div class="row w-100 g-0 justify-content-center">
                                 <div class="col-2">
@@ -191,12 +192,12 @@
         </span>
     </header>
 
-    <main id="pageHolder" class="container-fluid row h-100 m-0 p-0 pb-5">
-        <div class="col-auto d-none d-md-block m-0 p-0 pb-5">
+    <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
+        <div class="col-auto d-none d-md-block m-0 p-0">
 
             <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
-                    <span class="fs-4">APP TITLE</span>
+                    <span class="fs-4">"Created Name"</span>
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -233,7 +234,7 @@
 <!--                    </a>-->
                     <button type="button" class="btn btn-primary rounded-0 p-0">
                         <a class="icon-link link-secondary">
-                            <span class="p-2"><i class="bi bi-phone"></i></span>
+                            <span class="p-2 ps-1 pe-0"><i class="bi bi-phone"></i></span>
                             <strong><a href="#" class="link-secondary">Download our app</a></strong>
                         </a>
                     </button>
@@ -242,7 +243,7 @@
         </div>
 
 
-        <div class="col m-0 p-0 pb-5">
+        <div class="col m-0 p-0">
             <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="" class="page container-fluid m-0 p-0 ">
                 <!--  HERO/JUMBOTRON  -->
                 <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
@@ -347,7 +348,7 @@
 
                     <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item"><!--@click="openEditItemModel()"-->
                         <div class="card mb-3">
-                            <div class="card-header bg-transparent p-0">{{ item.title }}</div><!--overflow-x-scroll-->
+                            <div class="card-header bg-transparent p-0 overflow-y-scroll">{{ item.title }}</div><!--overflow-x-scroll-->
                             <div class="border-bottom text-center">
                                 <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">
                             </div>
