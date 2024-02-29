@@ -35,7 +35,8 @@ const app = Vue.createApp({
         let categoryIdCounter = -1;
         let itemIdCounter = 1;
         return {
-            currentPage: -1,
+            currentPage: "home",
+            currentPageTitle: "TEST",
             filterSettings: {
                 includeCategories: true,
                 includeItems: true,
@@ -146,8 +147,8 @@ const app = Vue.createApp({
     // methods: usually "events" triggered by v-on:
     methods: {
         openNavPage(pageLabel){
+            this.currentPageTitle = $(`*[data-navPage="${pageLabel}"]`).attr("data-pageTitle");
             this.currentPage = pageLabel;
-            console.log(`opening page ${pageLabel}`);
             // this.currentPage = `${pageLabel}`;
             // $(function() {
             //     $(`*[data-navPage]`).addClass('d-none');

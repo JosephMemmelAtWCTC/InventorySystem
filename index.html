@@ -185,13 +185,6 @@
 <!-- LOCATION - UNSPECIFIC END-->
 
 
-
-    <header id="header" class="head fixed-top bg-primary text-center">
-        <span id="pageTitle" class="mt-4 text-center">
-            Page Title Label
-        </span>
-    </header>
-
     <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
         <div class="col-auto d-none d-md-block m-0 p-0">
 
@@ -203,16 +196,16 @@
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item p-2 mb-2">
                         <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
-                            <i class="bi bi-house"></i>
+                            <i class="bi bi-house link-secondary"></i>
                         </button>
                     </li>
                     <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                        <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
                             <i class="bi bi-grid"></i>
                         </button>
                     </li>
                     <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                        <button type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="link-secondary primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-end w-100">
                             <i class="bi bi-arrow-left-right"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
                             {{ recentItemsList.length }}
@@ -221,17 +214,13 @@
                         </button>
                     </li>
                     <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
+                        <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
                             <i class="bi bi-person"></i>
                         </button>
                     </li>
                 </ul>
                 <hr>
                 <div class="dropdown">
-<!--                    <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-<!--                        <strong>mdo</strong>-->
-<!--                    </a>-->
                     <button type="button" class="btn btn-primary rounded-0 p-0">
                         <a class="icon-link link-secondary">
                             <span class="p-2 ps-1 pe-0"><i class="bi bi-phone"></i></span>
@@ -244,7 +233,12 @@
 
 
         <div class="col m-0 p-0">
-            <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="" class="page container-fluid m-0 p-0 ">
+            <header id="header" class="head bg-primary text-center">
+                <span id="pageTitle" class="mt-4 text-center">
+                    {{ currentPageTitle }}
+                </span>
+            </header>
+            <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="TEST" class="page container-fluid m-0 p-0 ">
                 <!--  HERO/JUMBOTRON  -->
                 <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
                     <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">Instant Inventory</h1>
@@ -289,11 +283,6 @@
             <div data-navPage="items" v-if="currentPage==='items'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
                 <header id="searchRibbon" class="bg-body-tertiary">
                     <div class="row align-items-center">
-<!--                        <div class="col-auto justify-content-center justify-content-around text-center">-->
-<!--                            <p class="text-center">-->
-<!--                                Filter Search-->
-<!--                            </p>-->
-<!--                        </div>-->
                         <div class="col-auto d-flex text-center align-items-center">
                             <p class="ms-4">Filter Search</p>
                         </div>
@@ -337,7 +326,7 @@
                 <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
                     <div v-for="(category, i) in currentCategoriesList" :key="category.title" class="col category">
                         <div class="card mb-3">
-                            <div class="card-header bg-transparent">{{category.title}}</div>
+                            <div class="card-header bg-transparent text-truncate">{{category.title}}</div>
                             <img :src="category.image" class="displayImage card-img-top p-0 m-0 rounded-0 border-bottom mw-100 w-auto" alt="Folder">
                             <div class="card-body overflow-y-scroll"><!--overflow-x-scroll-->
                                 <p class="card-text">{{ category.description }}</p>
@@ -348,7 +337,7 @@
 
                     <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item"><!--@click="openEditItemModel()"-->
                         <div class="card mb-3">
-                            <div class="card-header bg-transparent p-0 overflow-y-scroll">{{ item.title }}</div><!--overflow-x-scroll-->
+                            <div class="card-header bg-transparent p-0 text-truncate">{{ item.title }}</div><!--overflow-x-scroll-->
                             <div class="border-bottom text-center">
                                 <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">
                             </div>
@@ -367,6 +356,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="position-fixed bottom-0 end-0 p-3">
                     <div id="addFab" class="dropup-center dropup rounded-circle">
@@ -496,10 +486,10 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
+                            <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
                                 <i class="bi bi-house"></i>
                             </button>
-                            <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
+                            <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
 <!--                                <i class="bi bi-archive"></i>-->
                                 <i class="bi bi-grid"></i>
                             </button>
@@ -507,7 +497,7 @@
                     </div>
 
                     <div class="navbarScan col-4 p-0">
-                        <button id="scanButton" data-navPageTarget="items" @click="openNavPage('items')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
+                        <button id="scanButton" data-navPageTarget="items" @click="openNavPage('items')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
 
 <!--                            <div class="icon-container">-->
 <!--                                <span class="bi bi-upc-scan w-100"></span>-->
@@ -527,7 +517,7 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
-                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="position-relative primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
+                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="link-secondary position-relative primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
                                 <i class="bi bi-arrow-left-right"></i>
                                 <i class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black mt-3">
                                     {{ recentItemsList.length }}
@@ -539,7 +529,7 @@
 <!--                                <i class="bi bi-arrow-left-right"></i>-->
 <!--                            </button>-->
 
-                            <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
+                            <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
                                 <i class="bi bi-person"></i>
                             </button>
                         </div>
