@@ -222,6 +222,12 @@ const app = Vue.createApp({
 
     // computed: values that are updated and cached if dependencies change
     computed: {
+        filterOption() {
+            return {
+                title: 'Include Categories',
+                state: this.filterSettings.includeCategories,
+            };
+        },
         currentCategoriesList(){
             let filteredList = [];
             if(this.filterSettings.includeCategories){
