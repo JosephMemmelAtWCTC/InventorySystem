@@ -352,8 +352,9 @@
                 </div>
 
                 <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
-                    <cards-list v-bind:items="currentCategoriesList"></cards-list>
-<!--                    @remove-item=""-->
+                    <cards-list v-bind:items="currentCategoriesList" v-bind:footer-info="getCategoryFooter"></cards-list>
+
+                    <cards-list v-bind:items="currentCategoriesList" v-bind:footer-info="getItemFooter"></cards-list>
 
                     <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item"><!--@click="openEditItemModel()"-->
                         <div class="card mb-3">

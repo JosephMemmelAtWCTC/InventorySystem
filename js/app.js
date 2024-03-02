@@ -217,6 +217,17 @@ const app = Vue.createApp({
                 // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
                 $('#editItemModel').modal('hide');
             }
+        },
+
+
+    //     Types for card footers
+        getCategoryFooter: function(cardData){
+            // return "CAT";
+            // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
+            return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
+        },
+        getItemFooter: function(cardData){
+            return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
         }
     },
 
