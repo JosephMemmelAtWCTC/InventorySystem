@@ -44,6 +44,15 @@ const app = Vue.createApp({
                 searchString: "",
             },
             itemsViewMode: false,
+            newItem: {
+                id: undefined,
+                title: '',
+                description: '',
+                image: 'https://picsum.photos/200/300',
+                qty: 1,
+                productId: null,
+                reorderLevel: null,
+            },
             newCategory: {
                 id: null,
                 title: '',
@@ -120,12 +129,7 @@ const app = Vue.createApp({
                 }
                 return this.addCategoryForm;
             },
-            getAddItemForm: function(){
-                if(this.addItemForm === undefined){
-                    this.addItemForm = document.querySelector('#newItemModel form');
-                }
-                return this.addItemForm;
-            },
+
             getEditItemForm: function(){
                 if(this.editItemForm === undefined){
                     this.editItemForm = document.querySelector('#editItemModel form');
@@ -169,8 +173,6 @@ const app = Vue.createApp({
             }
         },
         addItem(newItem){
-            // Add to list
-
             this.itemsList.push(
                 new Item(
                     newItem.id,
@@ -182,6 +184,10 @@ const app = Vue.createApp({
                     newItem.reorderLevel
                 )
             );
+        },
+        updateEditItem(settingEditItem){
+            console.log("~~~~~~~~~~~~~", settingEditItem);
+            this.editItem = settingEditItem;
         },
         openEditItemModel(){
             if(this.getEditItemForm().checkValidity()){

@@ -1,27 +1,40 @@
 app.component('AddItemModal', {
     data(){
         return {
-            newItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 1,
-                productId: null,
-                reorderLevel: null,
-            },
+            // newItem: {
+            //     id: undefined,
+            //     title: '',
+            //     description: '',
+            //     image: 'https://picsum.photos/200/300',
+            //     qty: 1,
+            //     productId: null,
+            //     reorderLevel: null,
+            // },
         }
     },
     props: {
         id: {
             type: String,
             required: true,
+        },
+        title: {
+            type: String,
+            required: true,
+        },
+        exists: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
+        newItem: {
+            type: Object,
+            required: true,
         }
     },
-    emits: ['add-item'],
+    emits: ['add-item', 'edit-item'],
     methods:{
         addItem(e){
-            // Add to list
+            // if(this.getNewItemForm().checkValidity()){
             this.$emit('add-item', this.newItem);
 
             // Clear the form
@@ -35,13 +48,16 @@ app.component('AddItemModal', {
                 reorderLevel: null,
             };
         },
+        editItem(){
+            console.log("EDITITEM");
+        },
     },
     template: `                        
         <div :id="id" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="newItemModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="newItemModelLabel">New Item</h1>
+                    <h1 class="modal-title fs-5" id="newItemModelLabel">{{this.title}}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -99,6 +115,9 @@ app.component('AddItemModal', {
                         </div>
 
                         <div class="modal-footer row justify-content-center">
+                            <button v-if="exists" type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">
+                                <i class="bi bi-trash"></i>
+                            </button>
                             <button type="submit" class="col-auto btn btn-primary justify-content-center" data-bs-dismiss="modal">Create Item</button>
                         </div>
                     </form>

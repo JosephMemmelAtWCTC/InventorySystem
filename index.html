@@ -39,80 +39,82 @@
         </div>
     </div>
 
-    <add-item-modal @add-item="addItem" id="newItemModel"></add-item-modal>
+    <add-item-modal @add-item="addItem" v-bind:new-item="this.newItem" id="newItemModel" title="New Item"></add-item-modal>
+<!--    <add-item-modal @edit-item="editItem" :exists=true :item="this.editItem" id="editItemModel" title="Edit Item"></add-item-modal>-->
+    <add-item-modal @add-item="editItem" v-bind:new-item="this.editItem" :exists=true id="editItemModel" title="Edit Item"></add-item-modal>
 
-    <div id="editItemModel" class="modal fade" tabindex="-1" aria-labelledby="editItemModelLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editItemModelLabel">Edit Item</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form @submit.prevent="openEditItemModel" ref="form" class="needs-validation" novalidate>
-                        <img id="" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
-                        <img id="" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">
-                        <div class="mb-3">
-                            <label for="new-item-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control focus-ring-primary" id="edit-item-name" required v-model="editItem.title">
-                            <div class="invalid-feedback">
-                                A name is required for the item
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="new-item-id" class="col-form-label">Product ID:</label>
-                            <input type="text" class="form-control focus-ring-primary" id="edit-item-id" required v-model="editItem.productId">
-                            <div class="invalid-feedback">
-                                A product id is required for the item
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="new-item-description" class="col-form-label">Description:</label>
-                            <textarea class="form-control focus-ring-primary" id="edit-item-description" required  v-model="editItem.description"></textarea>
-                            <div class="invalid-feedback">
-                                A description is required for the item
-                            </div>
-                        </div>
-                        <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0" v-model="editItem.reorderLevel">
-                            <span class="input-group-text">
-                                <button type="button" @click="editItem.reorderLevel=undefined" class="col-auto btn btn-secondary justify-content-center">
-                                    <i class="bi bi-x-lg"></i>
-                                </button>
-                            </span>
-                        </div>
+<!--    <div id="editItemModel" class="modal fade" tabindex="-1" aria-labelledby="editItemModelLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-fullscreen">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h1 class="modal-title fs-5" id="editItemModelLabel">Edit Item</h1>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <form @submit.prevent="openEditItemModel" ref="form" class="needs-validation" novalidate>-->
+<!--                        <img id="" width="25%" src="./staticImages/camera.svg" class="d-lg-none border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">-->
+<!--                        <img id="" width="15%" src="./staticImages/folder.svg" class="d-none d-lg-block border-secondary p-2 border-2 mx-auto d-block" alt="Camera Take Photo">-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-name" class="col-form-label">Name:</label>-->
+<!--                            <input type="text" class="form-control focus-ring-primary" id="edit-item-name" required v-model="editItem.title">-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A name is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-id" class="col-form-label">Product ID:</label>-->
+<!--                            <input type="text" class="form-control focus-ring-primary" id="edit-item-id" required v-model="editItem.productId">-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A product id is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="new-item-description" class="col-form-label">Description:</label>-->
+<!--                            <textarea class="form-control focus-ring-primary" id="edit-item-description" required  v-model="editItem.description"></textarea>-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                A description is required for the item-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <label for="new-item-reorderLevel" class="col-form-label">Reorder Level:</label>-->
+<!--                        <div class="input-group mb-3">-->
+<!--                            <input type="number" class="form-control focus-ring-primary" id="edit-item-reorderLevel" value="" placeholder="Leave blank to ignore reorder" min="0" v-model="editItem.reorderLevel">-->
+<!--                            <span class="input-group-text">-->
+<!--                                <button type="button" @click="editItem.reorderLevel=undefined" class="col-auto btn btn-secondary justify-content-center">-->
+<!--                                    <i class="bi bi-x-lg"></i>-->
+<!--                                </button>-->
+<!--                            </span>-->
+<!--                        </div>-->
 
-                        <label for="new-item-qty" class="col-form-label"># In Stock:</label>
-                        <div class="input-group mb-3 w-100 w-md-100 mx-auto container">
-                            <div class="row w-100 g-0 justify-content-center">
-                                <div class="col-2">
-                                    <button type="button" @click="editItem.qty -= (editItem.qty > 0? 1:0)" class="d-md-none d-block rounded-0 rounded-start-3 form-control focus-ring-primary" id="edit-item-qty-minus">
-                                        <i class="bi bi-dash"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-12 col-8">
-                                    <input type="number" class="rounded-md-0 form-control focus-ring-primary" id="edit-item-qty" value="" placeholder="" min="0" v-model="editItem.qty">
-                                </div>
-                                <div class="col-2 d-md-none d-block">
-                                    <button type="button" @click="editItem.qty++" class="rounded-0 rounded-end-3 form-control focus-ring-primary" id="edit-item-qty-plus" >
-                                        <i class="bi bi-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <label for="new-item-qty" class="col-form-label"># In Stock:</label>-->
+<!--                        <div class="input-group mb-3 w-100 w-md-100 mx-auto container">-->
+<!--                            <div class="row w-100 g-0 justify-content-center">-->
+<!--                                <div class="col-2">-->
+<!--                                    <button type="button" @click="editItem.qty -= (editItem.qty > 0? 1:0)" class="d-md-none d-block rounded-0 rounded-start-3 form-control focus-ring-primary" id="edit-item-qty-minus">-->
+<!--                                        <i class="bi bi-dash"></i>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-12 col-8">-->
+<!--                                    <input type="number" class="rounded-md-0 form-control focus-ring-primary" id="edit-item-qty" value="" placeholder="" min="0" v-model="editItem.qty">-->
+<!--                                </div>-->
+<!--                                <div class="col-2 d-md-none d-block">-->
+<!--                                    <button type="button" @click="editItem.qty++" class="rounded-0 rounded-end-3 form-control focus-ring-primary" id="edit-item-qty-plus" >-->
+<!--                                        <i class="bi bi-plus"></i>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                        <div class="modal-footer row justify-content-center">
-                            <button type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                            <button type="submit" class="col-auto btn btn-primary justify-content-center">Update Item</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                        <div class="modal-footer row justify-content-center">-->
+<!--                            <button type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">-->
+<!--                                <i class="bi bi-trash"></i>-->
+<!--                            </button>-->
+<!--                            <button type="submit" class="col-auto btn btn-primary justify-content-center">Update Item</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!-- LOCATION - UNSPECIFIC END-->
 
 
@@ -285,29 +287,28 @@
                 <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
                     <cards-list v-bind:items="currentCategoriesList" v-bind:footer-info="getCategoryFooter"></cards-list>
 
-                    <cards-list v-bind:items="currentItemsList" v-bind:footer-info="getItemFooter"></cards-list>
+                    <cards-list v-bind:items="currentItemsList" v-bind:footer-info="getItemFooter" @edit-item="updateEditItem" :target-model-selector="'#editItemModel'"></cards-list>
 
-
-                    <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item"><!--@click="openEditItemModel()"-->
-                        <div class="card mb-3">
-                            <div class="card-header bg-transparent p-0 text-truncate">{{ item.title }}</div><!--overflow-x-scroll-->
-                            <div class="border-bottom text-center">
-                                <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">
-                            </div>
-                            <div class="card-body overflow-x-scroll">
-                                <p class="card-text">{{ item.description }}</p>
-                            </div>
-<!--                            <div v->-->
+<!--                    <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item">&lt;!&ndash;@click="openEditItemModel()"&ndash;&gt;-->
+<!--                        <div class="card mb-3">-->
+<!--                            <div class="card-header bg-transparent p-0 text-truncate">{{ item.title }}</div>&lt;!&ndash;overflow-x-scroll&ndash;&gt;-->
+<!--                            <div class="border-bottom text-center">-->
+<!--                                <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">-->
 <!--                            </div>-->
-                            <div class="card-footer bg-transparent">
-                                <span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
-                                    {{ item.qty
-                                    }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "" : `/${item.reorderLevel}`}} item{{item.qty === 1 ? "" : "s"}} in stock
-                                    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+<!--                            <div class="card-body overflow-x-scroll">-->
+<!--                                <p class="card-text">{{ item.description }}</p>-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                            <div v->&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                            <div class="card-footer bg-transparent">-->
+<!--                                <span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >-->
+<!--                                    {{ item.qty-->
+<!--                                    }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "" : `/${item.reorderLevel}`}} item{{item.qty === 1 ? "" : "s"}} in stock-->
+<!--                                    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                 </div>
 

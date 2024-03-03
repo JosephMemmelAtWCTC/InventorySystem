@@ -6,10 +6,13 @@ Notes from class to implement
  - [ ] Page title headers
  - [ ] Keep the up/down button
 
- Other changes to make
+Other changes to make
 - [x] Overflow w/ellipsis
 - [ ] Get photos working
 - [ ] Complete UI theme overhaul
+
+Broken Items to Fix
+- [ ] Get validation working again (Also try to disable until)
 
 Bug Tracker
 - [ ] Edits save instantly - make only on apply changes
