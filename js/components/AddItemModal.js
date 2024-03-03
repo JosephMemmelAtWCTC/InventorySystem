@@ -21,6 +21,10 @@ app.component('AddItemModal', {
             type: String,
             required: true,
         },
+        submitButtonText: {
+            type: String,
+            required: true,
+        },
         exists: {
             type: Boolean,
             required: false,
@@ -118,7 +122,7 @@ app.component('AddItemModal', {
                             <button v-if="exists" type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">
                                 <i class="bi bi-trash"></i>
                             </button>
-                            <button type="submit" class="col-auto btn btn-primary justify-content-center" data-bs-dismiss="modal">Create Item</button>
+                            <button type="submit" class="col-auto btn btn-primary justify-content-center" data-bs-dismiss="modal">{{submitButtonText}}</button>
                         </div>
                     </form>
                 </div>
