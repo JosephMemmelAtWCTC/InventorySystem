@@ -41,7 +41,7 @@ app.component('CardItem', {
                 <p class="card-text">{{ item.description }}</p>
             </div>
             <div class="card-footer bg-transparent">
-                {{ footerInfo(item) }}
+                    <div v-html="footerInfo(item)"></div>
             </div>
         </div>
     `

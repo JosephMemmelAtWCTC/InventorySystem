@@ -50,15 +50,6 @@ const app = Vue.createApp({
                 description: '',
                 image: './staticImages/folder.svg',
             },
-            newItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 1,
-                productId: null,
-                reorderLevel: null,
-            },
             editItem: {
                 id: undefined,
                 title: '',
@@ -177,30 +168,20 @@ const app = Vue.createApp({
                 $('#newCategoryModel').modal('hide');
             }
         },
-        addItem(e){
-            if(this.getAddItemForm().checkValidity()){
-                this.itemsList.push(new Item(
-                    this.newItem.id,
-                    this.newItem.title,
-                    this.newItem.description,
-                    this.newItem.image,
-                    this.newItem.qty,
-                    this.newItem.productId,
-                    this.newItem.reorderLevel
-                ));
-                // Clear the form
-                this.newItem = {
-                    title: '',
-                    description: '',
-                    image: 'https://picsum.photos/200/300',
-                    qty: 1,
-                    productId: null,
-                    reorderLevel: -1,
-                };
-                this.getAddItemForm().classList.remove("was-validated");
-                // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
-                $('#newItemModel').modal('hide');
-            }
+        addItem(newItem){
+            // Add to list
+
+            this.itemsList.push(
+                new Item(
+                    newItem.id,
+                    newItem.title,
+                    newItem.description,
+                    newItem.image,
+                    newItem.qty,
+                    newItem.productId,
+                    newItem.reorderLevel
+                )
+            );
         },
         openEditItemModel(){
             if(this.getEditItemForm().checkValidity()){
@@ -226,8 +207,35 @@ const app = Vue.createApp({
             // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
             return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
         },
-        getItemFooter: function(cardData){
-            return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
+        // getItemFooter: function(cardData) {
+        //     // return `<span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
+        //     //     {{ cardData.qty }}{{ cardData.reorderLevel === -1 || cardData.reorderLevel === undefined || cardData.reorderLevel === null ? "": cardData.reorderLevel}} item{{item.qty==1? "":"s"}} in stock
+        //     //     <i v-if="cardData.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+        //     // </span>`;
+        // }
+        // getItemFooter: function(item) {
+        //   //   return `<span class="text-warning-emphasis" :class="{'text-warning-emphasis': item.needsReorder()}">
+        //   //    ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
+        //   //    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+        //   // </span>`;
+        // }
+        // getItemFooter: function(item) {
+        //     return `<span :class="{'text-warning-emphasis': item.needsReorder()}">
+        //      ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
+        //      <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+        //   </span>`;
+        // }
+        getItemFooter: function(item) {
+          //   return `<span :class="{'text-warning-emphasis': item.needsReorder()}">
+          //    ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
+          //    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+          // </span>`;
+
+            return `<span v-bind:class="{'text-warning-emphasis': false}">
+                ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'}
+                 <i v-if="${item.needsReorder()}" class="bi bi-exclamation-diamond-fill"></i>
+            </span>`;
+
         }
     },
 
@@ -239,12 +247,12 @@ const app = Vue.createApp({
                 state: this.filterSettings.includeCategories,
             };
         },
-        currentCategoriesList(){
+        currentCategoriesList() {
             let filteredList = [];
-            if(this.filterSettings.includeCategories){
+            if (this.filterSettings.includeCategories) {
                 filteredList = this.categoriesList;
             }
-            if(this.filterSettings.underThreshold){
+            if (this.filterSettings.underThreshold){
             //     When doings items contained in a list they should be filtered here recursively
             }
             if(this.filterSettings.searchString){
