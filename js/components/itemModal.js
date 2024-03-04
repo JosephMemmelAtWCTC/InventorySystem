@@ -1,4 +1,4 @@
-app.component('AddItemModal', {
+app.component('ItemModal', {
     data(){
         return {
             // newItem: {
@@ -35,7 +35,7 @@ app.component('AddItemModal', {
             required: true,
         }
     },
-    emits: ['add-item', 'edit-item'],
+    emits: ['add-item', 'edit-item', 'remove-item'],
     methods:{
         addItem(e){
             // if(this.getNewItemForm().checkValidity()){
@@ -52,9 +52,10 @@ app.component('AddItemModal', {
                 reorderLevel: null,
             };
         },
-        editItem(){
-            console.log("EDITITEM");
-        },
+        removeItem(){
+            this.$emit('remove-item', this.newItem);
+            // this.itemsList.splice(this.itemsList.indexOf(editItem), 1)
+        }
     },
     template: `                        
         <div :id="id" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="newItemModelLabel" aria-hidden="true">
@@ -119,7 +120,7 @@ app.component('AddItemModal', {
                         </div>
 
                         <div class="modal-footer row justify-content-center">
-                            <button v-if="exists" type="submit" @click="this.itemsList.splice(this.itemsList.indexOf(editItem), 1)" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center">
+                            <button v-if="exists" type="submit" @click="removeItem" class="position-absolute start-0 ms-3 col-auto btn btn-danger justify-content-center" data-bs-dismiss="modal">
                                 <i class="bi bi-trash"></i>
                             </button>
                             <button type="submit" class="col-auto btn btn-primary justify-content-center" data-bs-dismiss="modal">{{submitButtonText}}</button>

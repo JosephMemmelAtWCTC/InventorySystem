@@ -189,6 +189,9 @@ const app = Vue.createApp({
             console.log("~~~~~~~~~~~~~", settingEditItem);
             this.editItem = settingEditItem;
         },
+        removeItem(removeItem){
+            this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
+        },
         openEditItemModel(){
             if(this.getEditItemForm().checkValidity()){
                 // Clear the form

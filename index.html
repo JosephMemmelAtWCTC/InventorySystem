@@ -39,9 +39,9 @@
         </div>
     </div>
 
-    <add-item-modal @add-item="addItem" v-bind:new-item="this.newItem" :submit-button-text="'Create Item'" id="newItemModel" title="New Item"></add-item-modal>
-<!--    <add-item-modal @edit-item="editItem" :exists=true :item="this.editItem" id="editItemModel" title="Edit Item"></add-item-modal>-->
-    <add-item-modal @add-item="editItem" v-bind:new-item="this.editItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></add-item-modal>
+    <item-modal @add-item="addItem" v-bind:new-item="this.newItem" :submit-button-text="'Create Item'" id="newItemModel" title="New Item"></item-modal>
+<!--    <item-modal @edit-item="editItem" :exists=true :item="this.editItem" id="editItemModel" title="Edit Item"></item-modal>-->
+    <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>
 
     <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
         <div class="col-auto d-none d-md-block m-0 p-0">
@@ -156,6 +156,7 @@
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
 <!--                            <toggle-item v-bind:option="filterOption"></toggle-item>-->
 <!--                            <toggle-item :option="filterOption" :state="filterSettings.includeCategories"></toggle-item>-->
+                            <toggle-item :option="filterOption2" :state="filterSettings.includeCategories"></toggle-item>
 <!--                            <toggle-item :state="filterSettings.includeCategories"></toggle-item>-->
 
                             <input type="checkbox" v-model="filterSettings.includeCategories" class="btn-check focus-ring-primary" id="filterToggleIncludeCategories"
@@ -427,7 +428,7 @@
 
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/CardItem.js"></script>
-    <script src="js/components/AddItemModal.js"></script>
+    <script src="js/components/itemModal.js"></script>
 
 <!--    <script src="js/components/TogglesArray.js"></script>-->
 
