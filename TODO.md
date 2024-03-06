@@ -1,7 +1,7 @@
 Notes from class to implement
  - [ ] Checkboxes inside of toggle filters + better shown
  - [x] Standardize link colors
- - [ ] Remove edit button
+ - [x] Remove edit button
  - [ ] Tooltips
  - [ ] Page title headers
  - [ ] Keep the up/down button

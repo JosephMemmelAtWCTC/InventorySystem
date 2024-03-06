@@ -43,6 +43,7 @@ const app = Vue.createApp({
                 underThreshold: false,
                 searchString: "",
             },
+            appVersion: "Vue App v1.5",
             itemsViewMode: false,
             newItem: {
                 id: undefined,
@@ -211,41 +212,17 @@ const app = Vue.createApp({
 
 
     //     Types for card footers
-        getCategoryFooter: function(cardData){
-            // return "CAT";
-            // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
-            return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
-        },
+    //     getCategoryFooter: function(cardData){
+    //         // return "CAT";
+    //         // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
+    //         return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
+    //     },
         // getItemFooter: function(cardData) {
         //     // return `<span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
         //     //     {{ cardData.qty }}{{ cardData.reorderLevel === -1 || cardData.reorderLevel === undefined || cardData.reorderLevel === null ? "": cardData.reorderLevel}} item{{item.qty==1? "":"s"}} in stock
         //     //     <i v-if="cardData.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
         //     // </span>`;
         // }
-        // getItemFooter: function(item) {
-        //   //   return `<span class="text-warning-emphasis" :class="{'text-warning-emphasis': item.needsReorder()}">
-        //   //    ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
-        //   //    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-        //   // </span>`;
-        // }
-        // getItemFooter: function(item) {
-        //     return `<span :class="{'text-warning-emphasis': item.needsReorder()}">
-        //      ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
-        //      <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-        //   </span>`;
-        // }
-        getItemFooter: function(item) {
-          //   return `<span :class="{'text-warning-emphasis': item.needsReorder()}">
-          //    ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'} in stock
-          //    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-          // </span>`;
-
-            return `<span v-bind:class="{'text-warning-emphasis': false}">
-                ${item.qty} ${item.reorderLevel !== -1 && item.reorderLevel !== undefined && item.reorderLevel !== null ? `/${item.reorderLevel}` : ''} item${item.qty === 1 ? '' : 's'}
-                 <i v-if="${item.needsReorder()}" class="bi bi-exclamation-diamond-fill"></i>
-            </span>`;
-
-        },
         updateToggle: function(variableToUpdate){
             this.filterSettings[variableToUpdate] = !this.filterSettings[variableToUpdate];
         },

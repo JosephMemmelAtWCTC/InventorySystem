@@ -4,10 +4,10 @@ app.component('CardsList', {
             type: Array,
             required: true,
         },
-        footerInfo: {
-            type: Function,
-            required: true,
-        },
+        // footerInfo: {
+        //     type: Function,
+        //     required: true,
+        // },
         targetModelSelector: {
             type: String,
             required: false,
@@ -21,7 +21,12 @@ app.component('CardsList', {
         }
     },
     template: `
-        <card-item v-for="(card, i) in items" @edit-item="sendUpdateEditItem" :key="card.title" :item="card" :target-model-selector="targetModelSelector" :footerInfo="footerInfo" class="col">
+<!--:footerInfo="footerInfo"-->
+        <card-item v-for="(card, i) in items" @edit-item="sendUpdateEditItem" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">
+            <template #footer>
+                <slot name="footer">
+                </slot>
+            </template>
         </card-item>
     `
 });

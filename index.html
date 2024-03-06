@@ -107,7 +107,7 @@
                         <br>
                         <div class="bg-secondary-subtle p-0 m-0">
                             <p class="w-100">Connection Info</p>
-                            <p class="">App version #</p>
+                            <p class="">{{appVersion}}</p>
                         </div>
                     </div>
 
@@ -156,8 +156,8 @@
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
 <!--                            <toggle-array :options="filterOptionsArray">-->
 <!--                            </toggle-array>-->
-                            <toggle-item label="Include Categories" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>
-                            <toggle-item label="Include Items" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>
+                            <toggle-item label="Include Categories" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>
+                            <toggle-item label="Include Items" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>
                             <toggle-item label="Only Needs Reorder" :option="filterSettings.underThreshold" @update-option-toggle="this.updateToggle('underThreshold')"></toggle-item>
 <!--                            <button @click="filterSettings.includeItems = !filterSettings.includeItems">test</button>-->
                         </div>
@@ -180,9 +180,18 @@
                 </div>
 
                 <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
-                    <cards-list v-bind:items="currentCategoriesList" v-bind:footer-info="getCategoryFooter"></cards-list>
+<!--                    <cards-list v-bind:items="currentCategoriesList">-->
+                    <cards-list v-bind:items="currentCategoriesList" @edit-item="updateEditItem" :target-model-selector="''">
+                        <!--                        v-bind:footer-info="getCategoryFooter"-->
+                        <template #footer>
+<!--                            {{ item.items.length }} unique item{{ item.items.length === 1? "":"s" }}-->
+                        </template>r
+                    </cards-list>
 
-                    <cards-list v-bind:items="currentItemsList" v-bind:footer-info="getItemFooter" @edit-item="updateEditItem" :target-model-selector="'#editItemModel'"></cards-list>
+                    <cards-list v-bind:items="currentItemsList" @edit-item="updateEditItem" :target-model-selector="'#editItemModel'">
+<!--                        <template #footer>-->
+<!--                        </template>-->
+                    </cards-list>
 
                 </div>
 
@@ -339,10 +348,10 @@
 
                     <div class="navbarSide2 col d-flex flex-column align-items-center mt-5 p-0">
                         <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                            <button id="editButton" type="button" class="btn btn-primary my-auto" :class="{'highlightToEdit': itemsViewMode}">
-<!--                                <i class="bi bi-pencil-square"></i>-->
-                                <i class="bi bi-pencil"></i>
-                            </button>
+<!--                            <button id="editButton" type="button" class="btn btn-primary my-auto" :class="{'highlightToEdit': itemsViewMode}">-->
+<!--&lt;!&ndash;                                <i class="bi bi-pencil-square"></i>&ndash;&gt;-->
+<!--                                <i class="bi bi-pencil"></i>-->
+<!--                            </button>-->
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->

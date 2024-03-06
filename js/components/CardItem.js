@@ -4,10 +4,10 @@ app.component('CardItem', {
             type: Object,
             required: true,
         },
-        footerInfo: {
-            type: Function,
-            required: true,
-        },
+        // footerInfo: {
+        //     type: Function,
+        //     required: true,
+        // },
         targetModelSelector: {
             type: String,
             required: true,
@@ -27,7 +27,17 @@ app.component('CardItem', {
                 <p class="card-text">{{ item.description }}</p>
             </div>
             <div class="card-footer bg-transparent">
-                    <div v-html="footerInfo(item)"></div>
+<!--                    <div v-html="footerInfo(item)"></div>-->
+                <slot name="footer">
+                <!--TODO: Have to get working properly, this is not how it should be, the checks should not be here with v-if-->
+                    <span v-if="!('items' in item)" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
+                        {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock
+                        <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+                    </span>
+                    <span v-else>
+                        {{ item.items.length }} unique item{{ item.items.length === 1? "":"s" }}
+                    </span>
+                </slot>
             </div>
         </div>
     `
