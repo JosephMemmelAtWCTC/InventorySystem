@@ -38,7 +38,7 @@ const app = Vue.createApp({
             currentPage: "home",
             currentPageTitle: "TEST",
             filterSettings: {
-                includeCategories: true,
+                includeCategories: false,
                 includeItems: true,
                 underThreshold: false,
                 searchString: "",
@@ -245,17 +245,14 @@ const app = Vue.createApp({
                  <i v-if="${item.needsReorder()}" class="bi bi-exclamation-diamond-fill"></i>
             </span>`;
 
-        }
+        },
+        updateToggle: function(variableToUpdate){
+            this.filterSettings[variableToUpdate] = !this.filterSettings[variableToUpdate];
+        },
     },
 
     // computed: values that are updated and cached if dependencies change
     computed: {
-        filterOption() {
-            return {
-                title: 'Include Categories',
-                state: this.filterSettings.includeCategories,
-            };
-        },
         currentCategoriesList() {
             let filteredList = [];
             if (this.filterSettings.includeCategories) {
@@ -287,7 +284,15 @@ const app = Vue.createApp({
             const last24hoursCompareTo = Date.now() - 86400000;
             filteredList = this.itemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
             return filteredList;
-        }
+        },
+        filterOptionsArray(){
+            return [
+                {
+                    label: 'Include Items',
+                    options: this.filterSettings.includeItems,
+                },
+            ];
+        },
     },
 
     //mounted:  called after the instance has been mounted,

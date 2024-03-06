@@ -2,50 +2,39 @@ app.component('ToggleItem', {
     // Think of this like a constructor for a class/object
     data(){
         return {
-            uid: `tgI-${Math.floor(Math.random() * 10e15)}`,
+            uid: `tgglItm-${Math.floor(Math.random() * 10e15)}`,
+            toggled: this.option
         }
     },
     props: {
-        // option:{
-        //     type: Object,
-        //     required: false,
-        // },
-        state:{
+        option:{
             type: Boolean,
-            required: true,
+            required: false,
+        },
+        label:{
+            type: String,
+            default: "Toggle Me!"
         }
     },
-    methods: {
-        toggle(){
-            // this.option.state = !this.option.state;
-            this.state = !this.state;
+    emits: ['update-option-toggle'],
+    watch: {
+        option(toggled) {
+            this.toggled = toggled;
+        },
+        toggled(toggled) {
+            this.$emit('update-option-toggle', toggled);
         }
-        // decrementToQty(){
-        //     // item.qty > 0? item.qty-- : "";
-        //     if(this.item.qty > 0){
-        //         this.item.qty--;
-        //     }else{
-        //         this.$emit('remove-item', this.item);
-        //         // this.shoppingList.splice(this.shoppingList.indexOf(this.item), 1)
-        //     }
-        // },
     },
     template: `
-        <input type="checkbox"
-               class="btn-check focus-ring-primary"
-               v-model="state"
-               autocomplete="off"
-               @click="toggle()"
-               v-bind:id="uid">
-            <label class="btn btn-outline-primary" v-bind:for="uid">
-<!--            {{option.title}}-->
-                <i class="ps-3 bi fs-4"
-                v-bind:class="{'bi-toggle-on': state}, {'bi-toggle-off': !state}">
-<!--                v-bind:class="{'bi-toggle-on': this.option.state}, {'bi-toggle-off': !this.option.state}"-->
-
+<!--@click="toggled = !toggled"-->
+        <input type="checkbox" v-model="toggled" class="btn-check focus-ring-primary" :id="uid"
+           autocomplete="off">
+        <label class="btn btn-outline-primary" :for="uid">{{ label }}
+            <i class="ps-3 bi fs-4"
+               v-bind:class="{'bi-toggle-on': toggled}, {'bi-toggle-off': !toggled}">
                 <!--                                   :class="'bi-toggle-'+{filterSettings.includeCategories?'on':'off'}">-->
                 <!--                                    Trying to merge both -->
             </i>
         </label>
-    `
+    `,
 });

@@ -154,43 +154,12 @@
 
 
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
-<!--                            <toggle-item v-bind:option="filterOption"></toggle-item>-->
-<!--                            <toggle-item :option="filterOption" :state="filterSettings.includeCategories"></toggle-item>-->
-                            <toggle-item :option="filterOption2" :state="filterSettings.includeCategories"></toggle-item>
-<!--                            <toggle-item :state="filterSettings.includeCategories"></toggle-item>-->
-
-                            <input type="checkbox" v-model="filterSettings.includeCategories" class="btn-check focus-ring-primary" id="filterToggleIncludeCategories"
-                                   autocomplete="off">
-                            <label class="btn btn-outline-primary" for="filterToggleIncludeCategories">Include Categories
-                                <i class="ps-3 bi fs-4"
-                                   v-bind:class="{'bi-toggle-on': filterSettings.includeCategories}, {'bi-toggle-off': !filterSettings.includeCategories}">
-<!--                                   :class="'bi-toggle-'+{filterSettings.includeCategories?'on':'off'}">-->
-<!--                                    Trying to merge both -->
-                                </i>
-                            </label>
-
-                            <input type="checkbox" v-model="filterSettings.includeItems" class="btn-check focus-ring-primary" id="filterToggleIncludeItems"
-                                   autocomplete="off">
-                            <label class="btn btn-outline-primary" for="filterToggleIncludeItems">Include Items
-                                <i class="ps-3 bi fs-4"
-                                   v-bind:class="{'bi-toggle-on': filterSettings.includeItems}, {'bi-toggle-off': !filterSettings.includeItems}">
-                                    <!--                                   :class="'bi-toggle-'+{filterSettings.includeCategories?'on':'off'}">-->
-                                    <!--                                    Trying to merge both -->
-                                </i>
-                            </label>
-
-<!--&lt;!&ndash;                            filterSettings.includeItems&ndash;&gt;-->
-<!--&lt;!&ndash;                            filterSettings.underThreshold&ndash;&gt;-->
-<!--                            <input type="checkbox" v-model="" class="btn-check focus-ring-primary" id="filterToggleIncludeItems"-->
-<!--                                   autocomplete="off">-->
-<!--                            <i class="ps-3 bi fs-4"-->
-<!--                               :class="{'bi-toggle-on': filterSettings.includeItems}, {'bi-toggle-off': !filterSettings.includeCategories}">-->
-<!--                            </i>-->
-<!--                            <label class="btn btn-outline-primary" for="filterToggleIncludeItems">Include Items</label>-->
-
-<!--&lt;!&ndash;                            <input type="checkbox" v-model="" class="btn-check focus-ring-primary" id="filterToggleUnderThreshold"&ndash;&gt;-->
-<!--&lt;!&ndash;                                   autocomplete="off">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label class="btn btn-outline-primary" for="filterToggleUnderThreshold">Under Threshold</label>&ndash;&gt;-->
+<!--                            <toggle-array :options="filterOptionsArray">-->
+<!--                            </toggle-array>-->
+                            <toggle-item label="Include Categories" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>
+                            <toggle-item label="Include Items" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>
+                            <toggle-item label="Only Needs Reorder" :option="filterSettings.underThreshold" @update-option-toggle="this.updateToggle('underThreshold')"></toggle-item>
+<!--                            <button @click="filterSettings.includeItems = !filterSettings.includeItems">test</button>-->
                         </div>
                         <div class="col-12 ps-3 mb-0 pb-0">
                             <nav aria-label="Inventory Explorer Breadcrumb">
@@ -214,27 +183,6 @@
                     <cards-list v-bind:items="currentCategoriesList" v-bind:footer-info="getCategoryFooter"></cards-list>
 
                     <cards-list v-bind:items="currentItemsList" v-bind:footer-info="getItemFooter" @edit-item="updateEditItem" :target-model-selector="'#editItemModel'"></cards-list>
-
-<!--                    <div v-for="(item, i) in currentItemsList" :key="item.id" class="col item" data-bs-toggle="modal" data-bs-target="#editItemModel" @click="editItem = item">&lt;!&ndash;@click="openEditItemModel()"&ndash;&gt;-->
-<!--                        <div class="card mb-3">-->
-<!--                            <div class="card-header bg-transparent p-0 text-truncate">{{ item.title }}</div>&lt;!&ndash;overflow-x-scroll&ndash;&gt;-->
-<!--                            <div class="border-bottom text-center">-->
-<!--                                <img :src="item.image" class="displayImage card-img-top p-0 m-0 rounded-0 mx-auto w-auto" alt="TODO:">-->
-<!--                            </div>-->
-<!--                            <div class="card-body overflow-x-scroll">-->
-<!--                                <p class="card-text">{{ item.description }}</p>-->
-<!--                            </div>-->
-<!--&lt;!&ndash;                            <div v->&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                            <div class="card-footer bg-transparent">-->
-<!--                                <span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >-->
-<!--                                    {{ item.qty-->
-<!--                                    }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "" : `/${item.reorderLevel}`}} item{{item.qty === 1 ? "" : "s"}} in stock-->
-<!--                                    <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
-<!--                                </span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
                 </div>
 
@@ -424,7 +372,7 @@
     <!-- Vue Application -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/app.js"></script>
-<!--    <script src="js/components/ToggleItem.js"></script>-->
+    <script src="js/components/ToggleItem.js"></script>
 
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/CardItem.js"></script>
