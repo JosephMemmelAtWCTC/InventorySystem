@@ -339,7 +339,7 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
-                            <navigate-icon-item @click="openNavPage('recents')" icon-class="arrow-left-right" li-extra-classes="{{ recentItemsList.length }}">
+                            <navigate-icon-item @click="openNavPage('recents')" icon-class="arrow-left-right" :badge-text="recentItemsList.length">
                             </navigate-icon-item>
                             <navigate-icon-item @click="openNavPage('account')" icon-class="person">
                             </navigate-icon-item>
