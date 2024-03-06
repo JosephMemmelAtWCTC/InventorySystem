@@ -4,7 +4,10 @@ Notes from class to implement
  - [x] Remove edit button
  - [ ] Tooltips
  - [ ] Page title headers
- - [ ] Keep the up/down button
+ - [x] Keep the up/down buttons on non-mobile
+
+Notes from comments to implement
+ - [ ] Standardize white on teal text
 
 Other changes to make
 - [x] Overflow w/ellipsis
@@ -14,7 +17,6 @@ Other changes to make
 
 Broken Items to Fix
 - [ ] Get validation working again (Also try to disable until)
-- [ ] Now with components the 
 
 Bug Tracker
 - [ ] Edits save instantly - make only on apply changes

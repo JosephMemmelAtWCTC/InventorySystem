@@ -52,30 +52,14 @@
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
-                            <i class="bi bi-house link-secondary"></i>
-                        </button>
-                    </li>
-                    <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
-                            <i class="bi bi-grid"></i>
-                        </button>
-                    </li>
-                    <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="link-secondary primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-end w-100">
-                            <i class="bi bi-arrow-left-right"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
-                            {{ recentItemsList.length }}
-                            <span class="visually-hidden">Changes to inventory</span>
-                            </span>
-                        </button>
-                    </li>
-                    <li class="nav-item p-2 mb-2">
-                        <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end w-100">
-                            <i class="bi bi-person"></i>
-                        </button>
-                    </li>
+                    <navigate-icon-item @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="house">
+                    </navigate-icon-item>
+                    <navigate-icon-item @click="openNavPage('items')" li-extra-classes="p-2 mb-2" icon-class="grid">
+                    </navigate-icon-item>
+                    <navigate-icon-item @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="arrow-left-right" :badge-text="recentItemsList.length">
+                    </navigate-icon-item>
+                    <navigate-icon-item @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="person">
+                    </navigate-icon-item>
                 </ul>
                 <hr>
                 <div class="dropdown">
@@ -324,13 +308,13 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                            <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
-                                <i class="bi bi-house"></i>
-                            </button>
-                            <button type="button" data-navPageTarget="items" @click="openNavPage('items')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">
-<!--                                <i class="bi bi-archive"></i>-->
-                                <i class="bi bi-grid"></i>
-                            </button>
+<!--                            <button type="button" data-navPageTarget="home" @click="openNavPage('home')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end">-->
+<!--                                <i class="bi bi-house"></i>-->
+<!--                            </button>-->
+                            <navigate-icon-item @click="openNavPage('home')" icon-class="house">
+                            </navigate-icon-item>
+                            <navigate-icon-item @click="openNavPage('items')" icon-class="grid">
+                            </navigate-icon-item>
                         </div>
                     </div>
 
@@ -355,21 +339,10 @@
                         </div>
 
                         <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
-                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" @click="openNavPage('recents')" class="link-secondary position-relative primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">
-                                <i class="bi bi-arrow-left-right"></i>
-                                <i class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black mt-3">
-                                    {{ recentItemsList.length }}
-                                    <span class="visually-hidden">Changes to inventory</span>
-                                </i>
-
-                            </button>
-<!--                            <button id="navRecentsButton" type="button" data-navPageTarget="recents" class="primaryNavMovePage btn btn-primary my-auto h-100 rounded-0 border-end border-start">-->
-<!--                                <i class="bi bi-arrow-left-right"></i>-->
-<!--                            </button>-->
-
-                            <button type="button" data-navPageTarget="account" @click="openNavPage('account')" class="link-secondary primaryNavMovePage btn btn-primary my-auto h-100 rounded-0">
-                                <i class="bi bi-person"></i>
-                            </button>
+                            <navigate-icon-item @click="openNavPage('recents')" icon-class="arrow-left-right" li-extra-classes="{{ recentItemsList.length }}">
+                            </navigate-icon-item>
+                            <navigate-icon-item @click="openNavPage('account')" icon-class="person">
+                            </navigate-icon-item>
                         </div>
                     </div>
 
@@ -385,7 +358,10 @@
 
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/CardItem.js"></script>
+
     <script src="js/components/itemModal.js"></script>
+
+    <script src="js/components/NavigateIconItem.js"></script>
 
 <!--    <script src="js/components/TogglesArray.js"></script>-->
 

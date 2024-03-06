@@ -101,7 +101,7 @@ app.component('ItemModal', {
                         </div>
 
                         <label for="new-item-qty" class="col-form-label"># In Stock:</label>
-                        <div class="input-group mb-3 w-100 w-md-100 mx-auto container">
+                        <div class="input-group mb-3 w-100">
                             <div class="row w-100 g-0 justify-content-center">
                                 <div class="col-2 d-block">
                                     <button type="button" @click="newItem.qty -= (newItem.qty > 0? 1:0)" class="d-block rounded-0 rounded-start-3 form-control focus-ring-primary" id="new-item-qty-minus">
