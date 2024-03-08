@@ -5,6 +5,8 @@
     <title>Vue App Prototype</title>
     <link href="./css/custom.css" rel="stylesheet">
 <!--    <link href="./css/customVueAppPrototype.css" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+
 </head>
 <body class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
 
@@ -175,8 +177,8 @@
                     <cards-list v-bind:items="currentItemsList" @edit-item="updateEditItem" :target-model-selector="'#editItemModel'">
 <!--                        <template #footer>-->
 <!--                        </template>-->
+                        <p> Test {{slotProps.uid}}</p>
                     </cards-list>
-
                 </div>
 
 
@@ -353,7 +355,10 @@
 </div>
     <!-- Vue Application -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.umd.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/app-quasar.js"></script>
+
     <script src="js/components/ToggleItem.js"></script>
 
     <script src="js/components/CardsList.js"></script>
