@@ -4,10 +4,6 @@ app.component('CardItem', {
             type: Object,
             required: true,
         },
-        // footerInfo: {
-        //     type: Function,
-        //     required: true,
-        // },
         targetModelSelector: {
             type: String,
             required: true,
@@ -40,5 +36,6 @@ app.component('CardItem', {
                 </slot>
             </div>
         </div>
+        
     `
 });

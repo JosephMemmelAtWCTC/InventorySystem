@@ -27,8 +27,9 @@ app.component('NavigateIconItem', {
                     :class="'bi-' + iconClass"
                 >
                 </i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black z-2">
-                {{ badgeText }}
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-black z-2">
+                    {{ badgeText }}
+                </span>
             </button>
         </div>
     `

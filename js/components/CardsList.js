@@ -22,11 +22,23 @@ app.component('CardsList', {
     },
     template: `
 <!--:footerInfo="footerInfo"-->
-        <card-item v-for="(card, i) in items" @edit-item="sendUpdateEditItem" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">
+<!--        <card-item v-for="(card, i) in items" @edit-item="sendUpdateEditItem" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">-->
+<!--            <template #footer>-->
+<!--                <slot name="footer">-->
+<!--                </slot>-->
+<!--            </template>-->
+<!--        </card-item>-->
+
+        <image-card v-for="(item, i) in items" :key="item.title"
+        @edit-item="sendUpdateEditItem"
+        :image="item.image"
+        :descriptionText="item.description"
+        :footerText="TESTT"
+        class="col">
             <template #footer>
-                <slot name="footer">
+<!--                <slot name="footer" :uid="uid">-->
                 </slot>
             </template>
-        </card-item>
+        </image-card>
     `
 });
