@@ -184,12 +184,13 @@
 <!--                    </cards-list>-->
 
                     <cards-list v-bind:items="currentItemsList" @edit-item="updateEditItem">
-                        <template #footer v-slot="slotProps">
+                        <template v-slot="slotProps">
 <!--                            <span v-if="!('items' in item)" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >-->
 <!--                                {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock-->
 <!--                                <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
 <!--                            </span>-->
-                            {{slotProps.item.title}}
+                            {{slotProps.item.title}} TEST
+
 <!--                            <slot>{{slotProps.item.title}}</slot>-->
 <!--                            {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "" : "/"+item.reorderLevel }} item{{ item.qty == 1 ? "" : "s" }} in stock-->
 <!--                            <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->

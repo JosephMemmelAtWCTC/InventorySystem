@@ -43,9 +43,11 @@ app.component('ImageCard', {
                     <p class="card-text">{{ descriptionText }}</p>
                 </slot>
             </div>
-            <div class="card-footer bg-transparent">
-                {{ footerText }} <!-- Display the footerText directly -->
-            </div>
+            <slot :item="item">
+                <div class="card-footer bg-transparent">
+                    {{ footerText }} <!-- Display the footerText directly -->
+                </div>
+            </slot>
         </div>
     `
 });

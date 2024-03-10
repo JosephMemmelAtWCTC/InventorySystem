@@ -39,10 +39,10 @@ app.component('CardsList', {
 <!--            <slot :item="uid">{{slotProps.item.name}}</slot>-->
 <!--            <slot :item="this.item"></slot>-->
 <!--            <slot></slot>-->
-<!--            <template v-slot="item">-->
-                <slot name="footer" :item="item">
-                </slot>
-<!--            </template>-->
+            <slot :item="slotProps.item">
+<!--                <slot name="footer" :item="item">-->
+<!--                </slot>-->
+            </slot>
         </image-card>
     `
 });
