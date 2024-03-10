@@ -1,4 +1,9 @@
 app.component('ImageCard', {
+    data(){
+        return {
+            uid: 'sli-' + Math.floor(Math.random() * 10e15),
+        }
+    },
     props: {
         headerText: {
             type: String,
@@ -36,18 +41,18 @@ app.component('ImageCard', {
             </div>
             <div class="card-footer bg-transparent">
 <!--                    <div v-html="footerInfo(item)"></div>-->
-                <slot name="footer">
-                    <slot name="footer">
-                        {{ footerText }}                    
-                    </slot>
-<!--                    <span v-if="!('items' in item)" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >-->
-<!--                        {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock-->
-<!--                        <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
-<!--                    </span>-->
-<!--                    <span v-else>-->
-<!--                        {{ item.items.length }} unique item{{ item.items.length === 1? "":"s" }}-->
-<!--                    </span>-->
-                </slot>
+            <slot name="footer" :uid="uid">{{uid}}</slot>
+
+<!--                <slot name="footer" :uid="uid">-->
+<!--                    {{ footerText }}-->
+<!--&lt;!&ndash;                    <span v-if="!('items' in item)" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >&ndash;&gt;-->
+<!--&lt;!&ndash;                        {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span v-else>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {{ item.items.length }} unique item{{ item.items.length === 1? "":"s" }}&ndash;&gt;-->
+<!--&lt;!&ndash;                    </span>&ndash;&gt;-->
+<!--                </slot>-->
             </div>
         </div>
         

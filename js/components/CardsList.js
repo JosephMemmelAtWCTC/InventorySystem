@@ -33,12 +33,14 @@ app.component('CardsList', {
         @edit-item="sendUpdateEditItem"
         :image="item.image"
         :descriptionText="item.description"
-        :footerText="TESTT"
-        class="col">
-            <template #footer>
-<!--                <slot name="footer" :uid="uid">-->
-                </slot>
-            </template>
+        class="col"
+        v-slot="slotProps">
+<!--            <template #footer>-->
+<!--                <slot name="footer" :uid="slotProps.uid">-->
+<!--                </slot>-->
+<!--            </template>-->
+
+            <slot name="footer" :uid="slotProps.uid"></slot>
         </image-card>
     `
 });
