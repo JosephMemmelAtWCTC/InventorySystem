@@ -32,15 +32,17 @@ app.component('CardsList', {
         <image-card v-for="(item, i) in items" :key="item.title"
         @edit-item="sendUpdateEditItem"
         :image="item.image"
+        :item="item"
         :descriptionText="item.description"
         class="col"
         v-slot="slotProps">
-<!--            <template #footer>-->
-<!--                <slot name="footer" :uid="slotProps.uid">-->
-<!--                </slot>-->
+<!--            <slot :item="uid">{{slotProps.item.name}}</slot>-->
+<!--            <slot :item="this.item"></slot>-->
+<!--            <slot></slot>-->
+<!--            <template v-slot="item">-->
+                <slot name="footer" :item="item">
+                </slot>
 <!--            </template>-->
-
-            <slot name="footer" :uid="slotProps.uid"></slot>
         </image-card>
     `
 });
