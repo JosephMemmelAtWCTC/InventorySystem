@@ -189,11 +189,11 @@
 <!--                                {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock-->
 <!--                                <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
 <!--                            </span>-->
-                            {{slotProps.item.title}} TEST
+
 
 <!--                            <slot>{{slotProps.item.title}}</slot>-->
-<!--                            {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "" : "/"+item.reorderLevel }} item{{ item.qty == 1 ? "" : "s" }} in stock-->
-<!--                            <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
+                            {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock
+                            <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
                         </template>
                     </cards-list>
 
