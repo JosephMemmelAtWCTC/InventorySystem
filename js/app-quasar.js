@@ -13,6 +13,6 @@ app.use(Quasar, {
             info: '#31CCEC',
             warning: '#eeb902'
         },
-        dark: true,
+        dark: false,
     }
 })
