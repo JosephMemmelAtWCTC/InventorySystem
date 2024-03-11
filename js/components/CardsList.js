@@ -15,23 +15,23 @@ app.component('CardsList', {
     },
     emits: ['card-clicked'],
     methods: {
-        // cardWasClicked(sendItem){
-        //     console.log("card-clicked", sendItem)
-        //     this.$emit('card-clicked', sendItem);
-        // }
+        passCardWasClickedUp(sendItem){
+            console.log("card-clicked", sendItem)
+            this.$emit('card-clicked', sendItem);
+        }
     },
     template: `
 <!--:footerInfo="footerInfo"-->
-<!--        <card-item v-for="(card, i) in items" @edit-item="cardWasClicked" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">-->
+<!--        <card-item v-for="(card, i) in items" @edit-item="passCardWasClickedUp" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">-->
 <!--            <template #footer>-->
 <!--                <slot name="footer">-->
 <!--                </slot>-->
 <!--            </template>-->
 <!--        </card-item>-->
 
-<!--        @card-clicked="cardWasClicked"-->
+<!--        @card-clicked="passCardWasClickedUp"-->
         <image-card v-for="(item, i) in items" :key="item.title"
-
+        @card-clicked="passCardWasClickedUp"
         :image="item.image"
         :item="item"
         :headerText="item.title"
@@ -44,6 +44,9 @@ app.component('CardsList', {
             <slot :item="slotProps.item">
 <!--                <slot name="footer" :item="item">-->
 <!--                </slot>-->
+            </slot>
+            <slot name="extra" :item="slotProps.item">
+                
             </slot>
         </image-card>
     `

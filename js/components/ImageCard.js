@@ -38,7 +38,7 @@ app.component('ImageCard', {
         }
     },
     template: `
-        <div class="card mb-3">
+        <div class="card mb-3" @click="sendUpdateCardClicked">
 <!--            data-bs-toggle="modal"-->
             <slot name="header">
                 <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>

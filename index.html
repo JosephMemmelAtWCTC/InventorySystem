@@ -183,11 +183,34 @@
                         </template>
                     </cards-list>
 
+                    <!-- https://stackoverflow.com/a/65686099 for inline editing -->
                     <cards-list v-bind:items="currentItemsList">
+<!--                        @card-clicked="this.editItem = $event"-->
+<!--                    >-->
+                        <template #extra v-slot="slotProps">
+<!--                            <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>-->
+<!--                            <edit-modal v-bind:newItem="this.editItem"-->
+<!--                                        @add-item="this.editItem"-->
+<!--                                        @remove-item="removeItem"-->
+<!--                                        :submit-button-text="'Update Item'"-->
+<!--                                        id="editItemModel"-->
+<!--                                        title="Edit Item"-->
+<!--                            >-->
+<!--                            </edit-modal>-->
+                        </template>
+
                         <template v-slot="slotProps">
                             <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">
                                 {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock
                                 <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
+
+<!--                                <app-modal title="<p>Test Modal</p>" btn-class="btn-primary" btn-text="Test Modal">-->
+<!--                                    <p>This is the <i>body</i> content (the default slot).</p>-->
+<!--                                    <template #footer>-->
+<!--                                        &lt;!&ndash;            <template v-slot="footer">&ndash;&gt;-->
+<!--                                        <button type="button" cLaSs="btn btn-primary" data-bs-dismiss="modal">Okay</button>-->
+<!--                                    </template>-->
+<!--                                </app-modal>-->
                             </div>
                         </template>
                     </cards-list>
@@ -382,6 +405,7 @@
     <script src="js/components/AppModal.js"></script>
 
     <script src="js/components/NavigateIconItem.js"></script>
+    <script src="js/components/EditModal.js"></script>
 
 <!--    <script src="js/components/TogglesArray.js"></script>-->
 
