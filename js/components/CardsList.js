@@ -13,26 +13,28 @@ app.component('CardsList', {
             required: false,
         }
     },
-    emits: ['edit-item'],
+    emits: ['card-clicked'],
     methods: {
-        sendUpdateEditItem(sendItem){
-            console.log("QQQQQQQQQQ ", sendItem)
-            this.$emit('edit-item', sendItem);
-        }
+        // cardWasClicked(sendItem){
+        //     console.log("card-clicked", sendItem)
+        //     this.$emit('card-clicked', sendItem);
+        // }
     },
     template: `
 <!--:footerInfo="footerInfo"-->
-<!--        <card-item v-for="(card, i) in items" @edit-item="sendUpdateEditItem" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">-->
+<!--        <card-item v-for="(card, i) in items" @edit-item="cardWasClicked" :key="card.title" :item="card" :target-model-selector="targetModelSelector" class="col">-->
 <!--            <template #footer>-->
 <!--                <slot name="footer">-->
 <!--                </slot>-->
 <!--            </template>-->
 <!--        </card-item>-->
 
+<!--        @card-clicked="cardWasClicked"-->
         <image-card v-for="(item, i) in items" :key="item.title"
-        @edit-item="sendUpdateEditItem"
+
         :image="item.image"
         :item="item"
+        :headerText="item.title"
         :descriptionText="item.description"
         class="col"
         v-slot="slotProps">

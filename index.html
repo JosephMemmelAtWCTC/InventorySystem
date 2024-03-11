@@ -174,24 +174,17 @@
                 </div>
 
                 <div id="items" class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">
-<!--                    <cards-list v-bind:items="currentCategoriesList">-->
-<!--                    <cards-list v-bind:items="currentCategoriesList" @edit-item="updateEditItem" :target-model-selector="''">-->
-<!--                        &lt;!&ndash;                        v-bind:footer-info="getCategoryFooter"&ndash;&gt;-->
-<!--                        <template #footer>-->
 
-<!--&lt;!&ndash;                            {{ item.items.length }} unique item{{ item.items.length === 1? "":"s" }}&ndash;&gt;-->
-<!--                        </template>r-->
-<!--                    </cards-list>-->
-
-                    <cards-list v-bind:items="currentItemsList" @edit-item="updateEditItem">
+                    <cards-list v-bind:items="currentCategoriesList">
                         <template v-slot="slotProps">
-<!--                            <span v-if="!('items' in item)" v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >-->
-<!--                                {{ item.qty }}{{ item.reorderLevel === -1 || item.reorderLevel === undefined || item.reorderLevel === null ? "": "/"+item.reorderLevel}} item{{item.qty==1? "":"s"}} in stock-->
-<!--                                <i v-if="item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
-<!--                            </span>-->
+                            <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">
+                                {{ slotProps.item.items.length }} unique item{{ slotProps.item.items.length === 1? "":"s" }}
+                            </div>
+                        </template>
+                    </cards-list>
 
-
-<!--                            <slot>{{slotProps.item.title}}</slot>-->
+                    <cards-list v-bind:items="currentItemsList">
+                        <template v-slot="slotProps">
                             <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">
                                 {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock
                                 <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
@@ -382,7 +375,7 @@
     <script src="js/components/ToggleItem.js"></script>
 
     <script src="js/components/CardsList.js"></script>
-    <script src="js/components/CardItem.js"></script>
+<!--    <script src="js/components/CardItem.js"></script>-->
     <script src="js/components/ImageCard.js"></script>
 
     <script src="js/components/itemModal.js"></script>

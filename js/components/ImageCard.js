@@ -26,14 +26,20 @@ app.component('ImageCard', {
             required: false,
         }
     },
-    emits: ['edit-item'],
+    emits: ['card-clicked'],
     methods: {
-        sendUpdateEditItem() {
-            this.$emit('edit-item', this.item);
+        sendUpdateCardClicked() {
+            console.log("-~~~");
+            if(this.item){
+                this.$emit('card-clicked', this.item);
+            }else{
+                this.$emit('card-clicked');
+            }
         }
     },
     template: `
-        <div class="card mb-3" data-bs-toggle="modal" @click="sendUpdateEditItem">
+        <div class="card mb-3">
+<!--            data-bs-toggle="modal"-->
             <slot name="header">
                 <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
             </slot>
@@ -49,5 +55,6 @@ app.component('ImageCard', {
                 </slot>
             </div>
         </div>
-    `
+    `,
+
 });
