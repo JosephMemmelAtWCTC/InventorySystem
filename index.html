@@ -56,9 +56,13 @@
     <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
         <div class="col-auto d-none d-md-block m-0 p-0">
 
-            <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
-                    <span class="fs-4">"Created Name"</span>
+            <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-end">
+                <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
+                    <span class="fs-4">{{pageConfigSettings.customName}}</span>
+                    <q-popup-edit v-model="pageConfigSettings.customName" auto-save v-slot="scope">
+                        <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set"
+                                 :rules="[val => val.length > 1 || 'Title requires at least 1 character', [val => val.length < 20 || 'Title cannot at least 1 character']]"/>
+                    </q-popup-edit>
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -90,7 +94,7 @@
                     {{ currentPageTitle }}
                 </span>
             </header>
-            <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="TEST" class="page container-fluid m-0 p-0 ">
+            <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="TEST" class="page container-fluid m-0 p-0 bg-secondary">
                 <!--  HERO/JUMBOTRON  -->
                 <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
                     <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">Instant Inventory</h1>
@@ -106,8 +110,8 @@
                     </div>
 
                 </div>
-                <div class="w-100 justify-content-center">
-                    <div class="m-5 bg-body-tertiary mx-auto m-4 p-2">
+                <div class="w-100 justify-content-center bg-secondary my-auto mb-0">
+                    <div class="mt-5 mx-auto m-4 p-2">
                         <table class="table">
                             <thead>
                             <tr>
@@ -282,7 +286,7 @@
                         </div>
                         <div class="col-12 col-md-12 h-auto bg-white">
                             <label for="profile-name" class="col-12 col-form-label">Name:</label>
-                            <input type="text" class="form-control focus-ring-primary" id="profile-name">
+                            <input type="text" class="form-control focus-ring-primary" id="profile-name" v-model="pageConfigSettings.profileName">
                         </div>
                         <div id="permissionsChips" class="col-12 bg-body-tertiary h-auto">
                             <p>Permissions

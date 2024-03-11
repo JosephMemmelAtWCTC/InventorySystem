@@ -46,7 +46,11 @@ const app = Vue.createApp({
                 underThreshold: false,
                 searchString: "",
             },
-            appVersion: "Vue App v1.5",
+            appVersion: "Vue App v1.75",
+            pageConfigSettings:{
+                profileName: "Test Testerson",
+                customName: "Custom Name",
+            },
             itemsViewMode: false,
             newItem: {
                 id: undefined,
@@ -146,13 +150,17 @@ const app = Vue.createApp({
     // methods: usually "events" triggered by v-on:
     methods: {
         openNavPage(pageLabel){
-            this.currentPageTitle = $(`*[data-navPage="${pageLabel}"]`).attr("data-pageTitle");
+            this.currentPageTitle = pageLabel.charAt(0).toUpperCase()+pageLabel.slice(1);
+            // this.currentPageTitle = $(`*[data-navpage="${pageLabel}"]`).attr("data-pageTitle");
+            // this.currentPageTitle = document.querySelector(`*[data-navpage="${pageLabel}"]`).getAttribute("data-pageTitle");
+
             this.currentPage = pageLabel;
             // this.currentPage = `${pageLabel}`;
             // $(function() {
             //     $(`*[data-navPage]`).addClass('d-none');
             //     $(`*[data-navPage="${pageLabel}"]`).removeClass('d-none');
             // });
+            // this.currentPageTitle = document.querySelectorAll(`*[data-navPage="${pageLabel}"]`)[0].getAttribute("data-pageTitle");
         },
         addCategory(e){
             if(this.getAddCategoryForm().checkValidity()){
@@ -278,11 +286,11 @@ const app = Vue.createApp({
     //mounted:  called after the instance has been mounted,
     // mounted: function () {
     created: function(){
-        // if(localStorage.getItem('shoppingList')){
-        //     this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
-        // }
         if(localStorage.getItem('openPage')){
             this.currentPage = localStorage.getItem('openPage');
+        }
+        if(localStorage.getItem('pageConfigSettings')){
+            this.pageConfigSettings = JSON.parse(localStorage.getItem('pageConfigSettings'));
         }
 
         const localStorageMap = new Map([
@@ -349,6 +357,12 @@ const app = Vue.createApp({
                 localStorage.setItem('itemsList', JSON.stringify(this.itemsList));
             },
             deep: true,
+        },
+        pageConfigSettings:{
+            handler(){//newList){
+                localStorage.setItem('pageConfigSettings', JSON.stringify(this.pageConfigSettings));
+            },
+            deep: true
         },
         newItem:{
             handler() {

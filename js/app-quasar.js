@@ -7,6 +7,8 @@ app.use(Quasar, {
 
             dark: '#1d1d1d',
             'dark-page': '#2a2a2a',
+            light: '#cce8e6',
+            'light-page': '#cce8e6',
 
             positive: '#97cc04',
             negative: '#f42718',
@@ -14,5 +16,6 @@ app.use(Quasar, {
             warning: '#eeb902'
         },
         dark: false,
+        light: true,
     }
 })
