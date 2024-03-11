@@ -3,7 +3,7 @@ app.component('ToggleItem', {
     data(){
         return {
             uid: `tgglItm-${Math.floor(Math.random() * 10e15)}`,
-            toggled: this.option
+            toggled: this.option,
         }
     },
     props: {

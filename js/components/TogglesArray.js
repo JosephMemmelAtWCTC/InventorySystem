@@ -1,30 +1,41 @@
-// This will be used as <toggles-array>
-app.component('ShoppingList', {
+app.component('TogglesArray', {
+    // Think of this like a constructor for a class/object
+    data(){
+        return {
+            uid: `tgglArray-${Math.floor(Math.random() * 10e15)}`,
+
+        }
+    },
     props: {
-        // title: {
-        //     type: String,
-        //     default: 'Get It',
-        // },
-        items: {
+        options:{
             type: Array,
             required: true,
         },
+        // label:{
+        //     type: String,
+        //     default: "Toggle Me!"
+        // }
+    },
+    // emits: ['update-option-toggle'],
+    watch: {
+        // option(toggled) {
+        //     this.toggled = toggled;
+        // },
+        // toggled(toggled) {
+        //     this.$emit('update-option-toggle', toggled);
+        // }
     },
     template: `
         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
-    `,
 
-//         <div class="get-it-list">
-//     <h3>{{ title }}</h3>
-// <ul class="list-group list-group-flush border-bottom">
-//     <shopping-list-item v-for="(item, i) in items"
-//     :key="item.name"
-//     :item="item"
-//     @remove-item="(emittedItem) => {$emit('removeItem', emittedItem)}"
-//     ></shopping-list-item>
-// </ul>
-// <p>
-//     <small>Total: {{ items.length }}</small>
-// </p>
-// </div>
+            <toggle-item v-for="(option, i) in options" :key="item.title"
+                label="option.label"
+                :option="option"
+            >
+            </toggle-item>
+        </div>
+<!--<toggle-item label="Include Categories" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>-->
+<!--<toggle-item label="Include Items" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>-->
+<!--<toggle-item label="Only Needs Reorder" :option="filterSettings.underThreshold" @update-option-toggle="this.updateToggle('underThreshold')"></toggle-item>-->
+    `,
 });

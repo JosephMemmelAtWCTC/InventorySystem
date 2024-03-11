@@ -1,17 +1,17 @@
 app.component('ItemModal', {
-    data(){
-        return {
-            newItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 1,
-                productId: null,
-                reorderLevel: null,
-            },
-        }
-    },
+    // data(){
+    //     return {
+    //         newItem: {
+    //             id: undefined,
+    //             title: '',
+    //             description: '',
+    //             image: 'https://picsum.photos/200/300',
+    //             qty: 1,
+    //             productId: null,
+    //             reorderLevel: null,
+    //         },
+    //     }
+    // },
     props: {
         id: {
             type: String,

@@ -56,7 +56,7 @@
     <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
         <div class="col-auto d-none d-md-block m-0 p-0">
 
-            <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-end">
+            <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-2 border-end">
                 <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
                     <span class="fs-4">{{pageConfigSettings.customName}}</span>
                     <q-popup-edit v-model="pageConfigSettings.customName" auto-save v-slot="scope">
@@ -88,7 +88,7 @@
         </div>
 
 
-        <div class="col m-0 p-0">
+        <div class="col m-0 p-0 bg-secondary">
             <header id="header" class="head bg-primary text-center">
                 <span id="pageTitle" class="mt-4 text-center">
                     {{ currentPageTitle }}
@@ -137,8 +137,8 @@
             </div>
 
             <div data-navPage="items" v-if="currentPage==='items'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
-                <header id="searchRibbon" class="bg-body-tertiary">
-                    <div class="row align-items-center">
+                <header id="searchRibbon" class="bg-body-tertiary rounded-3">
+                    <div class="row align-items-center p-2">
                         <div class="col-auto d-flex text-center align-items-center">
                             <p class="ms-4">Filter Search</p>
                         </div>
@@ -154,11 +154,16 @@
                         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
 <!--                            <toggle-array :options="filterOptionsArray">-->
 <!--                            </toggle-array>-->
-                            <toggle-item label="Include Categories" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>
-                            <toggle-item label="Include Items" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>
-                            <toggle-item label="Only Needs Reorder" :option="filterSettings.underThreshold" @update-option-toggle="this.updateToggle('underThreshold')"></toggle-item>
+                            <toggle-item label="Include Categories" :option="filterSettings.toggles[0].state" @update-option-toggle="filterSettings.toggles[0].state = $event"></toggle-item>
+                            <toggle-item label="Include Items" :option="filterSettings.toggles[1].state" @update-option-toggle="filterSettings.toggles[1].state = $event"></toggle-item>
+                            <toggle-item label="Only Needs Reorder" :option="filterSettings.toggles[2].state" @update-option-toggle="filterSettings.toggles[2].state = $event"></toggle-item>
 <!--                            <button @click="filterSettings.includeItems = !filterSettings.includeItems">test</button>-->
                         </div>
+
+<!--                        <toggles-array :options="filterSettings">-->
+<!--                            -->
+<!--                        </toggles-array>-->
+
                         <div class="col-12 ps-3 mb-0 pb-0">
                             <nav aria-label="Inventory Explorer Breadcrumb">
                                 <ol class="breadcrumb">
@@ -188,33 +193,28 @@
                     </cards-list>
 
                     <!-- https://stackoverflow.com/a/65686099 for inline editing -->
-                    <cards-list v-bind:items="currentItemsList">
-<!--                        @card-clicked="this.editItem = $event"-->
+<!--                    this.editItem = $event-->
+                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.$refs.editModal.openModal()">
+<!--                    <cards-list v-bind:items="currentItemsList">-->
+
 <!--                    >-->
                         <template #extra v-slot="slotProps">
 <!--                            <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>-->
-<!--                            <edit-modal v-bind:newItem="this.editItem"-->
-<!--                                        @add-item="this.editItem"-->
-<!--                                        @remove-item="removeItem"-->
-<!--                                        :submit-button-text="'Update Item'"-->
-<!--                                        id="editItemModel"-->
-<!--                                        title="Edit Item"-->
-<!--                            >-->
-<!--                            </edit-modal>-->
+                            <edit-modal v-bind:item="this.editItem"
+                                        @remove-item="removeItem"
+                                        title="Edit Item"
+                                        :submit-button-text="'Update Item'"
+                                        ref="editModal"
+                            >
+<!--                                @add-item="this.editItem"-->
+<!--                                id="editItemModel"-->
+                            </edit-modal>
                         </template>
 
                         <template v-slot="slotProps">
                             <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">
                                 {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock
                                 <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-
-<!--                                <app-modal title="<p>Test Modal</p>" btn-class="btn-primary" btn-text="Test Modal">-->
-<!--                                    <p>This is the <i>body</i> content (the default slot).</p>-->
-<!--                                    <template #footer>-->
-<!--                                        &lt;!&ndash;            <template v-slot="footer">&ndash;&gt;-->
-<!--                                        <button type="button" cLaSs="btn btn-primary" data-bs-dismiss="modal">Okay</button>-->
-<!--                                    </template>-->
-<!--                                </app-modal>-->
                             </div>
                         </template>
                     </cards-list>
@@ -254,8 +254,8 @@
 
             </div>
             <div data-navPage="recents" v-if="currentPage==='recents'" data-pageTitle="Recents" class="page container-fluid mt-5"><!--flex-shrink-0-->
-                <div id="inventoryCards" class="m-0">
-                    <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-secondary border-2 border-primary border-bottom"><!--card-->
+                <div id="inventoryCards" class="m-0 border-top border-2 border-primary p-0">
+                    <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-body-tertiary border-2 border-primary border-bottom"><!--card-->
 
                         <div class="bi-3x col-2 p-0 my-auto text-center">
                             <i class="recentsArrowIn bi ms-1 bi-plus"></i>
@@ -411,7 +411,7 @@
     <script src="js/components/NavigateIconItem.js"></script>
     <script src="js/components/EditModal.js"></script>
 
-<!--    <script src="js/components/TogglesArray.js"></script>-->
+    <script src="js/components/TogglesArray.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

@@ -41,9 +41,20 @@ const app = Vue.createApp({
             currentPage: "home",
             currentPageTitle: "TEST",
             filterSettings: {
-                includeCategories: false,
-                includeItems: true,
-                underThreshold: false,
+                toggles: [
+                    {
+                        label: "Include Categories",
+                        state: true
+                    },
+                    {
+                        label: "Include Items",
+                        state: true
+                    },
+                    {
+                        label: "Under Threshold",
+                        state: false
+                    },
+                ],
                 searchString: "",
             },
             appVersion: "Vue App v1.75",
@@ -197,9 +208,9 @@ const app = Vue.createApp({
                 )
             );
         },
-        updateEditItem(settingEditItem){
-            console.log("~~~~~~~~~~~~~", settingEditItem);
-            // this.editItem = settingEditItem;
+        updateEditItem(updateToItem){
+            this.editItem = updateToItem;
+
         },
         removeItem(removeItem){
             this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
@@ -234,19 +245,19 @@ const app = Vue.createApp({
         //     //     <i v-if="cardData.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
         //     // </span>`;
         // }
-        updateToggle: function(variableToUpdate){
-            this.filterSettings[variableToUpdate] = !this.filterSettings[variableToUpdate];
-        },
+        // updateToggle: function(variableToUpdate){
+        //     this.filterSettings[variableToUpdate] = !this.filterSettings[variableToUpdate];
+        // },
     },
 
     // computed: values that are updated and cached if dependencies change
     computed: {
         currentCategoriesList() {
             let filteredList = [];
-            if (this.filterSettings.includeCategories) {
+            if (this.filterSettings.toggles[0].state) {
                 filteredList = this.categoriesList;
             }
-            if (this.filterSettings.underThreshold){
+            if (this.filterSettings.toggles[1].state){
             //     When doings items contained in a list they should be filtered here recursively
             }
             if(this.filterSettings.searchString){
@@ -256,10 +267,10 @@ const app = Vue.createApp({
         },
         currentItemsList(){
             let filteredList = [];
-            if(this.filterSettings.includeItems){
+            if(this.filterSettings.toggles[0].state){
                 filteredList = this.itemsList;
             }
-            if(this.filterSettings.underThreshold){
+            if(this.filterSettings.toggles[1].state){
                 filteredList = filteredList.filter(item => item.needsReorder());
             }
             if(this.filterSettings.searchString){
@@ -292,19 +303,22 @@ const app = Vue.createApp({
         if(localStorage.getItem('pageConfigSettings')){
             this.pageConfigSettings = JSON.parse(localStorage.getItem('pageConfigSettings'));
         }
+        if(localStorage.getItem('filterSettings')){
+            this.filterSettings = JSON.parse(localStorage.getItem('filterSettings'));
+        }
 
-        const localStorageMap = new Map([
-            ['filterSettings', this.filterSettings],
-            // ['categoriesList', this.categoriesList],
-            // ['itemsList', this.itemsList],
-        ]);
-        localStorageMap.forEach((value, key) => {
-            const storedValue = localStorage.getItem(key);
-            if(storedValue){
-                //         localStorageMap.get(key).value = JSON.parse(localStorage.getItem(key));
-                this[key] = JSON.parse(storedValue);
-            }
-        });
+        // const localStorageMap = new Map([
+        //     ['filterSettings', this.filterSettings],
+        //     // ['categoriesList', this.categoriesList],
+        //     // ['itemsList', this.itemsList],
+        // ]);
+        // localStorageMap.forEach((value, key) => {
+        //     const storedValue = localStorage.getItem(key);
+        //     if(storedValue){
+        //         //         localStorageMap.get(key).value = JSON.parse(localStorage.getItem(key));
+        //         this[key] = JSON.parse(storedValue);
+        //     }
+        // });
 
         if(localStorage.getItem('categoriesList')){
             this.categoriesList = JSON.parse(localStorage.getItem('categoriesList'));

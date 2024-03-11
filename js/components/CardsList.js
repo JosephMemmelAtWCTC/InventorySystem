@@ -16,7 +16,7 @@ app.component('CardsList', {
     emits: ['card-clicked'],
     methods: {
         passCardWasClickedUp(sendItem){
-            console.log("card-clicked", sendItem)
+            console.log("card-clicked{{{{{{{{", sendItem)
             this.$emit('card-clicked', sendItem);
         }
     },

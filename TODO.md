@@ -1,5 +1,5 @@
 Notes from class to implement
- - [ ] Checkboxes inside of toggle filters + better shown
+ - [x] Checkboxes inside of toggle filters + better shown
  - [x] Standardize link colors
  - [x] Remove edit button
  - [ ] Tooltips
