@@ -4,6 +4,7 @@ app.component('EditModal', {
             uid: 'sli-' + Math.floor(Math.random() * 10e15),
             bsModal: {},
             editItem: {
+                title: "00000"
             },
         }
     },
@@ -12,7 +13,6 @@ app.component('EditModal', {
             type: Object,
             required: true,
         },
-
         title: {
             type: String,
             required: true,
@@ -25,11 +25,24 @@ app.component('EditModal', {
     emits: ['card-clicked'],
     methods: {
         openModal(){
-            console.log(':::::');
             this.bsModal.show();
+            console.log("[[[[]]]]");
             this.isOpen = true;
+            this.editItem= {...this.item};//Tried using spread operator
+            // this.editItem = JSON.parse(JSON.stringify(this.item));
             // this.editItem.title = this.item.title;
+            // console.log("_____this.item.title",this.item.title);
+        },
+        saveIt(e){
+            //e.preventDefault(); // we can do this in the template
 
+            // this.item.name = this.editItem.name;
+            // this.item.qty = this.editItem.qty;
+            // this.item.category = this.editItem.category;
+            // this.item.purchased = this.editItem.purchased;
+
+            // or
+            Object.assign(this.item, this.editItem);
         }
     },
     mounted(){
@@ -53,7 +66,7 @@ app.component('EditModal', {
                     </div>
                     <div class="modal-body">
                         <slot>
-                    <q-input filled v-model="this.item.title"
+                    <q-input filled v-model="this.editItem.title"
                         label="What are you waiting for?"
                         class="full-width"
                         :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
@@ -64,7 +77,7 @@ app.component('EditModal', {
                     <div class="modal-footer">
                         <slot name="footer">
                             <!-- this is the default slot content -->
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Update Item</button>
+                            <button type="button" @click="saveIt" class="btn btn-secondary" data-bs-dismiss="modal">Update Item</button>
                         </slot>
                     </div>
                 </div>
