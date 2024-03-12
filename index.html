@@ -194,20 +194,16 @@
 
                     <!-- https://stackoverflow.com/a/65686099 for inline editing -->
 <!--                    this.editItem = $event-->
-                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.$refs.editModal.openModal()">
-<!--                    <cards-list v-bind:items="currentItemsList">-->
+                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.editItem = $event; this.$refs.editModal.openModal(); "
+                    >
 
-<!--                    >-->
                         <template #extra v-slot="slotProps">
-<!--                            <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>-->
-                            <edit-modal v-bind:item="this.editItem"
+                            <edit-modal :item="this.editItem"
                                         @remove-item="removeItem"
                                         title="Edit Item"
                                         :submit-button-text="'Update Item'"
                                         ref="editModal"
                             >
-<!--                                @add-item="this.editItem"-->
-<!--                                id="editItemModel"-->
                             </edit-modal>
                         </template>
 

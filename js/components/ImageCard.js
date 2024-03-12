@@ -29,7 +29,6 @@ app.component('ImageCard', {
     emits: ['card-clicked'],
     methods: {
         sendUpdateCardClicked() {
-            console.log("-~~~");
             if(this.item){
                 this.$emit('card-clicked', this.item);
             }else{
