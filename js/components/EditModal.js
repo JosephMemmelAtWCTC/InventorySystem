@@ -28,20 +28,9 @@ app.component('EditModal', {
             this.bsModal.show();
             console.log("[[[[]]]]");
             this.isOpen = true;
-            this.editItem= {...this.item};//Tried using spread operator
-            // this.editItem = JSON.parse(JSON.stringify(this.item));
-            // this.editItem.title = this.item.title;
-            // console.log("_____this.item.title",this.item.title);
+            this.editItem= {...this.item};
         },
         saveIt(e){
-            //e.preventDefault(); // we can do this in the template
-
-            // this.item.name = this.editItem.name;
-            // this.item.qty = this.editItem.qty;
-            // this.item.category = this.editItem.category;
-            // this.item.purchased = this.editItem.purchased;
-
-            // or
             Object.assign(this.item, this.editItem);
         }
     },
@@ -53,7 +42,6 @@ app.component('EditModal', {
         });
     },
     template: `
-        <p :id="uid"></p>
 <!--                    https://stackoverflow.com/a/47513112/ for @click propagation prevention-->
         <div class="modal fade" @click.stop="" ref="theModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -65,14 +53,14 @@ app.component('EditModal', {
                         </slot>
                     </div>
                     <div class="modal-body">
-                        <slot>
-                    <q-input filled v-model="this.editItem.title"
-                        label="What are you waiting for?"
-                        class="full-width"
-                        :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
-                        lazy-rules="ondemand"
-                    />
-                    </slot>
+                        <slot :editItem="editItem">
+<!--                            <q-input filled v-model="this.editItem.title"-->
+<!--                                label="What are you waiting for?"-->
+<!--                                class="full-width"-->
+<!--                                :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"-->
+<!--                                lazy-rules="ondemand"-->
+<!--                            />-->
+                        </slot>
                     </div>
                     <div class="modal-footer">
                         <slot name="footer">

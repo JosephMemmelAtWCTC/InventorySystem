@@ -198,12 +198,20 @@
                     >
 
                         <template #extra v-slot="slotProps">
-                            <edit-modal v-bind:item="this.editItem"
+                            <edit-modal :item="this.editItem"
                                         @remove-item="removeItem"
                                         title="Edit Item"
                                         :submit-button-text="'Update Item'"
                                         ref="editModal"
                             >
+                                <template v-slot="slotProps">
+                                    <q-input filled v-model="slotProps.editItem.title"
+                                             label="What are you waiting for?"
+                                             class="full-width"
+                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
+                                             lazy-rules="ondemand"
+                                    ></q-input>
+                                </template>
                             </edit-modal>
                         </template>
 
