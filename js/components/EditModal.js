@@ -28,7 +28,7 @@ app.component('EditModal', {
             console.log(':::::');
             this.bsModal.show();
             this.isOpen = true;
-            this.editItem.title = this.item.title;
+            // this.editItem.title = this.item.title;
 
         }
     },
@@ -53,7 +53,7 @@ app.component('EditModal', {
                     </div>
                     <div class="modal-body">
                         <slot>
-                    <q-input filled v-model="this.editItem.title"
+                    <q-input filled v-model="this.item.title"
                         label="What are you waiting for?"
                         class="full-width"
                         :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"

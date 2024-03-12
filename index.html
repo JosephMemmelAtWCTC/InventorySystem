@@ -194,7 +194,7 @@
 
                     <!-- https://stackoverflow.com/a/65686099 for inline editing -->
 <!--                    this.editItem = $event-->
-                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.editItem = $event; this.$refs.editModal.openModal(); "
+                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.$refs.editModal.openModal(); this.editItem = $event;"
                     >
 
                         <template #extra v-slot="slotProps">
