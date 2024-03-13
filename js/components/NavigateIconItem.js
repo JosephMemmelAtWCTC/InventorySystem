@@ -39,7 +39,7 @@ app.component('NavigateIconItem', {
                 </i>
                 <span v-if="hover" class="ms-2">{{tooltipInfo}}</span>
                 <q-tooltip v-if="tooltipInfo" anchor="center right" self="center left" :offset="[10, 10]">
-                  <strong>{{tooltipInfo}}</em>
+                  <strong>{{tooltipInfo}}</strong>
 <!--                  (<q-icon name="keyboard_arrow_right"/>)-->
                 </q-tooltip>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-black z-2">

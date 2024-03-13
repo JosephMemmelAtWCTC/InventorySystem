@@ -15,6 +15,7 @@ Other changes to make
 Broken Items to Fix
 - [ ] Get validation working again (Also try to disable until)
 - Fix filter toggles
+- Fix styles in grid
 
 Bug Tracker
 - [ ] Edits save instantly - make only on apply changes
@@ -23,5 +24,7 @@ Bug Tracker
 
 Items to ask about
 - Tooltips
+- Double click to access
 - q-input clearable icons
 - Placeholder inside or in hint under
+- Ask if current should be different color in bars

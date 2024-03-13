@@ -39,7 +39,7 @@ const app = Vue.createApp({
         let itemIdCounter = 1;
         return {
             currentPage: "home",
-            currentPageTitle: "Home",
+            currentPageLabel: "home",
             filterSettings: {
                 toggles: [
                     {
@@ -161,7 +161,8 @@ const app = Vue.createApp({
     // methods: usually "events" triggered by v-on:
     methods: {
         openNavPage(pageLabel){
-            this.currentPageTitle = pageLabel.charAt(0).toUpperCase()+pageLabel.slice(1);
+            this.currentPageLabel = pageLabel.charAt(0).toUpperCase()+pageLabel.slice(1);
+
             // this.currentPageTitle = $(`*[data-navpage="${pageLabel}"]`).attr("data-pageTitle");
             // this.currentPageTitle = document.querySelector(`*[data-navpage="${pageLabel}"]`).getAttribute("data-pageTitle");
 
@@ -345,7 +346,9 @@ const app = Vue.createApp({
         }
 
     },
-
+    mounted(){
+        this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase()+this.currentPageLabel.slice(1);
+    },
     // watch:   calls the function if the value changes
     // https://travishorn.com/add-localstorage-to-your-vue-app-in-2-lines-of-code-56eb2c9f371b
     watch: {
@@ -386,6 +389,12 @@ const app = Vue.createApp({
                 }
             },
             deep: true,
+        },
+        currentPageLabel:{
+            handler(){
+                this.currentPageLabel,
+                this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase()+this.currentPageLabel.slice(1);
+            }
         }
     }
 });
