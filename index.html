@@ -210,32 +210,43 @@
                                     <q-input filled v-model="slotProps.editItem.title"
                                              label="Name"
                                              class="full-width"
-                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
-                                             lazy-rules="ondemand"
+                                             :rules="[val => !!val || '* Required']"
+                                             lazy-rules
                                     ></q-input>
                                     <q-input filled v-model="slotProps.editItem.productId"
                                              label="Product ID"
                                              class="full-width"
-                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
-                                             lazy-rules="ondemand"
+                                             :rules="[val => !!val || '* Required']"
+                                             lazy-rules
                                     ></q-input>
                                     <q-input filled v-model="slotProps.editItem.description"
                                              type="textarea"
                                              rows="4"
                                              label="Description"
                                              class="full-width"
-                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
-                                             lazy-rules="ondemand"
+                                             :rules="[val => !!val || '* Required']"
+                                             lazy-rules
                                     ></q-input>
                                     <q-input filled v-model="slotProps.editItem.reorderLevel"
                                             label="Reorder Level"
                                             class="full-width"
-                                            type="number"
+                                            counter
                                             clearable
-                                            clear-icon="close"
-                                            lazy-rules="ondemand"
+                                            clear-icon="clear"
+                                            placeholder="Leave blank to ignore reorder"
+                                            hint="Remember to ask about hints"
+                                            :rules="[val => val < 0 || 'Count cannot be less than 0']"
+                                            lazy-rules
                                     ></q-input>
-<!--                                    :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"-->
+                                    <q-input filled v-model="slotProps.editItem.qty"
+                                             label="# in stock"
+                                             class="full-width"
+                                             counter
+                                             :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
+                                             lazy-rules
+
+                                    ></q-input>
+
 
                                 </template>
                             </edit-modal>
