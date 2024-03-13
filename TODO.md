@@ -1,20 +1,16 @@
 Notes from class to implement
- - [x] Checkboxes inside of toggle filters + better shown
- - [x] Keep the up/down buttons on non-mobile
+ - [x] Bold the navigation - text is bolded, icons are not
+ - [ ] Try v-width
+ - [ ] Change
 
 Notes from comments to implement
- - [ ] Standardize white on teal text
+- [ ] 
 
 Other changes to make
-- [ ] Get photos working
-- [ ] Complete UI theme overhaul
-- [ ] Move validation code into vue - also prevention
-- [ ] 
+- [~] Move validation code into vue - also prevention
 
 Broken Items to Fix
 - [ ] Get validation working again (Also try to disable until)
-- Fix filter toggles
-- Fix styles in grid
 
 Bug Tracker
 - [ ] Current Page title requires double trigger to update

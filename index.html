@@ -200,6 +200,7 @@
                             >
                                 <template v-slot="slotProps">
                                     <q-input filled v-model="slotProps.editItem.title"
+                                             autofocus
                                              label="Name"
                                              class="full-width"
                                              :rules="[val => !!val || '* Required']"
@@ -241,6 +242,7 @@
                                     <q-input filled v-model="slotProps.editItem.title"
                                              label="Name"
                                              class="full-width"
+                                             autofocus
                                              :rules="[val => !!val || '* Required']"
                                              lazy-rules
                                     ></q-input>
@@ -258,18 +260,17 @@
                                              :rules="[val => !!val || '* Required']"
                                              lazy-rules
                                     ></q-input>
-                                    <q-input filled v-model="slotProps.editItem.reorderLevel"
+                                    <q-input filled v-model.number="slotProps.editItem.reorderLevel"
+                                            type="number"
                                             label="Reorder Level"
                                             class="full-width"
                                             clearable
-                                            clear-icon="clear"
+                                            clear-icon="bi-x"
                                             placeholder="Leave blank to ignore reorder"
                                             hint="Remember to ask about hints"
                                             :rules="[val => val < 0 || 'Count cannot be less than 0']"
                                             lazy-rules
                                     ></q-input>
-
-
 
                                     <div class="input-group mb-3 w-100">
 
@@ -280,7 +281,8 @@
                                         </div>
                                         <div class="col-8 form-control">
 
-                                            <q-input filled v-model="slotProps.editItem.qty"
+                                            <q-input filled v-model.number="slotProps.editItem.qty"
+                                                     type="number"
                                                      label="# in stock"
                                                      class="full-width"
                                                      :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
@@ -402,7 +404,7 @@
                     </div>
 
                     <div class="navbarSide1 col d-flex flex-column align-items-center mt-5 p-0">
-                        <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
+                        <div v-if="currentPage==='inventory'" class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
 <!--                            <button id="addButton" type="button" class="btn btn-primary my-auto">-->
 <!--&lt;!&ndash;                                <i class="bi bi-plus"></i>&ndash;&gt;-->
 <!--                            </button>-->
@@ -441,7 +443,7 @@
 <!--                            </button>-->
                             <navigate-icon-item @click="openNavPage('home')" icon-class="house">
                             </navigate-icon-item>
-                            <navigate-icon-item @click="openNavPage('items')" icon-class="grid">
+                            <navigate-icon-item @click="openNavPage('inventory')" icon-class="grid">
                             </navigate-icon-item>
                         </div>
                     </div>
@@ -459,7 +461,7 @@
                     </div>
 
                     <div class="navbarSide2 col d-flex flex-column align-items-center mt-5 p-0">
-                        <div class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
+                        <div v-if="currentPage==='inventory'" class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
 <!--                            <button id="editButton" type="button" class="btn btn-primary my-auto" :class="{'highlightToEdit': itemsViewMode}">-->
 <!--&lt;!&ndash;                                <i class="bi bi-pencil-square"></i>&ndash;&gt;-->
 <!--                                <i class="bi bi-pencil"></i>-->
