@@ -268,10 +268,10 @@ const app = Vue.createApp({
         },
         currentItemsList(){
             let filteredList = [];
-            if(this.filterSettings.toggles[0].state){
+            if(this.filterSettings.toggles[1].state){
                 filteredList = this.itemsList;
             }
-            if(this.filterSettings.toggles[1].state){
+            if(this.filterSettings.toggles[2].state){
                 filteredList = filteredList.filter(item => item.needsReorder());
             }
             if(this.filterSettings.searchString){

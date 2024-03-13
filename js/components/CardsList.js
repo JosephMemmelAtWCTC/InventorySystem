@@ -37,8 +37,10 @@ app.component('CardsList', {
         :item="item"
         :headerText="item.title"
         :descriptionText="item.description"
-        class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5 g-2 m-1"
+        class="m-1"
         v-slot="slotProps">
+<!--                class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5 m-1"-->
+
 <!--            <slot :item="uid">{{slotProps.item.name}}</slot>-->
 <!--            <slot :item="this.item"></slot>-->
 <!--            <slot></slot>-->
