@@ -21,8 +21,13 @@ app.component('EditModal', {
             type: String,
             required: true,
         },
+        canRemove: {
+            type: Boolean,
+            required: false,
+            default: false,
+        }
     },
-    emits: ['card-clicked'],
+    emits: ['card-clicked', 'remove-it'],
     methods: {
         openModal(){
             this.bsModal.show();
@@ -32,6 +37,10 @@ app.component('EditModal', {
         },
         saveIt(e){
             Object.assign(this.item, this.editItem);
+        },
+        removeIt(e){
+            console.log('removing item ', this.item)
+            this.$emit('remove-it', this.item);
         }
     },
     mounted(){
@@ -62,10 +71,12 @@ app.component('EditModal', {
 <!--                            />-->
                         </slot>
                     </div>
-                    <div class="modal-footer">
-                        <slot name="footer">
-                            <!-- this is the default slot content -->
-                            <button type="button" @click="saveIt" class="btn btn-secondary" data-bs-dismiss="modal">{{submitButtonText}}</button>
+                    <div class="modal-footer w-100">
+                        <slot name="footer" class="w-100">
+                            <div class="w-100">
+                                <button v-if="canRemove" type="button" @click="removeIt" class="float-start btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-trash3"></i></button>
+                                <button type="button" @click="saveIt" class="float-end btn btn-secondary" data-bs-dismiss="modal">{{submitButtonText}}</button>
+                            </div>
                         </slot>
                     </div>
                 </div>

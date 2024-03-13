@@ -192,7 +192,8 @@
 
                         <template #extra v-slot="slotProps">
                             <edit-modal :item="this.editCategory"
-                                        @remove-item="removeCategory"
+                                        @remove-it="removeCategory"
+                                        can-remove
                                         title="Edit Category"
                                         :submit-button-text="'Update Category'"
                                         ref="editModal"
@@ -228,8 +229,10 @@
                     <cards-list v-bind:items="currentItemsList" @card-clicked="this.editItem = $event; this.$refs.editModal.openModal()"
                     >
                         <template #extra v-slot="slotProps">
+                            <!--TODO: Can I pass in an emit here for can-remove?-->
                             <edit-modal :item="this.editItem"
-                                        @remove-item="removeItem"
+                                        @remove-it="removeItem"
+                                        can-remove
                                         title="Edit Item"
                                         :submit-button-text="'Update Item'"
                                         ref="editModal"
@@ -258,7 +261,6 @@
                                     <q-input filled v-model="slotProps.editItem.reorderLevel"
                                             label="Reorder Level"
                                             class="full-width"
-                                            counter
                                             clearable
                                             clear-icon="clear"
                                             placeholder="Leave blank to ignore reorder"
@@ -271,23 +273,21 @@
 
                                     <div class="input-group mb-3 w-100">
 
-                                        <div class="col-2 d-block">
+                                        <div class="col-2 d-block z-2">
                                             <button type="button" @click="slotProps.editItem.qty -= (slotProps.editItem.qty > 0? 1:0)" class="h-100 d-block rounded-0 rounded-start-3 form-control focus-ring-primary">
                                                 <i class="bi bi-dash"></i>
                                             </button>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-8 form-control">
 
                                             <q-input filled v-model="slotProps.editItem.qty"
                                                      label="# in stock"
                                                      class="full-width"
-                                                     counter
                                                      :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
                                                      lazy-rules
-
                                             ></q-input>
                                         </div>
-                                        <div class="col-2 d-block">
+                                        <div class="col-2 d-block z-2">
                                             <button type="button" @click="slotProps.editItem.qty++" class="h-100 rounded-0 rounded-end-3 form-control focus-ring-primary">
                                                 <i class="bi bi-plus"></i>
                                             </button>

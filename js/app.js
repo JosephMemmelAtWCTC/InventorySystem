@@ -222,6 +222,9 @@ const app = Vue.createApp({
         removeItem(removeItem){
             this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
         },
+        removeCategory(removeItem){
+            this.categoriesList.splice(this.categoriesList.indexOf(removeItem), 1);
+        },
         openEditItemModel(item){
             if(this.getEditItemForm().checkValidity()){
                 // Clear the form
