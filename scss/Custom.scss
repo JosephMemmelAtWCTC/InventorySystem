@@ -19,10 +19,11 @@ $theme-colors: map-merge($theme-colors, (
   height: 127px;
 }
 
-.category img.displayImage, .item img.displayImage{
-  //TODO: Use max-height instead
-  height: 190px;
 
+.card img.displayImage {
+  height: 190px !important;
+  width: auto !important;
+  object-fit: contain;
 }
 
 #items .card .card-body{

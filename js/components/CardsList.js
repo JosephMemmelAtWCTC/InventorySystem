@@ -31,14 +31,26 @@ app.component('CardsList', {
 
 <!--        @card-clicked="passCardWasClickedUp"-->
 
+<!--TODO: Turn all :keys to use $refs-->
+
         <image-card v-for="(item, i) in items" :key="item.title"
         @card-clicked="passCardWasClickedUp"
         :image="item.image"
         :item="item"
         :headerText="item.title"
         :descriptionText="item.description"
-        class="m-1 col"
+        class="m-1"
+        wrapperClass="col"
         v-slot="slotProps">
+<!--        <image-card v-for="(item, i) in items" :key="item.title"-->
+<!--        @card-clicked="passCardWasClickedUp"-->
+<!--        :image="item.image"-->
+<!--        :item="item"-->
+<!--        :headerText="item.title"-->
+<!--        :descriptionText="item.description"-->
+<!--        class="m-1 col"-->
+<!--        v-slot="slotProps">-->
+
 <!--                class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5 m-1"-->
 
 <!--            <slot :item="uid">{{slotProps.item.name}}</slot>-->

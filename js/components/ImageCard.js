@@ -24,6 +24,10 @@ app.component('ImageCard', {
         item: {
             type: Object,
             required: false,
+        },
+        wrapperClass: {
+            type: String,
+            required: false,
         }
     },
     emits: ['card-clicked'],
@@ -37,21 +41,23 @@ app.component('ImageCard', {
         }
     },
     template: `
-        <div class="card" @click="sendUpdateCardClicked">
-<!--            data-bs-toggle="modal"-->
-            <slot name="header">
-                <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
-            </slot>
-            <img :src="image" class="displayImage card-img-top p-0 m-0 rounded-0 border-bottom mw-100 w-auto" alt="TODO">
-            <div class="card-body overflow-y-scroll">
-                <slot name="description">
-                    <p class="card-text">{{ descriptionText }}</p>
+        <div :class="wrapperClass">
+            <div class="card" @click="sendUpdateCardClicked">
+    <!--            data-bs-toggle="modal"-->
+                <slot name="header">
+                    <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
                 </slot>
-            </div>
-            <div class="card-footer bg-transparent">
-                <slot :item="item">
-                    {{ footerText }} <!-- Display the footerText directly -->
-                </slot>
+                <img :src="image" class="displayImage p-0 m-0 rounded-0 border-bottom w-auto" alt="TODO">
+                <div class="card-body overflow-y-scroll">
+                    <slot name="description">
+                        <p class="card-text">{{ descriptionText }}</p>
+                    </slot>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <slot :item="item">
+                        {{ footerText }} <!-- Display the footerText directly -->
+                    </slot>
+                </div>
             </div>
         </div>
     `,
