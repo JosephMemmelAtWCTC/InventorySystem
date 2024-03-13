@@ -3,7 +3,7 @@ Notes from class to implement
  - [x] Standardize link colors
  - [x] Remove edit button
  - [ ] Tooltips
- - [ ] Page title headers
+ - [ ] Page title headers - make better
  - [x] Keep the up/down buttons on non-mobile
 
 Notes from comments to implement

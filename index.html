@@ -58,21 +58,23 @@
 
             <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-2 border-end">
                 <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
-                    <span class="fs-4">{{pageConfigSettings.customName}}</span>
+                    <span class="fs-4">{{pageConfigSettings.customName}}</span> <i class="ms-2 bi bi-pencil-square"></i>
+
                     <q-popup-edit v-model="pageConfigSettings.customName" auto-save v-slot="scope">
                         <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set"
                                  :rules="[val => val.length > 1 || 'Title requires at least 1 character', [val => val.length < 20 || 'Title cannot at least 1 character']]"/>
                     </q-popup-edit>
+
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <navigate-icon-item @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="house">
+                    <navigate-icon-item tooltip-info="Home" @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="house">
                     </navigate-icon-item>
-                    <navigate-icon-item @click="openNavPage('items')" li-extra-classes="p-2 mb-2" icon-class="grid">
+                    <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="grid">
                     </navigate-icon-item>
-                    <navigate-icon-item @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="arrow-left-right" :badge-text="recentItemsList.length+''">
+                    <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="arrow-left-right" :badge-text="recentItemsList.length+''">
                     </navigate-icon-item>
-                    <navigate-icon-item @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="person">
+                    <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="person">
                     </navigate-icon-item>
                 </ul>
                 <hr>
@@ -136,7 +138,7 @@
 
             </div>
 
-            <div data-navPage="items" v-if="currentPage==='items'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
+            <div data-navPage="inventory" v-if="currentPage==='inventory'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
                 <header id="searchRibbon" class="bg-body-tertiary rounded-3">
                     <div class="row align-items-center p-2">
                         <div class="col-auto d-flex text-center align-items-center">
@@ -206,11 +208,35 @@
                             >
                                 <template v-slot="slotProps">
                                     <q-input filled v-model="slotProps.editItem.title"
-                                             label="What are you waiting for?"
+                                             label="Name"
                                              class="full-width"
                                              :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
                                              lazy-rules="ondemand"
                                     ></q-input>
+                                    <q-input filled v-model="slotProps.editItem.productId"
+                                             label="Product ID"
+                                             class="full-width"
+                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
+                                             lazy-rules="ondemand"
+                                    ></q-input>
+                                    <q-input filled v-model="slotProps.editItem.description"
+                                             type="textarea"
+                                             rows="4"
+                                             label="Description"
+                                             class="full-width"
+                                             :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"
+                                             lazy-rules="ondemand"
+                                    ></q-input>
+                                    <q-input filled v-model="slotProps.editItem.reorderLevel"
+                                            label="Reorder Level"
+                                            class="full-width"
+                                            type="number"
+                                            clearable
+                                            clear-icon="close"
+                                            lazy-rules="ondemand"
+                                    ></q-input>
+<!--                                    :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"-->
+
                                 </template>
                             </edit-modal>
                         </template>
@@ -365,7 +391,7 @@
                     </div>
 
                     <div class="navbarScan col-4 p-0">
-                        <button id="scanButton" data-navPageTarget="items" @click="openNavPage('items')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
+                        <button id="scanButton" data-navPageTarget="inventory" @click="openNavPage('inventory')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
 
 <!--                            <div class="icon-container">-->
 <!--                                <span class="bi bi-upc-scan w-100"></span>-->

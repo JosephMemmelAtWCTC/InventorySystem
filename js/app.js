@@ -39,7 +39,7 @@ const app = Vue.createApp({
         let itemIdCounter = 1;
         return {
             currentPage: "home",
-            currentPageTitle: "TEST",
+            currentPageTitle: "Home",
             filterSettings: {
                 toggles: [
                     {
@@ -57,7 +57,7 @@ const app = Vue.createApp({
                 ],
                 searchString: "",
             },
-            appVersion: "Vue App v1.75",
+            appVersion: "Vue App v2.0",
             pageConfigSettings:{
                 profileName: "Test Testerson",
                 customName: "Custom Name",
