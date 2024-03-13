@@ -37,7 +37,7 @@ app.component('CardsList', {
         :item="item"
         :headerText="item.title"
         :descriptionText="item.description"
-        class="m-1"
+        class="m-1 col"
         v-slot="slotProps">
 <!--                class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5 m-1"-->
 

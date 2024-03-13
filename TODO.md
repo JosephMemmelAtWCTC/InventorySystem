@@ -1,6 +1,5 @@
 Notes from class to implement
  - [x] Checkboxes inside of toggle filters + better shown
- - [ ] Page title headers - make better
  - [x] Keep the up/down buttons on non-mobile
 
 Notes from comments to implement
@@ -18,7 +17,6 @@ Broken Items to Fix
 - Fix styles in grid
 
 Bug Tracker
-- [ ] Edits save instantly - make only on apply changes
 - [ ] Current Page title requires double trigger to update
 
 

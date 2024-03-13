@@ -65,7 +65,7 @@ app.component('EditModal', {
                     <div class="modal-footer">
                         <slot name="footer">
                             <!-- this is the default slot content -->
-                            <button type="button" @click="saveIt" class="btn btn-secondary" data-bs-dismiss="modal">Update Item</button>
+                            <button type="button" @click="saveIt" class="btn btn-secondary" data-bs-dismiss="modal">{{submitButtonText}}</button>
                         </slot>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ const app = Vue.createApp({
                 ],
                 searchString: "",
             },
-            appVersion: "Vue App v2.0",
+            appVersion: "Vue App v2.0 [Demo]",
             pageConfigSettings:{
                 profileName: "Test Testerson",
                 customName: "Custom Name",
@@ -86,6 +86,12 @@ const app = Vue.createApp({
                 qty: 0,
                 productId: null,
                 reorderLevel: null,
+            },
+            editCategory: {
+                id: null,
+                title: '',
+                description: '',
+                image: './staticImages/folder.svg',
             },
             categoriesList: [
                 new Category(

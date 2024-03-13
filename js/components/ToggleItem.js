@@ -27,9 +27,12 @@ app.component('ToggleItem', {
     },
     template: `
 <!--@click="toggled = !toggled"-->
-        <input type="checkbox" v-model="toggled" class="btn-check focus-ring-primary" :id="uid"
+        <input type="checkbox" v-model="toggled" class="btn-check focus-ring-primary border-end border-black" :id="uid"
            autocomplete="off">
-        <label class="btn btn-outline-primary" :for="uid">{{ label }}
+        <label class="btn btn-outline-primary" :for="uid"
+            :class="{'link-secondary': toggled}"
+        >{{ label }}
+        
             <i class="ps-3 bi fs-4"
                v-bind:class="{'bi-toggle-on': toggled}, {'bi-toggle-off': !toggled}">
                 <!--                                   :class="'bi-toggle-'+{filterSettings.includeCategories?'on':'off'}">-->
