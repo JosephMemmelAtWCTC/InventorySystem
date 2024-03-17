@@ -4,7 +4,7 @@ app.component('EditModal', {
             uid: 'sli-' + Math.floor(Math.random() * 10e15),
             bsModal: {},
             editItem: {
-                title: "00000"
+                title: "Edit Modal"
             },
         }
     },
@@ -31,12 +31,24 @@ app.component('EditModal', {
     methods: {
         openModal(){
             this.bsModal.show();
-            console.log("[[[[]]]]");
             this.isOpen = true;
             this.editItem= {...this.item};
         },
         saveIt(e){
             Object.assign(this.item, this.editItem);
+            this.$refs.myForm.validate().then(success => {
+                if (success) {
+                    this.bsModal.hide();
+                } else {
+                    this.$q.notify({
+                        message: 'All fields must filled in properly',
+                        color: 'warning',
+                        position: 'bottom',
+                        timeout: 5000
+                    });
+                }
+            })
+
         },
         removeIt(e){
             console.log('removing item ', this.item)
@@ -49,6 +61,7 @@ app.component('EditModal', {
         this.$refs.theModal.addEventListener('hidden.bs.modal', ()=>{
             this.isOpen = false;//TODO: Make check instead of update every time?
         });
+        // this.form = new bootstrap.Form(this.$refs.theForm);
     },
     template: `
 <!--                    https://stackoverflow.com/a/47513112/ for @click propagation prevention-->
@@ -62,20 +75,27 @@ app.component('EditModal', {
                         </slot>
                     </div>
                     <div class="modal-body">
-                        <slot :editItem="editItem">
-<!--                            <q-input filled v-model="this.editItem.title"-->
-<!--                                label="What are you waiting for?"-->
-<!--                                class="full-width"-->
-<!--                                :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"-->
-<!--                                lazy-rules="ondemand"-->
-<!--                            />-->
-                        </slot>
+                        <q-form
+                            @submit="onSubmit"
+                            @reset="onReset"
+                            ref="myForm"
+                        >
+                            <slot :editItem="editItem">
+    <!--                            <q-input filled v-model="this.editItem.title"-->
+    <!--                                label="What are you waiting for?"-->
+    <!--                                class="full-width"-->
+    <!--                                :rules="[val => val.length > 2 || 'Title requires at least 2 characters']"-->
+    <!--                                lazy-rules="ondemand"-->
+    <!--                            />-->
+                            </slot>
+                        </q-form>
                     </div>
                     <div class="modal-footer w-100">
                         <slot name="footer" class="w-100">
                             <div class="w-100">
                                 <button v-if="canRemove" type="button" @click="removeIt" class="float-start btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-trash3"></i></button>
-                                <button type="button" @click="saveIt" class="float-end btn btn-secondary" data-bs-dismiss="modal">{{submitButtonText}}</button>
+                                <button type="button" @click="saveIt" class="float-end btn btn-secondary" >{{submitButtonText}}</button>
+<!--                                data-bs-dismiss="modal"-->
                             </div>
                         </slot>
                     </div>

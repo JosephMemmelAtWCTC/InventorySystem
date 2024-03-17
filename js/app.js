@@ -57,7 +57,7 @@ const app = Vue.createApp({
                 ],
                 searchString: "",
             },
-            appVersion: "Vue App v2.0 [Demo]",
+            appVersion: "Vue App v2.25",
             pageConfigSettings:{
                 profileName: "Test Testerson",
                 customName: "Custom Name",

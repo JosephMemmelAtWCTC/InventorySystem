@@ -17,8 +17,4 @@ Bug Tracker
 
 
 Items to ask about
-- Tooltips
-- Double click to access
-- q-input clearable icons
-- Placeholder inside or in hint under
-- Ask if current should be different color in bars
+- 

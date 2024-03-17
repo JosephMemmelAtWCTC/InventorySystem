@@ -40,7 +40,7 @@ app.component('CardsList', {
         :headerText="item.title"
         :descriptionText="item.description"
         class="m-1"
-        wrapperClass="col"
+        wrapperClass="col-1 col-sm-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 m-1"
         v-slot="slotProps">
 <!--        <image-card v-for="(item, i) in items" :key="item.title"-->
 <!--        @card-clicked="passCardWasClickedUp"-->
