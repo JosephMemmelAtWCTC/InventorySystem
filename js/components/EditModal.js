@@ -30,9 +30,9 @@ app.component('EditModal', {
     emits: ['card-clicked', 'remove-it'],
     methods: {
         openModal(){
+            this.editItem= {...this.item};
             this.bsModal.show();
             this.isOpen = true;
-            this.editItem= {...this.item};
         },
         saveIt(e){
             Object.assign(this.item, this.editItem);
@@ -41,10 +41,18 @@ app.component('EditModal', {
                     this.bsModal.hide();
                 } else {
                     this.$q.notify({
-                        message: 'All fields must filled in properly',
+                        message: 'All fields must be filled in properly',
                         color: 'warning',
-                        position: 'bottom',
-                        timeout: 5000
+                        progress: true,
+                        actions: [
+                            {
+                                icon: 'bi-x-lg',
+                                color: 'primary',
+                                round: true,
+                                handler: () => {
+                                }
+                            }
+                        ]
                     });
                 }
             })

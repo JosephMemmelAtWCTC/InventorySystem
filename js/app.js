@@ -215,10 +215,6 @@ const app = Vue.createApp({
                 )
             );
         },
-        updateEditItem(updateToItem){
-            this.editItem = updateToItem;
-
-        },
         removeItem(removeItem){
             this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
         },

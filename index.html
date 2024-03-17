@@ -227,8 +227,12 @@
                     </cards-list>
 
                     <!-- https://stackoverflow.com/a/65686099 for inline editing -->
-<!--                    this.editItem = $event-->
-                    <cards-list v-bind:items="currentItemsList" @card-clicked="this.editItem = $event; this.$refs.editModal.openModal()"
+                    <!-- https://masteringjs.io/tutorials/vue/nexttick for waiting until the next tick to open with the changed value -->
+                    <cards-list v-bind:items="currentItemsList"
+                                @card-clicked="this.editItem = $event;
+                                this.$nextTick(() => {
+                                    this.$refs.editModal.openModal();
+                                });"
                     >
                         <template #extra v-slot="slotProps">
                             <!--TODO: Can I pass in an emit here for can-remove?-->
@@ -290,7 +294,7 @@
                                                 <i class="bi bi-dash"></i>
                                             </button>
                                         </div>
-                                        <div class="col-8 form-control">
+                                        <div class="col-8 form-control m-0 p-0">
 
                                             <q-input filled v-model.number="slotProps.editItem.qty"
                                                      type="number"
