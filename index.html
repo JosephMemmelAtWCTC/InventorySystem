@@ -50,7 +50,6 @@
 <!--    </app-modal>-->
 
     <item-modal @add-item="addItem" v-bind:new-item="this.newItem" :submit-button-text="'Create Item'" id="newItemModel" title="New Item"></item-modal>
-<!--    <item-modal @edit-item="editItem" :exists=true :item="this.editItem" id="editItemModel" title="Edit Item"></item-modal>-->
     <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>
 
     <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
@@ -189,7 +188,12 @@
 <!--                <div id="items" class="row row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-6 row-cols-xxl-6 g-2 m-1">-->
                 <div id="items" class="row g-2 m-1">
 
-                    <cards-list v-bind:items="currentCategoriesList" @card-clicked="this.editCategory = $event; this.$refs.editModal.openModal()">
+                    <cards-list v-bind:items="currentCategoriesList"
+                                @card-clicked="this.editCategory = $event;
+                                this.$nextTick(() => {
+                                    this.$refs.editModal.openModal();
+                                });"
+                    >
 
                         <template #extra v-slot="slotProps">
                             <edit-modal :item="this.editCategory"
