@@ -154,17 +154,14 @@
                         </div>
 
 
-                        <div class="btn-group" role="group" aria-label="Checkbox button filter options">
-<!--                            <toggle-array :options="filterOptionsArray">-->
-<!--                            </toggle-array>-->
-                            <toggle-item label="Include Categories" :option="filterSettings.toggles[0].state" @update-option-toggle="filterSettings.toggles[0].state = $event"></toggle-item>
-                            <toggle-item label="Include Items" :option="filterSettings.toggles[1].state" @update-option-toggle="filterSettings.toggles[1].state = $event"></toggle-item>
-                            <toggle-item label="Only Needs Reorder" :option="filterSettings.toggles[2].state" @update-option-toggle="filterSettings.toggles[2].state = $event"></toggle-item>
-<!--                            <button @click="filterSettings.includeItems = !filterSettings.includeItems">test</button>-->
-                        </div>
+<!--                        <div class="btn-group" role="group" aria-label="Checkbox button filter options">-->
+<!--                            <toggle-item label="Include Categories" :option="filterSettings.toggles[0].state" @update-option-toggle="filterSettings.toggles[0].state = $event"></toggle-item>-->
+<!--                            <toggle-item label="Include Items" :option="filterSettings.toggles[1].state" @update-option-toggle="filterSettings.toggles[1].state = $event"></toggle-item>-->
+<!--                            <toggle-item label="Only Needs Reorder" :option="filterSettings.toggles[2].state" @update-option-toggle="filterSettings.toggles[2].state = $event"></toggle-item>-->
+<!--                        </div>-->
 
-<!--                        <toggles-array :options="filterSettings.toggles">-->
-<!--                        </toggles-array>-->
+                        <toggles-array :options="filterSettings.toggles">
+                        </toggles-array>
 
                         <div class="col-12 ps-3 mb-0 pb-0">
                             <nav aria-label="Inventory Explorer Breadcrumb">

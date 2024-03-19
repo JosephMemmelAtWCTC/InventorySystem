@@ -51,7 +51,7 @@ const app = Vue.createApp({
                         state: true
                     },
                     {
-                        label: "Under Threshold",
+                        label: "Only Under Threshold",
                         state: false
                     },
                 ],

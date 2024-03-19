@@ -47,7 +47,7 @@ app.component('ImageCard', {
                 <slot name="header">
                     <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
                 </slot>
-                <img :src="image" class="displayImage p-0 m-0 rounded-0 border-bottom w-auto" alt="TODO">
+                <img :src="image" class="displayImage p-0 m-0 rounded-0 border-bottom w-auto" alt="Loading..."><!--TODO:-->
                 <div class="card-body overflow-y-scroll">
                     <slot name="description">
                         <p class="card-text">{{ descriptionText }}</p>

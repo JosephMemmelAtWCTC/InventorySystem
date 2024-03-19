@@ -13,7 +13,11 @@ app.component('ToggleItem', {
         },
         label:{
             type: String,
-            default: "Toggle Me!"
+            default: "Toggle Me!",
+        },
+        leftSeparationBorderClass:{
+            type: String,
+            default: "no-separator-class",
         }
     },
     emits: ['update-option-toggle'],
@@ -29,8 +33,9 @@ app.component('ToggleItem', {
 <!--@click="toggled = !toggled"-->
         <input type="checkbox" v-model="toggled" class="btn-check focus-ring-primary border-end border-black" :id="uid"
            autocomplete="off">
+<!--        Works - ask why - "object literal", is there a better way?-->
         <label class="btn btn-outline-primary" :for="uid"
-            :class="{'link-secondary': toggled}"
+            :class="[{'link-secondary': toggled}, {[leftSeparationBorderClass]: toggled}]"
         >{{ label }}
         
             <i class="ps-3 bi fs-4"

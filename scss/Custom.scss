@@ -93,5 +93,10 @@ body div#addFab > ul#dropupAddHolder{
   //opacity: 0;
 }
 
+.btn.btn-outline-primary.link-secondary.leftSeparationBorder{
+  border-left: 1px solid var(--bs-secondary);
+}
+
+
 // set changes
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

@@ -29,15 +29,14 @@ app.component('TogglesArray', {
         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
 
             <toggle-item v-for="(option, i) in options" :key="i"
-                label="option.label"
-                :option="option"
+                :label="option.label"
+                :option="option.state"
                 @update-option-toggle="option.state = $event"
+                :left-separation-border-class="i===0? '':'leftSeparationBorder'"
             >
+            <toggle-item label="Include Categories" :option="filterSettings.toggles[0].state" @update-option-toggle="filterSettings.toggles[0].state = $event"></toggle-item>
 
             </toggle-item>
         </div>
-<!--<toggle-item label="Include Categories" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>-->
-<!--<toggle-item label="Include Items" :option="filterSettings.includeItems" @update-option-toggle="this.updateToggle('includeItems')"></toggle-item>-->
-<!--<toggle-item label="Only Needs Reorder" :option="filterSettings.underThreshold" @update-option-toggle="this.updateToggle('underThreshold')"></toggle-item>-->
     `,
 });
