@@ -19,7 +19,6 @@ $theme-colors: map-merge($theme-colors, (
   height: 127px;
 }
 
-
 .card img.displayImage {
   height: 190px !important;
   width: auto !important;
@@ -69,6 +68,13 @@ body div#addFab > ul#dropupAddHolder{
   /*transform: translate(-51px, -100px);*/
   transform: translate(-20px, -110px) !important;
 }
+
+//Fix the Quasar number input formatting not taking up the width when clearable action is added.
+//.q-field.row.no-wrap.items-start.q-field--filled.q-input.q-field--float.q-field--labeled.q-field--with-bottom.full-width.clearable
+.clearable>div>div>div{
+  flex: none !important;
+}
+
 
 // set changes
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

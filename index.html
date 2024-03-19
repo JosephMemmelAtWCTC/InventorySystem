@@ -269,15 +269,23 @@
                                              :rules="[val => !!val || '* Required']"
                                              lazy-rules
                                     ></q-input>
+                                    <div>
                                     <q-input filled v-model.number="slotProps.editItem.reorderLevel"
                                             type="number"
                                             label="Reorder Level"
-                                            class="full-width"
+                                            class="full-width clearable"
                                             clearable
                                             clear-icon="bi-x"
                                             placeholder="Leave blank to ignore reorder"
                                             :rules="[val => val >= 0 || 'Count cannot be less than 0']"
                                             lazy-rules
+                                    ></q-input>
+                                    <q-input filled v-model.number="slotProps.editItem.qty"
+                                             type="number"
+                                             label="# in stock"
+                                             class="full-width"
+                                             :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
+                                             lazy-rules
                                     ></q-input>
 <!--                                    <div class="q-pa-md">-->
 <!--                                        <q-input-->
