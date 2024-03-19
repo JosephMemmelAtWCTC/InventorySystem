@@ -28,10 +28,12 @@ app.component('TogglesArray', {
     template: `
         <div class="btn-group" role="group" aria-label="Checkbox button filter options">
 
-            <toggle-item v-for="(option, i) in options" :key="item.title"
+            <toggle-item v-for="(option, i) in options" :key="i"
                 label="option.label"
                 :option="option"
+                @update-option-toggle="option.state = $event"
             >
+
             </toggle-item>
         </div>
 <!--<toggle-item label="Include Categories" :option="filterSettings.includeCategories" @update-option-toggle="this.updateToggle('includeCategories')"></toggle-item>-->

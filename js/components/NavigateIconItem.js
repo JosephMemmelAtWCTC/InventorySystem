@@ -8,6 +8,10 @@ app.component('NavigateIconItem', {
         iconClass: {
             type: String,
         },
+        iconContent: {
+            type: String,
+            required: false,
+        },
         badgeText: {
             type: String,
             required: false,
@@ -33,11 +37,14 @@ app.component('NavigateIconItem', {
         :class="liExtraClasses" @mouseover="hover=true" @mouseleave="hover=false">
 <!--        data-navPageTarget="home"-->
             <button type="button" class="fw-bold link-secondary primaryNavMovePage position-relative btn btn-primary my-auto h-100 rounded-0 border-start border-end w-100">
-                <i class="bi link-secondary"
-                    :class="'bi-' + iconClass"
+                <i class="link-secondary"
+                    :class="iconClass"
                 >
+                <span>{{iconContent}}</span>
                 </i>
-                <span v-if="hover" class="ms-2">{{tooltipInfo}}</span>
+                <Transition name="slide-fade">
+                    <span v-if="hover" class="animationText ms-2">{{tooltipInfo}}</span>
+                </Transition>
 <!--                <q-tooltip v-if="tooltipInfo" anchor="center right" self="center left" :offset="[10, 10]">-->
 <!--                  <strong>{{tooltipInfo}}</strong>-->
 <!--&lt;!&ndash;                  (<q-icon name="keyboard_arrow_right"/>)&ndash;&gt;-->

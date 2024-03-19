@@ -298,6 +298,9 @@ const app = Vue.createApp({
                 },
             ];
         },
+        currentPageTitle(){
+            return this.currentPage.charAt(0).toUpperCase()+this.currentPage.slice(1);
+        }
     },
 
     //mounted:  called after the instance has been mounted,
@@ -395,11 +398,11 @@ const app = Vue.createApp({
             },
             deep: true,
         },
-        currentPageLabel:{
-            handler(){
-                this.currentPageLabel,
-                this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase()+this.currentPageLabel.slice(1);
-            }
-        }
+        // currentPageLabel:{
+        //     handler(){
+        //         this.currentPageLabel;
+        //         this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase()+this.currentPageLabel.slice(1);
+        //     }
+        // }
     }
 });
