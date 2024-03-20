@@ -1,37 +1,3 @@
-class Item{
-    constructor(id, title, description, image, qty, productId, reorderLevel, lastUpdated){
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.qty = qty;
-        this.productId = productId;
-        this.lastUpdated = lastUpdated;
-        console.log(this.reorderLevel);
-        if(this.reorderLevel === null){
-            this.reorderLevel = -1;
-        }else{
-            this.reorderLevel = reorderLevel;
-        }
-
-        this.needsReorder = ()=> {
-            return this.reorderLevel !== -1 && this.qty < this.reorderLevel;
-        }
-    }
-}
-class Category{
-    constructor(id, title, description, items){
-        this.id = (id === undefined)? -1 : id;
-        this.title = title;
-        this.description = description;
-        this.image = './staticImages/folder.svg';
-        this.items = (items === undefined)? [] : items;
-        this.needsReorder = function(){//Will be turned into a function when it stores items and will be true if any contained items also need reorders
-            return false;
-        };
-    }
-}
-
 const app = Vue.createApp({
     // data: all the data for the app, must return an object
     data: function() {
@@ -230,7 +196,7 @@ const app = Vue.createApp({
                     image: 'https://picsum.photos/300',
                     // qty: 0,
                     productId: null,
-                    reorderLevel: -1,
+                    reorderLevel: null,
                 };
                 this.getAddItemForm().classList.remove("was-validated");
                 // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
