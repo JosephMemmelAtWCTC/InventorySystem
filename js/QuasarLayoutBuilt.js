@@ -3,7 +3,7 @@ app.component('QuasarLayoutBuilt', {
     template: `
         <q-layout view="lHr LpR lFr">
         
-            <q-header class="bg-primary text-white">
+            <q-header class="bg-primary text-secondary">
               <q-toolbar>
                 <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         
@@ -16,15 +16,19 @@ app.component('QuasarLayoutBuilt', {
               </q-toolbar>
             </q-header>
         
-            <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-              <!-- drawer content -->
+            <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered :width="200">
+                <div class="m-2">
+                    <slot name="left">
+                                    
+                    </slot>
+                </div>
             </q-drawer>
         
             <q-page-container>
               <router-view />
             </q-page-container>
         
-            <q-footer elevated class="bg-grey-8 text-white">
+            <q-footer elevated class="bg-grey-8 text-secondary">
               <q-toolbar>
                 <q-toolbar-title>
                   <q-avatar>
