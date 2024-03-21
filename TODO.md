@@ -11,7 +11,6 @@ Other changes to make
 
 Broken Items to Fix
 - [ ] Get validation working again (Also try to disable until)
-- [ ] Fix -1
 
 Bug Tracker
 - [ ] Current Page title requires double trigger to update

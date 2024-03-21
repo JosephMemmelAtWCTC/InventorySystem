@@ -1,6 +1,6 @@
 const app = Vue.createApp({
     // data: all the data for the app, must return an object
-    data: function() {
+    data: function () {
         let categoryIdCounter = -1;
         let itemIdCounter = 1;
         return {
@@ -24,7 +24,7 @@ const app = Vue.createApp({
                 searchString: "",
             },
             appVersion: "Vue App v2.25",
-            pageConfigSettings:{
+            pageConfigSettings: {
                 profileName: "Test Testerson",
                 customName: "Custom Name",
             },
@@ -88,7 +88,7 @@ const app = Vue.createApp({
                     4,
                     923087,
                     -1,
-                    Date.now()-1000*60*60*9
+                    Date.now() - 1000 * 60 * 60 * 9
                 ),
                 new Item(
                     itemIdCounter++,
@@ -98,7 +98,7 @@ const app = Vue.createApp({
                     3,
                     872892,
                     5,
-                    Date(Date.now()-1000*60*60*34)
+                    Date(Date.now() - 1000 * 60 * 60 * 34)
                 ),
                 new Item(
                     itemIdCounter++,
@@ -114,15 +114,15 @@ const app = Vue.createApp({
             addCategoryForm: undefined,
             addItemForm: undefined,
             editItemForm: undefined,
-            getAddCategoryForm: function(){
-                if(this.addCategoryForm === undefined){
+            getAddCategoryForm: function () {
+                if (this.addCategoryForm === undefined) {
                     this.addCategoryForm = document.querySelector('#newCategoryModel form');
                 }
                 return this.addCategoryForm;
             },
 
-            getEditItemForm: function(){
-                if(this.editItemForm === undefined){
+            getEditItemForm: function () {
+                if (this.editItemForm === undefined) {
                     this.editItemForm = document.querySelector('#editItemModel form');
                 }
                 return this.editItemForm;
@@ -132,8 +132,8 @@ const app = Vue.createApp({
 
     // methods: usually "events" triggered by v-on:
     methods: {
-        openNavPage(pageLabel){
-            this.currentPageLabel = pageLabel.charAt(0).toUpperCase()+pageLabel.slice(1);
+        openNavPage(pageLabel) {
+            this.currentPageLabel = pageLabel.charAt(0).toUpperCase() + pageLabel.slice(1);
 
             // this.currentPageTitle = $(`*[data-navpage="${pageLabel}"]`).attr("data-pageTitle");
             // this.currentPageTitle = document.querySelector(`*[data-navpage="${pageLabel}"]`).getAttribute("data-pageTitle");
@@ -146,8 +146,8 @@ const app = Vue.createApp({
             // });
             // this.currentPageTitle = document.querySelectorAll(`*[data-navPage="${pageLabel}"]`)[0].getAttribute("data-pageTitle");
         },
-        addCategory(e){
-            if(this.getAddCategoryForm().checkValidity()){
+        addCategory(e) {
+            if (this.getAddCategoryForm().checkValidity()) {
                 this.categoriesList.push(new Category(
                     this.newCategory.id,
                     this.newCategory.title,
@@ -168,7 +168,7 @@ const app = Vue.createApp({
                 $('#newCategoryModel').modal('hide');
             }
         },
-        addItem(newItem){
+        addItem(newItem) {
             this.itemsList.push(
                 new Item(
                     newItem.id,
@@ -181,14 +181,14 @@ const app = Vue.createApp({
                 )
             );
         },
-        removeItem(removeItem){
+        removeItem(removeItem) {
             this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
         },
-        removeCategory(removeItem){
+        removeCategory(removeItem) {
             this.categoriesList.splice(this.categoriesList.indexOf(removeItem), 1);
         },
-        openEditItemModel(item){
-            if(this.getEditItemForm().checkValidity()){
+        openEditItemModel(item) {
+            if (this.getEditItemForm().checkValidity()) {
                 // Clear the form
                 this.newItem = {
                     title: '',
@@ -205,12 +205,12 @@ const app = Vue.createApp({
         },
 
 
-    //     Types for card footers
-    //     getCategoryFooter: function(cardData){
-    //         // return "CAT";
-    //         // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
-    //         return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
-    //     },
+        //     Types for card footers
+        //     getCategoryFooter: function(cardData){
+        //         // return "CAT";
+        //         // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
+        //         return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
+        //     },
         // getItemFooter: function(cardData) {
         //     // return `<span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
         //     //     {{ cardData.qty }}{{ cardData.reorderLevel === -1 || cardData.reorderLevel === undefined || cardData.reorderLevel === null ? "": cardData.reorderLevel}} item{{item.qty==1? "":"s"}} in stock
@@ -229,34 +229,34 @@ const app = Vue.createApp({
             if (this.filterSettings.toggles[0].state) {
                 filteredList = this.categoriesList;
             }
-            if (this.filterSettings.toggles[1].state){
-            //     When doings items contained in a list they should be filtered here recursively
+            if (this.filterSettings.toggles[1].state) {
+                //     When doings items contained in a list they should be filtered here recursively
             }
-            if(this.filterSettings.searchString){
+            if (this.filterSettings.searchString) {
                 filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
             return filteredList;
         },
-        currentItemsList(){
+        currentItemsList() {
             let filteredList = [];
-            if(this.filterSettings.toggles[1].state){
+            if (this.filterSettings.toggles[1].state) {
                 filteredList = this.itemsList;
             }
-            if(this.filterSettings.toggles[2].state){
+            if (this.filterSettings.toggles[2].state) {
                 filteredList = filteredList.filter(item => item.needsReorder());
             }
-            if(this.filterSettings.searchString){
+            if (this.filterSettings.searchString) {
                 filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
             return filteredList;
         },
-        recentItemsList(){
+        recentItemsList() {
             let filteredList = [];
             const last24hoursCompareTo = Date.now() - 86400000;
             filteredList = this.itemsList.filter(item => new Date(item.lastUpdated > last24hoursCompareTo));
             return filteredList;
         },
-        filterOptionsArray(){
+        filterOptionsArray() {
             return [
                 {
                     label: 'Include Items',
@@ -264,21 +264,21 @@ const app = Vue.createApp({
                 },
             ];
         },
-        currentPageTitle(){
-            return this.currentPage.charAt(0).toUpperCase()+this.currentPage.slice(1);
+        currentPageTitle() {
+            return this.currentPage.charAt(0).toUpperCase() + this.currentPage.slice(1);
         }
     },
 
     //mounted:  called after the instance has been mounted,
     // mounted: function () {
-    created: function(){
-        if(localStorage.getItem('openPage')){
+    created: function () {
+        if (localStorage.getItem('openPage')) {
             this.currentPage = localStorage.getItem('openPage');
         }
-        if(localStorage.getItem('pageConfigSettings')){
+        if (localStorage.getItem('pageConfigSettings')) {
             this.pageConfigSettings = JSON.parse(localStorage.getItem('pageConfigSettings'));
         }
-        if(localStorage.getItem('filterSettings')){
+        if (localStorage.getItem('filterSettings')) {
             this.filterSettings = JSON.parse(localStorage.getItem('filterSettings'));
         }
 
@@ -295,10 +295,10 @@ const app = Vue.createApp({
         //     }
         // });
 
-        if(localStorage.getItem('categoriesList')){
+        if (localStorage.getItem('categoriesList')) {
             this.categoriesList = JSON.parse(localStorage.getItem('categoriesList'));
         }
-        if(localStorage.getItem('itemsList')){
+        if (localStorage.getItem('itemsList')) {
             this.itemsList = JSON.parse(localStorage.getItem('itemsList'));
             this.itemsList.map(itemWithoutMethods => {
                 const item = new Item(
@@ -312,7 +312,7 @@ const app = Vue.createApp({
                 );
                 // itemWithoutMethods.needsReorder = Item.needsReorder; TODO: Get working without repeating code for method
                 console.log(itemWithoutMethods.title);
-                itemWithoutMethods.needsReorder = ()=> {
+                itemWithoutMethods.needsReorder = () => {
                     return itemWithoutMethods.reorderLevel !== -1 && itemWithoutMethods.qty < itemWithoutMethods.reorderLevel;
                 }
                 return item;
@@ -320,45 +320,45 @@ const app = Vue.createApp({
         }
 
     },
-    mounted(){
-        this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase()+this.currentPageLabel.slice(1);
+    mounted() {
+        this.currentPageTitle = this.currentPageLabel.charAt(0).toUpperCase() + this.currentPageLabel.slice(1);
     },
     // watch:   calls the function if the value changes
     // https://travishorn.com/add-localstorage-to-your-vue-app-in-2-lines-of-code-56eb2c9f371b
     watch: {
-        currentPage:{
-            handler(){//newList){
+        currentPage: {
+            handler() {//newList){
                 localStorage.setItem('openPage', this.currentPage);
             },
         },
-        filterSettings:{
-            handler(){//newList){
+        filterSettings: {
+            handler() {//newList){
                 localStorage.setItem('filterSettings', JSON.stringify(this.filterSettings));
             },
             deep: true,
         },
-        categoriesList:{
-            handler(){//newList){
+        categoriesList: {
+            handler() {//newList){
                 localStorage.setItem('categoriesList', JSON.stringify(this.categoriesList));
             },
             deep: true,
         },
-        itemsList:{
-            handler(){//newList){
+        itemsList: {
+            handler() {//newList){
                 localStorage.setItem('itemsList', JSON.stringify(this.itemsList));
             },
             deep: true,
         },
-        pageConfigSettings:{
-            handler(){//newList){
+        pageConfigSettings: {
+            handler() {//newList){
                 localStorage.setItem('pageConfigSettings', JSON.stringify(this.pageConfigSettings));
             },
             deep: true
         },
-        newItem:{
+        newItem: {
             handler() {
                 console.log(this.newItem.reorderLevel);
-                if(this.newItem.reorderLevel === -1){
+                if (this.newItem.reorderLevel === -1) {
                     this.newItem.reorderLevel = undefined;
                 }
             },

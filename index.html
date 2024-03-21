@@ -13,9 +13,11 @@
     <link href="./css/custom.css" rel="stylesheet">
 
 </head>
+
 <body class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
 
     <div id="app" class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+
     <!-- LOCATION - UNSPECIFIC START TODO: Remove section-->
         <div id="newCategoryModel" class="modal fade" tabindex="-1" aria-labelledby="newCategoryModelLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -488,13 +490,20 @@
 
     <script src="js/components/itemModal.js"></script>
 
+    <script src="js/QuasarLayoutBuilt.js"></script>
+<!--    <script src="js/QuasarLayoutBuilt.vue"></script>-->
+
+
     <!-- JS Data Objects -->
     <script src="js/dataObjects/Category.js"></script>
     <script src="js/dataObjects/Item.js"></script>
 
-    <!-- Other JS - TODO: Remove -->
-<!-- (None - removed) -->
+    <!-- Other JS-->
+        <!-- (None - removed) -->
     <script>
+        // import QuasarLayoutBuilt from "./js/QuasarLayoutBuilt.vue";
+        // app.component('quasar-layout-built', QuasarLayoutBuilt)
+
         // start the app after all the other JS has been loaded
         app.mount('#app');
     </script>
