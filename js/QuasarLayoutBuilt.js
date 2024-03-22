@@ -1,17 +1,22 @@
 app.component('QuasarLayoutBuilt', {
-
+    props: {
+        mainContentClasses: {
+            type: String,
+            required: false,
+        },
+        pageTitle: {
+            type: String,
+            required: true,
+        }
+    },
     template: `
         <q-layout view="lHr LpR lFr">
         
             <q-header class="bg-primary text-secondary">
               <q-toolbar>
-                <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        
+<!--                <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />-->
                 <q-toolbar-title>
-                  <q-avatar>
-                    <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-                  </q-avatar>
-                  Title
+                    {{pageTitle}}
                 </q-toolbar-title>
               </q-toolbar>
             </q-header>
@@ -23,12 +28,16 @@ app.component('QuasarLayoutBuilt', {
                 </div>
             </q-drawer>
         
-            <q-page-container>
+            <q-page-container :class="mainContentClasses">
 <!--              <router-view />-->
+                <div>
+                    <slot name="mainContent">
+                    </slot>
+                </div>
             </q-page-container>
         
             <q-footer class="bg-invisible text-primary">
-                <q-toolbar>
+                <q-toolbar class="m-0 p-0">
                     <slot name="footer">
                     </slot>
                 </q-toolbar>

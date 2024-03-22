@@ -264,7 +264,7 @@ const app = Vue.createApp({
                 },
             ];
         },
-        currentPageTitle() {
+        computedCurrentPageTitle() {
             return this.currentPage.charAt(0).toUpperCase() + this.currentPage.slice(1);
         }
     },

@@ -22,6 +22,7 @@
         <quasar-app-layout
             :editable-kiosk-name="pageConfigSettings.customName"
             @update-kiosk-name="pageConfigSettings.customName = $event"
+            :current-page-title="computedCurrentPageTitle"
         >
 <!-- SIDEBAR -->
             <template #left>
@@ -34,19 +35,19 @@
                 <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
                 </navigate-icon-item>
             </template>
-            <template #footer>
-                <div class="row q-gutter-none">
-                    <div class="col mt-5 bg-body-secondary q-gutter-none">
+            <template #footer class="m-0 p-0">
+                <div class="row q-gutter-none m-0 p-0">
+                    <div class="col mt-5 bg-body-secondary q-gutter-none m-0 p-0">
                         <div class="row h-100">
                             <div class="col-12 h-50">
                                 + HERE
                             </div>
                             <div class="col h-50">
-                                <navigate-icon-item icon-class="bi-house" class="h-100">
+                                <navigate-icon-item icon-class="bi-house" @click="openNavPage('home')" class="h-100">
                                 </navigate-icon-item>
                             </div>
                             <div class="col h-50">
-                                <navigate-icon-item icon-class="material-symbols-outlined" icon-content="package_2" class="h-100">
+                                <navigate-icon-item icon-class="material-symbols-outlined" icon-content="package_2" @click="openNavPage('inventory')" class="h-100">
                                 </navigate-icon-item>
                             </div>
                         </div>

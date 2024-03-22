@@ -6,11 +6,13 @@ app.component('QuasarAppLayout', {
     },
     props: {
         editableKioskName: {
-            option: {
-                type: String,
-                required: false,
-            },
+            type: String,
+            required: false,
         },
+        currentPageTitle: {
+            type: String,
+            required: true,
+        }
     },
     methods: {
 
@@ -33,7 +35,10 @@ app.component('QuasarAppLayout', {
 
     },
     template: `
-        <quasar-layout-built>
+        <quasar-layout-built
+            main-content-classes="bg-secondary"
+            :page-title="currentPageTitle"
+        >
         
             <template #left>
                 <div>
@@ -50,6 +55,10 @@ app.component('QuasarAppLayout', {
                 </div>
                 <div>
                 </div>
+            </template>
+            
+            <template #mainContent>
+                This is a teset        
             </template>
             
             <template #footer>
