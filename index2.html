@@ -15,35 +15,76 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+<body>
 
-    <div id="app" class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+    <div id="app">
 
-        <quasar-app
-            :editable-kiosk-name="pageConfigSettings.customName">
+        <quasar-app-layout
+            :editable-kiosk-name="pageConfigSettings.customName"
+            @update-kiosk-name="pageConfigSettings.customName = $event"
+        >
+<!-- SIDEBAR -->
             <template #left>
-                <div>
-                    <p class="fs-4 d-flex justify-content-between">{{pageConfigSettings.customName}}<i class="ms-2 bi bi-pencil-square"></i></p>
-                    <q-popup-edit v-model="pageConfigSettings.customName" auto-save v-slot="scope">
-                        <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set"
-                                 :rules="[val => val.length > 1 || 'Title requires at least 1 character', [val => val.length < 20 || 'Title cannot at least 1 character']]"/>
-                    </q-popup-edit>
-                </div>
-                <hr>
-                <div>
-                    <navigate-icon-item tooltip-info="Home" @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="bi-house">
-                    </navigate-icon-item>
-                    <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="material-symbols-outlined" icon-content="package_2"><!--fa-solid fa-boxes-stacked-->
-                    </navigate-icon-item>
-                    <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
-                    </navigate-icon-item>
-                    <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
-                    </navigate-icon-item>
+                <navigate-icon-item tooltip-info="Home" @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="bi-house">
+                </navigate-icon-item>
+                <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="material-symbols-outlined" icon-content="package_2"><!--fa-solid fa-boxes-stacked-->
+                </navigate-icon-item>
+                <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
+                </navigate-icon-item>
+                <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
+                </navigate-icon-item>
+            </template>
+            <template #footer>
+                <div class="row q-gutter-none">
+                    <div class="col mt-5 bg-body-secondary q-gutter-none">
+                        <div class="row h-100">
+                            <div class="col-12 h-50">
+                                + HERE
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item icon-class="bi-house" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item icon-class="material-symbols-outlined" icon-content="package_2" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 centerNavTallOption">
+                        <button id="scanButton" data-navPageTarget="inventory" @click="openNavPage('inventory')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 p-3 rounded-0 rounded-top-5">
+                            <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
+                        </button>
+                    </div>
+
+                    <div class="col mt-5 bg-body-secondary">
+                        <div class="row h-100">
+                            <div class="col-12 h-50">
+                                + HERE
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item @click="openNavPage('recents')" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item @click="openNavPage('account')" icon-class="bi-person" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </template>
-        </quasar-app>
 
+
+        </quasar-app-layout>
     </div>
+
+
+
+
+
+
     <!-- Vue CDNs -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.umd.js"></script>
@@ -54,8 +95,8 @@
     <!-- JS CDNs (REMOVE)-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Root -->
-    <script src="js/app.js"></script>
-    <script src="js/QuasarApp.js"></script>
+    <script src="js/app2.js"></script>
+    <script src="js/QuasarAppLayout.js"></script>
     <!-- Configurations -->
     <script src="js/app-quasar.js"></script>
     <!-- Components -->

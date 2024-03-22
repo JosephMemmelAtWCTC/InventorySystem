@@ -79,10 +79,10 @@
         </q-drawer>
 
         <q-page-container>
-            <router-view/>
+<!--            <router-view/>-->
         </q-page-container>
 
-        <q-footer reveal bordered className="bg-grey-8 text-white">
+        <q-footer reveal className="text-white">
             <q-toolbar>
                 <q-toolbar-title>
                     <q-avatar>

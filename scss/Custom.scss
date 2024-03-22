@@ -72,7 +72,7 @@ body div#addFab > ul#dropupAddHolder{
 //Fix the Quasar number input formatting not taking up the width when clearable action is added.
 //.q-field.row.no-wrap.items-start.q-field--filled.q-input.q-field--float.q-field--labeled.q-field--with-bottom.full-width.clearable
 .clearable>div>div>div{
-  flex: none !important;
+  flex: none !important;//TODO: Remove importants
 }
 
 .animationText{
@@ -97,6 +97,16 @@ body div#addFab > ul#dropupAddHolder{
   border-left: 1px solid var(--bs-secondary);
 }
 
+.bg-invisible {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.centerNavTallOption{
+  background-color: #0000;
+  //TODO: Get working with q-classes!
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
 // set changes
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
