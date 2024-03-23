@@ -44,21 +44,6 @@ const app = Vue.createApp({
                 description: '',
                 image: './staticImages/folder.svg',
             },
-            editItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 0,
-                productId: null,
-                reorderLevel: null,
-            },
-            editCategory: {
-                id: null,
-                title: '',
-                description: '',
-                image: './staticImages/folder.svg',
-            },
             categoriesList: [
                 new Category(
                     categoryIdCounter--,
@@ -111,22 +96,6 @@ const app = Vue.createApp({
                     Date.now()
                 ),
             ],
-            addCategoryForm: undefined,
-            addItemForm: undefined,
-            editItemForm: undefined,
-            getAddCategoryForm: function () {
-                if (this.addCategoryForm === undefined) {
-                    this.addCategoryForm = document.querySelector('#newCategoryModel form');
-                }
-                return this.addCategoryForm;
-            },
-
-            getEditItemForm: function () {
-                if (this.editItemForm === undefined) {
-                    this.editItemForm = document.querySelector('#editItemModel form');
-                }
-                return this.editItemForm;
-            }
         }
     },
 

@@ -57,8 +57,10 @@ app.component('QuasarAppLayout', {
                 </div>
             </template>
             
-            <template #mainContent>
-                This is a teset        
+            <template #content>
+<!--                       TODO: Make take list-->
+                <slot name="content">
+                </slot>
             </template>
             
             <template #footer>

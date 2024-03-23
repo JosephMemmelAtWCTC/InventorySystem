@@ -35,9 +35,9 @@
                 <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
                 </navigate-icon-item>
             </template>
-            <template #footer class="m-0 p-0">
+            <template #footer>
                 <div class="row q-gutter-none m-0 p-0">
-                    <div class="col mt-5 bg-body-secondary q-gutter-none m-0 p-0">
+                    <div class="col mt-5 bg-body-secondary q-gutter-none">
                         <div class="row h-100">
                             <div class="col-12 h-50">
                                 + HERE
@@ -77,6 +77,14 @@
                 </div>
             </template>
 
+            <template #content>
+                <page-inventory-cards-search
+                    :filter-settings="filterSettings"
+                    :current-categories-list="currentCategoriesList"
+                    :current-items-list="currentItemsList"
+                >
+                </page-inventory-cards-search>
+            </template>
 
         </quasar-app-layout>
     </div>
@@ -97,7 +105,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Root -->
     <script src="js/app2.js"></script>
-    <script src="js/QuasarAppLayout.js"></script>
+    <script src="js/separationComponents/QuasarAppLayout.js"></script>
     <!-- Configurations -->
     <script src="js/app-quasar.js"></script>
     <!-- Components -->
@@ -106,6 +114,7 @@
     <script src="js/components/ResultsPossiblyEmpty.js"></script>
     <script src="js/components/ToggleItem.js"></script>
     <script src="js/components/ImageCard.js"></script>
+    <script src="js/components/pages/MainContentPage.js"></script>
         <!-- Lists -->
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/TogglesArray.js"></script>
@@ -115,7 +124,11 @@
 
     <script src="js/components/itemModal.js"></script>
 
-    <script src="js/QuasarLayoutBuilt.js"></script>
+
+    <script src="js/components/pages/PageInventoryCardsSearch.js"></script>
+
+
+    <script src="js/separationComponents/QuasarLayoutBuilt.js"></script>
 <!--    <script src="js/QuasarLayoutBuilt.vue"></script>-->
 
 
