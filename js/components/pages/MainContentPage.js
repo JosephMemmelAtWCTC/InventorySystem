@@ -21,7 +21,9 @@ app.component('MainContentPage', {
     computed: {
     },
     template: `
-        <slot>
-        </slot>
+        <div class="m-2">
+            <slot>
+            </slot>
+        </div>
     `,
 });
