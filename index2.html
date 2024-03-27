@@ -79,7 +79,17 @@
 
 
             <template #content>
+                <page-title-table
+                        v-if="currentPage=='home'"
+                        :headers="['Categories', 'Items', 'Total Stock', 'Needs Refill']"
+                        :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.needsReorder()).length]"
+                >
+
+                </page-title-table>
+
+
                 <page-inventory-cards-search
+                    v-if="currentPage=='inventory'"
                     :filter-settings="filterSettings"
                     :current-categories-list="currentCategoriesList"
                     :current-items-list="currentItemsList"
@@ -88,6 +98,11 @@
                     @remove-item="removeItem"
                 >
                 </page-inventory-cards-search>
+
+
+
+
+
                 <div class="position-fixed bottom-0 end-0 p-3">
                     <options-f-a-b z-index="1000"
                                    symbol-classes="bi bi-plus">
@@ -192,6 +207,7 @@
 
 
     <script src="js/components/pages/PageInventoryCardsSearch.js"></script>
+    <script src="js/components/pages/PageTitleTable.js"></script>
 
 
     <script src="js/separationComponents/QuasarLayoutBuilt.js"></script>
