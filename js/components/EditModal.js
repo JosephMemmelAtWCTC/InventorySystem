@@ -34,12 +34,15 @@ app.component('EditModal', {
         },
         saveIt(e){
             this.$refs.myForm.validate().then(success => {
+                console.log("eeeeiitem", this.editItem)
+
                 if (success) {
                     Object.assign(this.item, this.editItem);
                     // if (this.$refs.myForm.validate()) {
                 //     Object.assign(this.item, this.editItem);
                     console.log("Sending save-it request");
                     this.$emit('save-it', this.item);
+                    console.log("eeeeiitem", this.item)
                     this.appModal.hideModal();
                 } else {
                     this.$q.notify({

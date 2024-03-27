@@ -117,12 +117,16 @@ const app = Vue.createApp({
         },
         addCategory(e) {
             console.log("addCategory was called!");
+            console.log("eeee=",e);
+            console.log("eeeeTitle",e.title)
+            const titlttest = e.title;
+            console.log("eeeeTitle2",titlttest)
             // if (this.getAddCategoryForm().checkValidity()) {
                 this.categoriesList.push(new Category(
-                    this.newCategory.id,
-                    this.newCategory.title,
-                    this.newCategory.description,
-                    this.newCategory.image
+                    e.id,
+                    e.title,
+                    e.description,
+                    e.image,
                 ));
                 // Clear the form
                 this.newCategory = {

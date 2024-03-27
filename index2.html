@@ -101,14 +101,14 @@
                                 >
                                     <template v-slot="slotProps">
 <!--                                        TODO: Make use slotprops instead-->
-                                        <q-input filled v-model="this.newCategory.title"
+                                        <q-input filled v-model="slotProps.editItem.title"
                                                  autofocus
                                                  label="Name"
                                                  class="full-width"
                                                  :rules="[val => !!val || '* Required']"
                                                  lazy-rules
                                         ></q-input>
-                                        <q-input filled v-model="this.newCategory.description"
+                                        <q-input filled v-model="slotProps.editItem.description"
                                                  type="textarea"
                                                  rows="4"
                                                  label="Description"
