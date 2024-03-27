@@ -58,21 +58,28 @@ div.item>.card>.card-header{
 /*    border: 1px solid red;*/
 /*}*/
 
-#addFab > button {
+.fab > button {
   width: 84px;
   height: 84px;
 }
 
-body div#addFab > ul#dropupAddHolder{
+div.fab > ul#dropupAddHolder{
   /*Taken from inspector then modified*/
   /*transform: translate(-51px, -100px);*/
   transform: translate(-20px, -110px) !important;
 }
 
+.q-
+
 //Fix the Quasar number input formatting not taking up the width when clearable action is added.
 //.q-field.row.no-wrap.items-start.q-field--filled.q-input.q-field--float.q-field--labeled.q-field--with-bottom.full-width.clearable
 .clearable>div>div>div{
   flex: none !important;//TODO: Remove importants
+}
+
+.page-container{
+  //min-height: 100%;
+  min-height: 100vh;
 }
 
 .animationText{

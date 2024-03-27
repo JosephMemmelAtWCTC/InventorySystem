@@ -32,13 +32,19 @@ app.component('PageInventoryCardsSearch', {
             required: true,
         },
     },
+    emits: ['remove-category', 'remove-item'],
     methods: {
+        removeCategory() {
+            this.$emit('remove-category', this.editCategory);
+        },
+        removeItem(removeItem) {
+            this.$emit('remove-item', this.editItem);
+        },
     },
     created:  function () {
     },
     mounted: function () {
     },
-    emits: [],
     watch: {
         example: {
             handler() {

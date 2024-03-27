@@ -1,10 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
-    <title>Vue App Prototype</title>
-
+    <title>Vue App 2.5</title>
     <!-- Stylesheets -->
         <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.prod.css" type="text/css">
@@ -89,34 +87,27 @@
                 </page-inventory-cards-search>
 
                 <div class="position-fixed bottom-0 end-0 p-3">
-                    <options-fab z-index="1000">
-                        <div id="addFab" class="dropup-center dropup rounded-circle">
-                            <button class="rounded-circle btn btn-primary end-0 m-4 p-4" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-                                <span class="d-inline-block fs-5 link-secondary">
-                                    <i class="bi bi-plus"></i>
-                                </span>
-                            </button>
-
-                            <ul class="dropdown-menu pe-2"  id="dropupAddHolder">
-                                <li>
-                                    <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
-                                        <a class="icon-link link-secondary text-decoration-none">
-                                            <span class="p-2"><i class="bi bi-archive"></i></span>
-                                            Category
-                                        </a>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
-                                        <a class="icon-link link-secondary text-decoration-none">
-                                            <span class="p-2"><i class="bi bi-box"></i></span>
-                                            Item
-                                        </a>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </options-fab>
+                    <options-f-a-b z-index="1000"
+                                   symbol-classes="bi bi-plus">
+                        <template #open v-slot="slotProps">
+                            <li>
+                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
+                                    <a class="icon-link link-secondary text-decoration-none">
+                                        <span class="p-2"><i class="bi bi-archive"></i></span>
+                                        Category
+                                    </a>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                    <a class="icon-link link-secondary text-decoration-none">
+                                        <span class="p-2"><i class="bi bi-box"></i></span>
+                                        Item
+                                    </a>
+                                </button>
+                            </li>
+                        </template>
+                    </options-f-a-b>
                 </div>
             </template>
 

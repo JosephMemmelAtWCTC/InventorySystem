@@ -28,7 +28,7 @@ app.component('QuasarLayoutBuilt', {
                 </div>
             </q-drawer>
         
-            <q-page-container :class="mainContentClasses">
+            <q-page-container :class="mainContentClasses" class="page-container">
 <!--              <router-view />-->
                 <div>
                     <slot name="content">

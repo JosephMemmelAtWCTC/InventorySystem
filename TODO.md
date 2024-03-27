@@ -1,7 +1,7 @@
 Notes from class to implement
  - [x] Bold the navigation - text is bolded, icons are not
  - [ ] Try v-width
- - [ ] Change
+ - [ ] Change modal color
 
 Notes from comments to implement
 - [ ] 
@@ -17,4 +17,4 @@ Bug Tracker
 
 
 Items to ask about
-- 
+- [ ]  

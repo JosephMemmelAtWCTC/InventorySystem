@@ -13,12 +13,16 @@ app.component('AppModal', {
         btnClass: {
             type: String,
         },
-        btnText: {
-            type: String,
-            default: 'Open Modal'
-        },
         btnIconClass: {
             type: String,
+        },
+    },
+    methods: {
+        openModal(){
+            this.bsModal.show();
+        },
+        hideModal(){
+            this.bsModal.hide();
         },
     },
 
@@ -32,7 +36,7 @@ app.component('AppModal', {
             {{ btnText }}
        </button>
        <teleport to="body">
-       <div class="modal fade" ref="theModal" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal fade" @click.stop="" ref="theModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
