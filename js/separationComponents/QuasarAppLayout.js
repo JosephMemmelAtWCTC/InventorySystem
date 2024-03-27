@@ -45,7 +45,7 @@ app.component('QuasarAppLayout', {
                     <div>
                         <p class="fs-4 d-flex justify-content-between">{{this.editableKioskName}}<i class="ms-2 bi bi-pencil-square"></i></p>
                         <q-popup-edit v-model="editableKioskNameLocal" auto-save v-slot="scope">
-                            <q-input v-model="scope.value" dense autofocus @keyup.enter="scope.set"
+                            <q-input v-model="scope.value" dense autofocus @keyup.enter="scope.set" autocomplete
                                      :rules="[val => val.length > 1 || 'Title requires at least 1 character', [val => val.length < 20 || 'Title cannot at least 1 character']]"/>
                         </q-popup-edit>
                     </div>

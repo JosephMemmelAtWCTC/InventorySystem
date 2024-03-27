@@ -21,8 +21,8 @@ app.component('QuasarLayoutBuilt', {
             </q-header>
         
             <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered :width="200" class="d-none d-md-block">
-                <div class="m-2">
-                    <slot name="left">
+                <div class="m-2 h-100">
+                    <slot name="left" class="h-100">
                     </slot>
                 </div>
             </q-drawer>
