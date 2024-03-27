@@ -33,28 +33,31 @@ app.component('EditModal', {
             this.appModal.openModal();
         },
         saveIt(e){
-            this.editItem = { ...this.item };
-            if (this.$refs.myForm.validate()) {
-                Object.assign(this.item, this.editItem);
-                console.log("Sending save-it request");
-                this.$emit('save-it', this.item);
-                this.appModal.hideModal();
-            } else {
-                this.$q.notify({
-                    message: 'All fields must be filled in properly',
-                    color: 'warning',
-                    progress: true,
-                    actions: [
-                        {
-                            icon: 'bi-x-lg',
-                            color: 'primary',
-                            round: true,
-                            handler: () => {
+            this.$refs.myForm.validate().then(success => {
+                if (success) {
+                    Object.assign(this.item, this.editItem);
+                    // if (this.$refs.myForm.validate()) {
+                //     Object.assign(this.item, this.editItem);
+                    console.log("Sending save-it request");
+                    this.$emit('save-it', this.item);
+                    this.appModal.hideModal();
+                } else {
+                    this.$q.notify({
+                        message: 'All fields must be filled in properly',
+                        color: 'warning',
+                        progress: true,
+                        actions: [
+                            {
+                                icon: 'bi-x-lg',
+                                color: 'primary',
+                                round: true,
+                                handler: () => {
+                                }
                             }
-                        }
-                    ]
-                });
-            }
+                        ]
+                    });
+                }
+            });
 
         },
 
