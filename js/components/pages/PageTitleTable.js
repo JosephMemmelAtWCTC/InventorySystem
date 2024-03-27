@@ -11,7 +11,11 @@ app.component('PageTitleTable', {
         tableItems: {
             type: Array,
             required: true,
-        }
+        },
+        jumbotronTitle: {
+            type: String,
+            required: true,
+        },
     },
     methods: {
     },
@@ -31,15 +35,15 @@ app.component('PageTitleTable', {
     template: `
         <main-content-page>
             <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
-                <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">Instant Inventory</h1>
+                <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">{{jumbotronTitle}}</h1>
             </div>
             <div class="d-flex align-items-center text-center justify-content-center mt-5 px-4 pb-0">
                 <div class="jumbotron m-2 bg-primary">
-                    <h1 class="display-6 d-none d-md-block p-3 text-secondary fw-bold w-100 px-4">Instant Inventory</h1>
+                    <h1 class="display-6 d-none d-md-block p-3 text-secondary fw-bold w-100 px-4">{{jumbotronTitle}}</h1>
                     <br>
                     <div class="bg-secondary-subtle p-0 m-0">
-                        <p class="w-100">Connection Info</p>
-                        <p class="">{{appVersion}}</p>
+                        <slot name="jumbotronsubtext">
+                        </slot>
                     </div>
                 </div>
 

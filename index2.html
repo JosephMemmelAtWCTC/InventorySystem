@@ -83,8 +83,12 @@
                         v-if="currentPage=='home'"
                         :headers="['Categories', 'Items', 'Total Stock', 'Needs Refill']"
                         :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.needsReorder()).length]"
+                        :jumbotron-title="this.appTitle"
                 >
-
+                    <template #jumbotronsubtext>
+                        <p class="w-100">ConnectionInfo</p>
+                        <p class="">{{appVersion}}</p>
+                    </template>
                 </page-title-table>
 
 
@@ -98,7 +102,6 @@
                     @remove-item="removeItem"
                 >
                 </page-inventory-cards-search>
-
 
 
 

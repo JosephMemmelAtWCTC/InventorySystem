@@ -4,6 +4,7 @@ const app = Vue.createApp({
         let categoryIdCounter = -1;
         let itemIdCounter = 1;
         return {
+            appTitle: "Instant Inventory",
             currentPage: "home",
             currentPageLabel: "home",
             filterSettings: {
