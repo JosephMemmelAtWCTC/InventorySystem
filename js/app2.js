@@ -179,22 +179,6 @@ const app = Vue.createApp({
             }
         },
 
-
-        //     Types for card footers
-        //     getCategoryFooter: function(cardData){
-        //         // return "CAT";
-        //         // return '{{ cardData.items.length }} unique item{{ cardData.items.length === 1? "":"s" }}';
-        //         return `${cardData.items.length} unique item${cardData.items.length === 1? "":"s"}`;
-        //     },
-        // getItemFooter: function(cardData) {
-        //     // return `<span v-bind:class="{'text-warning-emphasis': item.needsReorder()}" >
-        //     //     {{ cardData.qty }}{{ cardData.reorderLevel === -1 || cardData.reorderLevel === undefined || cardData.reorderLevel === null ? "": cardData.reorderLevel}} item{{item.qty==1? "":"s"}} in stock
-        //     //     <i v-if="cardData.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-        //     // </span>`;
-        // }
-        // updateToggle: function(variableToUpdate){
-        //     this.filterSettings[variableToUpdate] = !this.filterSettings[variableToUpdate];
-        // },
     },
 
     // computed: values that are updated and cached if dependencies change
@@ -210,6 +194,9 @@ const app = Vue.createApp({
             if (this.filterSettings.searchString) {
                 filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
+
+            filteredList.sort((a, b) => a.title.localeCompare(b.title));
+
             return filteredList;
         },
         currentItemsList() {
@@ -223,6 +210,9 @@ const app = Vue.createApp({
             if (this.filterSettings.searchString) {
                 filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
+
+            filteredList.sort((a, b) => a.title.localeCompare(b.title));
+
             return filteredList;
         },
         recentItemsList() {

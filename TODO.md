@@ -8,6 +8,7 @@ Notes from comments to implement
 
 Other changes to make
 - [~] Move validation code into vue - also prevention
+- [ ] Order by options
 
 Broken Items to Fix
 - [~] Get validation working again (Also try to disable until)

@@ -235,7 +235,9 @@ const app = Vue.createApp({
             if (this.filterSettings.searchString) {
                 filteredList = filteredList.filter(item => item.title.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()) || item.description.toLowerCase().includes(this.filterSettings.searchString.toLowerCase()));
             }
-            // filteredList = filteredList.sort((a, b) => a.title.localeCompare(b.title));
+            // filteredList.sort((a, b) => a.title.localeCompare(b.title));
+            // console.log("SSSSSSS")
+            // filteredList.forEach(e => console.log(e))
             return filteredList;
         },
         currentItemsList() {
