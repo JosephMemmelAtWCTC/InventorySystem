@@ -10,10 +10,10 @@ Other changes to make
 - [~] Move validation code into vue - also prevention
 
 Broken Items to Fix
-- [ ] Get validation working again (Also try to disable until)
+- [~] Get validation working again (Also try to disable until)
 
 Bug Tracker
-- [ ] Current Page title requires double trigger to update
+- [ ] Not seamless transition from desktop to mobile
 
 
 Items to ask about
@@ -22,3 +22,5 @@ Items to ask about
 
 Changes made list
 - transition
+- Notifications
+- Icons?

@@ -116,7 +116,8 @@ const app = Vue.createApp({
             // this.currentPageTitle = document.querySelectorAll(`*[data-navPage="${pageLabel}"]`)[0].getAttribute("data-pageTitle");
         },
         addCategory(e) {
-            if (this.getAddCategoryForm().checkValidity()) {
+            console.log("addCategory was called!");
+            // if (this.getAddCategoryForm().checkValidity()) {
                 this.categoriesList.push(new Category(
                     this.newCategory.id,
                     this.newCategory.title,
@@ -130,12 +131,12 @@ const app = Vue.createApp({
                     description: '',
                     image: './staticImages/folder.svg',
                 };
-                console.log(this.getAddCategoryForm().classList)
-                document.querySelector('#newCategoryModel form').classList.remove("was-validated");
-                console.log(this.getAddCategoryForm().classList)
+                // console.log(this.getAddCategoryForm().classList)
+                // document.querySelector('#newCategoryModel form').classList.remove("was-validated");
+                // console.log(this.getAddCategoryForm().classList)
                 // https://stackoverflow.com/a/16493402 - trying also to do with vue/bootstrap
-                $('#newCategoryModel').modal('hide');
-            }
+                // $('#newCategoryModel').modal('hide');
+            // }
         },
         addItem(newItem) {
             this.itemsList.push(

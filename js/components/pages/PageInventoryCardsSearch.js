@@ -19,6 +19,10 @@ app.component('PageInventoryCardsSearch', {
         };
     },
     props: {
+        searchLabel: {
+            type: String,
+            default: "Search",
+        },
         currentCategoriesList: {
             type: Array,
             required: true,
@@ -58,7 +62,7 @@ app.component('PageInventoryCardsSearch', {
             <header class="bg-body-tertiary rounded-3">
                 <div class="row align-items-center p-2">
                     <div class="col-auto d-flex text-center align-items-center">
-                        <p class="ms-4">Filter Search</p>
+                        <p class="ms-4">{{searchLabel}}</p>
                     </div>
 
                     <div class="col end-0">

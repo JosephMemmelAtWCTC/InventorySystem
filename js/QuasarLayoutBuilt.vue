@@ -82,7 +82,7 @@
 <!--            <router-view/>-->
         </q-page-container>
 
-        <q-footer reveal className="text-white">
+        <q-footer reveal className="text-white" behavior="mobile">
             <q-toolbar>
                 <q-toolbar-title>
                     <q-avatar>
