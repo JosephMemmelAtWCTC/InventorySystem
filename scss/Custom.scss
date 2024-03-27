@@ -20,8 +20,8 @@ $theme-colors: map-merge($theme-colors, (
 }
 
 .card img.displayImage {
-  height: 190px !important;
-  width: auto !important;
+  height: 190px;
+  width: auto;
   object-fit: contain;
 }
 
@@ -32,6 +32,18 @@ $theme-colors: map-merge($theme-colors, (
 div.item>.card>.card-header{
   max-height: 2.5em;
   //max-height: 4.5em;
+}
+
+.max-200px{
+  max-height: 200px;
+}
+
+.hover-expand:hover{
+  //transform:
+  transform: scale(1.05);
+  box-shadow: 8px 8px 10px var(--bs-primary);
+  border-color: var(--bs-primary);
+  z-index: 10;
 }
 
 .item i.bi-exclamation-diamond-fill{
@@ -92,6 +104,27 @@ div.fab > ul#dropupAddHolder{
 
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+// SlideInLeft from https://www.w3docs.com/snippets/css/how-to-create-animation-on-page-load.html
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes rotateIn {
+  0% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.animate-pop-in{
+  animation: 0.25s ease-out 0s 1 rotateIn;
 }
 
 .slide-fade-enter-from,

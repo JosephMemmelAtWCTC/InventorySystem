@@ -87,7 +87,7 @@ app.component('PageInventoryCardsSearch', {
                 empty-text="It looks like there are no results that fit your search criteria, try loosing your requirements or adding more items."
             >
             </results-possibly-empty>
-            <div class="row g-2 m-1">
+            <div class="row g-2 m-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">
 
                 <cards-list v-bind:items="currentCategoriesList"
                             @card-clicked="this.editCategory = $event;
@@ -214,32 +214,32 @@ app.component('PageInventoryCardsSearch', {
                     </template>
                 </cards-list>
                 <div class="position-fixed bottom-0 end-0 p-3">
-                    <div id="addFab" class="dropup-center dropup rounded-circle">
-                        <button class="rounded-circle btn btn-primary end-0 m-4 p-4" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-                            <span class="d-inline-block fs-5 link-secondary">
-                                <i class="bi bi-plus"></i>
-                            </span>
-                        </button>
+<!--                    <div id="addFab" class="dropup-center dropup rounded-circle">-->
+<!--                        <button class="rounded-circle btn btn-primary end-0 m-4 p-4" data-bs-toggle="dropdown" aria-expanded="false" type="button">-->
+<!--                            <span class="d-inline-block fs-5 link-secondary">-->
+<!--                                <i class="bi bi-plus"></i>-->
+<!--                            </span>-->
+<!--                        </button>-->
 
-                        <ul class="dropdown-menu pe-2"  id="dropupAddHolder">
-                            <li>
-                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
-                                    <a class="icon-link link-secondary text-decoration-none">
-                                        <span class="p-2"><i class="bi bi-archive"></i></span>
-                                        Category
-                                    </a>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
-                                    <a class="icon-link link-secondary text-decoration-none">
-                                        <span class="p-2"><i class="bi bi-box"></i></span>
-                                        Item
-                                    </a>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+<!--                        <ul class="dropdown-menu pe-2"  id="dropupAddHolder">-->
+<!--                            <li>-->
+<!--                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">-->
+<!--                                    <a class="icon-link link-secondary text-decoration-none">-->
+<!--                                        <span class="p-2"><i class="bi bi-archive"></i></span>-->
+<!--                                        Category-->
+<!--                                    </a>-->
+<!--                                </button>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">-->
+<!--                                    <a class="icon-link link-secondary text-decoration-none">-->
+<!--                                        <span class="p-2"><i class="bi bi-box"></i></span>-->
+<!--                                        Item-->
+<!--                                    </a>-->
+<!--                                </button>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
                 </div>
             </div>
         </main-content-page>

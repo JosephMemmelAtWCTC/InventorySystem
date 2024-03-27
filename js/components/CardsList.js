@@ -22,21 +22,28 @@ app.component('CardsList', {
     },
     template: `
 <!--TODO: Turn all :keys to use $refs-->
-
-        <image-card v-for="(item, i) in items" :key="item.title"
-        @card-clicked="passCardWasClickedUp"
-        :image="item.image"
-        :item="item"
-        :headerText="item.title"
-        :descriptionText="item.description"
-        class="m-1"
-        wrapperClass="col-1 col-sm-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 m-1"
-        v-slot="slotProps">
-            <slot :item="slotProps.item">
-            </slot>
-            <slot name="extra" :item="slotProps.item">
+<!--    <transition-group name="fade" tag="div">    -->
+<!--        <div class="row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">-->
+            <image-card v-for="(item, i) in items" :key="item.title"
+                @card-clicked="passCardWasClickedUp"
+                :image="item.image"
+                :item="item"
+                :headerText="item.title"
+                :descriptionText="item.description"
+                class="my-1"
+                wrapper-class="animate-pop-in hover-expand"
+                card-height="450px"
+                v-slot="slotProps"
+            >
+                <slot :item="slotProps.item">
                 
-            </slot>
-        </image-card>
+                </slot>
+                <slot name="extra" :item="slotProps.item">
+                
+                </slot>
+            </image-card>
+<!--        </div>-->
+<!--    </transition-group>-->
+
     `
 });

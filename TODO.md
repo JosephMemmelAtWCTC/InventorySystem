@@ -17,4 +17,8 @@ Bug Tracker
 
 
 Items to ask about
-- [ ]  
+[ ]  
+
+
+Changes made list
+- transition

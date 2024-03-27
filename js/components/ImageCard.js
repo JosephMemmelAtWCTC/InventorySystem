@@ -28,6 +28,10 @@ app.component('ImageCard', {
         wrapperClass: {
             type: String,
             required: false,
+        },
+        cardHeight: {
+            type: String,
+            required: false,
         }
     },
     emits: ['card-clicked'],
@@ -42,7 +46,7 @@ app.component('ImageCard', {
     },
     template: `
         <div :class="wrapperClass">
-            <div class="card" @click="sendUpdateCardClicked">
+            <div class="card" @click="sendUpdateCardClicked" :style="'height:'+cardHeight">
     <!--            data-bs-toggle="modal"-->
                 <slot name="header">
                     <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
