@@ -13,10 +13,6 @@ app.component('MainContentPage', {
     },
     emits: [],
     watch: {
-        example: {
-            handler() {
-            },
-        },
     },
     computed: {
     },

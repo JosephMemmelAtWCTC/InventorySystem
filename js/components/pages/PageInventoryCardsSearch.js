@@ -246,6 +246,8 @@ app.component('PageInventoryCardsSearch', {
 <!--                    </div>-->
                 </div>
             </div>
+            <slot name="extra">
+            </slot>
         </main-content-page>
     `,
 });

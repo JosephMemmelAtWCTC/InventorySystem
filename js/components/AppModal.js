@@ -38,7 +38,7 @@ app.component('AppModal', {
        <teleport to="body">
        <div class="modal fade" @click.stop="" ref="theModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content bg-body-tertiary">
                     <div class="modal-header">
                         <slot name="header">
                             <h5 class="modal-title text-body">{{ title }}</h5>
