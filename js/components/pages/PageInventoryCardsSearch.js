@@ -69,6 +69,10 @@ app.component('PageInventoryCardsSearch', {
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="searchTextDescribe"><i class="bi ms-1 bi-search"></i></span>
                             <input type="text" v-model="filterSettings.searchString" class="form-control focus-ring-primary" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe">
+<!--                            <q-input filled v-model="filterSettings.searchString" class="form-control focus-ring-primary" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe"-->
+<!--                                     autofocus-->
+<!--                                     label="Name"-->
+<!--                            ></q-input>-->
                         </div>
                     </div>
 
