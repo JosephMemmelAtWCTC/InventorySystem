@@ -173,7 +173,70 @@
                                                 ></q-input>
                                             </template>
                                         </edit-modal>
+                                        <edit-modal :item="this.newItem"
+                                                    @save-it="addItem"
+                                                    title="New Item"
+                                                    :submit-button-text="'Create Item'"
+                                                    ref="newItemModal"
+                                        >
+                                            <template v-slot="slotProps">
+                                                <q-input filled v-model="slotProps.editItem.title"
+                                                         label="Name"
+                                                         class="full-width"
+                                                         autofocus
+                                                         :rules="[val => !!val || '* Required']"
+                                                         lazy-rules
+                                                ></q-input>
+                                                <q-input filled v-model="slotProps.editItem.productId"
+                                                         label="Product ID"
+                                                         class="full-width"
+                                                         :rules="[val => !!val || '* Required']"
+                                                         lazy-rules
+                                                ></q-input>
+                                                <q-input filled v-model="slotProps.editItem.description"
+                                                         type="textarea"
+                                                         rows="4"
+                                                         label="Description"
+                                                         class="full-width"
+                                                         :rules="[val => !!val || '* Required']"
+                                                         lazy-rules
+                                                ></q-input>
+                                                <q-input filled v-model.number="slotProps.editItem.reorderLevel"
+                                                         type="number"
+                                                         label="Reorder Level"
+                                                         class="full-width clearable"
+                                                         clearable
+                                                         clear-icon="bi-x"
+                                                         placeholder="Leave blank to ignore reorder"
+                                                         :rules="[val => val >= 0 || 'Count cannot be less than 0']"
+                                                         lazy-rules
+                                                ></q-input>
 
+                                                <div class="input-group mb-3 w-100">
+
+                                                    <div class="col-2 d-block z-2">
+                                                        <button type="button" @click="slotProps.editItem.qty -= (slotProps.editItem.qty > 0? 1:0)" class="h-100 d-block rounded-0 rounded-start-3 form-control focus-ring-primary">
+                                                            <i class="bi bi-dash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-8 form-control m-0 p-0">
+
+                                                        <q-input filled v-model.number="slotProps.editItem.qty"
+                                                                 type="number"
+                                                                 label="# in stock"
+                                                                 class="full-width w-100"
+                                                                 :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
+                                                                 lazy-rules
+                                                        ></q-input>
+                                                    </div>
+                                                    <div class="col-2 d-block z-2">
+                                                        <button type="button" @click="slotProps.editItem.qty++" class="h-100 rounded-0 rounded-end-3 form-control focus-ring-primary">
+                                                            <i class="bi bi-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </edit-modal>
                                         <button type="button"
                                                 @click="
                                             this.$refs.newCategoryModal.openModal();
@@ -184,9 +247,14 @@
                                                 Category
                                             </a>
                                         </button>
+
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
+                                        <button type="button"
+                                                @click="
+                                            this.$refs.newItemModal.openModal();
+                                        "
+                                                class="btn btn-primary w-100 m-1">
                                             <a class="icon-link link-secondary text-decoration-none">
                                                 <span class="p-2"><i class="bi bi-box"></i></span>
                                                 Item
