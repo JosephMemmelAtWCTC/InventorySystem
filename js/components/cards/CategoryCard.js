@@ -9,7 +9,7 @@ app.component('ImageCard', {
             type: String,
             required: false,
         },
-        image: {
+        imageSrc: {
             type: String,
             required: true,
         },

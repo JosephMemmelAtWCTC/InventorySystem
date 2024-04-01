@@ -138,6 +138,7 @@
                     :filter-settings="filterSettings"
                     :current-categories-list="currentCategoriesList"
                     :current-items-list="currentItemsList"
+                    :current-combined-items-list="library"
                     search-label="Filter Search"
                     @remove-category="removeCategory"
                     @remove-item="removeItem"
@@ -335,11 +336,13 @@
     <!-- Configurations -->
     <script src="js/app-quasar.js"></script>
     <!-- Components -->
+        <!-- Models -->
+    <script src="js/models/app-models.js"></script>
         <!-- Basic/Core -->
     <script src="js/components/AppModal.js"></script>
     <script src="js/components/ResultsPossiblyEmpty.js"></script>
     <script src="js/components/ToggleItem.js"></script>
-    <script src="js/components/ImageCard.js"></script>
+    <script src="js/components/cards/ImageCard.js"></script>
     <script src="js/components/OptionsFAB.js"></script>
         <!-- Pages -->
     <script src="js/components/pages/MainContentPage.js"></script>

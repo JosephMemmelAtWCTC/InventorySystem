@@ -1,4 +1,4 @@
-class Category{
+class CategoryOld{
     constructor(id, title, description, items){
         this.id = (id === undefined)? -1 : id;
         this.title = title;

@@ -45,6 +45,8 @@ const app = Vue.createApp({
                 description: '',
                 image: './staticImages/folder.svg',
             },
+            library: new LibraryCollection()
+                .add(new Category('Category 1','Category 1\'s description', '/staticImages/folder.svg')),
             categoriesList: [
                 new Category(
                     categoryIdCounter--,

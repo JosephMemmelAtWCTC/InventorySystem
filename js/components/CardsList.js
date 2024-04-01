@@ -26,7 +26,7 @@ app.component('CardsList', {
 <!--        <div class="row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">-->
             <image-card v-for="(item, i) in items" :key="item.title"
                 @card-clicked="passCardWasClickedUp"
-                :image="item.image"
+                :imageSrc="item.imageSrc"
                 :item="item"
                 :headerText="item.title"
                 :descriptionText="item.description"
