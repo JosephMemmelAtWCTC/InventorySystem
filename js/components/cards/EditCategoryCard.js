@@ -1,7 +1,7 @@
 app.component('EditCategoryCard', {
     data() {
         return {
-            editItem: null,
+            editItem: {},
         }
     },
     props: {
@@ -9,19 +9,31 @@ app.component('EditCategoryCard', {
             type: Object,
             required: true,
         },
-        editItem: {
-            type: Object,
-            required: true,
-        }
     },
     emits: [],
     methods: {
     },
+    created:  function () {
+        this.editItem = {...this.item};
+    },
     template: `
-        <edit-card card-component="CategoryCard" :item="item">
-        A_ISJKSNLSKNS
+        <edit-card card-component="CategoryCard" :item="item" :editItem="item">
             <template #form>
-                ISJKSNLSKNS
+                <q-input filled v-model="editItem.title"
+                             autofocus
+                             label="Name"
+                             class="full-width"
+                             :rules="[val => !!val || '* Required']"
+                             lazy-rules
+                    ></q-input>
+                    <q-input filled v-model="editItem.description"
+                             type="textarea"
+                             rows="4"
+                             label="Description"
+                             class="full-width"
+                             :rules="[val => !!val || '* Required']"
+                             lazy-rules
+                    ></q-input>
             </template>
         </edit-card>
     `,

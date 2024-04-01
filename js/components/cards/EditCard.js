@@ -1,7 +1,7 @@
 app.component('EditCard', {
     data() {
         return {
-            editItem: null,
+            editItem: {},
         }
     },
     props: {
@@ -37,21 +37,8 @@ app.component('EditCard', {
                     ref="editModal"
         >
             <template v-slot="slotProps">
-                <q-input filled v-model="slotProps.editItem.title"
-                         autofocus
-                         label="Name"
-                         class="full-width"
-                         :rules="[val => !!val || '* Required']"
-                         lazy-rules
-                ></q-input>
-                <q-input filled v-model="slotProps.editItem.description"
-                         type="textarea"
-                         rows="4"
-                         label="Description"
-                         class="full-width"
-                         :rules="[val => !!val || '* Required']"
-                         lazy-rules
-                ></q-input>
+                <slot name="form">
+                </slot>
             </template>
         </edit-modal>
     `,
