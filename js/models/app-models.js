@@ -114,6 +114,27 @@ class Category { //Rename to Group?
     // }
 }
 
+class Item { //Rename to Group?
+    static type = "Category";
+    static cardDetailsComponent = "ItemCard";
+
+    items = [];
+    title = "";
+
+    constructor(title, description, imageURL, productId, inStockLevel, reorderLevel, lastUpdated=Date.now()) {
+        this.title        = title;
+        this.description  = description;
+        this.imageSrc     = imageURL;
+        this.productId    = productId;
+        this.inStockQty   = inStockLevel;
+        this.reorderLevel = reorderLevel;
+        this.lastUpdated  = lastUpdated;
+    }
+
+    get hasLowStock(){
+        return this.inStockQty < this.reorderLevel;
+    }
+}
 
 // let cleanCode = new LibraryItem(new Book('Clean Code', 600));
 // console.log(cleanCode);

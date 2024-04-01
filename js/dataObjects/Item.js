@@ -1,4 +1,4 @@
-class Item{
+class ItemOLD{
     constructor(id, title, description, image, qty, productId, reorderLevel, lastUpdated){
         this.id = id;
         this.title = title;

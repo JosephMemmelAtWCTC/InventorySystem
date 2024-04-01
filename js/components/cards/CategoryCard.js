@@ -1,4 +1,4 @@
-app.component('ImageCard', {
+app.component('CategoryCard', {
     data() {
         return {
             uid: 'sli-' + Math.floor(Math.random() * 10e15),
@@ -18,7 +18,7 @@ app.component('ImageCard', {
             required: false,
         },
         footerText: {
-            type: String,  // Change the type to String
+            type: String,
             required: false,
         },
         item: {
@@ -45,25 +45,24 @@ app.component('ImageCard', {
         }
     },
     template: `
-        <div :class="wrapperClass">
-            <div class="card" @click="sendUpdateCardClicked" :style="'height:'+cardHeight">
-    <!--            data-bs-toggle="modal"-->
-                <slot name="header">
-                    <div class="card-header bg-transparent text-truncate">{{ headerText }}</div>
-                </slot>
-                <img :src="image" class="displayImage p-0 m-0 rounded-0 border-bottom w-auto" alt="Loading..."><!--TODO:-->
-                <div class="card-body overflow-y-scroll">
-                    <slot name="description">
-                        <p class="card-text">{{ descriptionText }}</p>
-                    </slot>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <slot :item="item">
-                        {{ footerText }} <!-- Display the footerText directly -->
-                    </slot>
-                </div>
-            </div>
-        </div>
+        <image-card 
+            @card-clicked="passCardWasClickedUp"
+            :imageSrc="item.imageSrc"
+            :item="item"
+            :headerText="item.title"
+            :descriptionText="item.description"
+            class="my-1"
+            wrapper-class="animate-pop-in hover-expand"
+            card-height="450px"
+            v-slot="slotProps"
+        >
+            <slot :item="slotProps.item">
+                {{ slotProps.item.items.length }} unique item{{ slotProps.item.items.length === 1? "":"s" }}
+            </slot>
+            <slot name="extra" :item="slotProps.item">
+                
+            </slot>
+        </image-card>
     `,
 
 });

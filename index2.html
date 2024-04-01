@@ -123,7 +123,7 @@
                 <page-title-table
                         v-if="currentPage=='home'"
                         :headers="['Categories', 'Items', 'Total Stock', 'Needs Refill']"
-                        :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.needsReorder()).length]"
+                        :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.hasLowStock).length]"
                         :jumbotron-title="this.appTitle"
                 >
                     <template #jumbotronsubtext>
@@ -342,11 +342,16 @@
     <script src="js/components/AppModal.js"></script>
     <script src="js/components/ResultsPossiblyEmpty.js"></script>
     <script src="js/components/ToggleItem.js"></script>
-    <script src="js/components/cards/ImageCard.js"></script>
     <script src="js/components/OptionsFAB.js"></script>
-        <!-- Pages -->
+    <!-- Pages -->
     <script src="js/components/pages/MainContentPage.js"></script>
-        <!-- Lists -->
+    <script src="js/components/pages/PageInventoryCardsSearch.js"></script>
+    <script src="js/components/pages/PageTitleTable.js"></script>
+    <!-- Cards -->
+    <script src="js/components/cards/ImageCard.js"></script>
+    <script src="js/components/cards/CategoryCard.js"></script>
+    <script src="js/components/cards/ItemCard.js"></script>
+    <!-- Lists -->
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/TogglesArray.js"></script>
         <!-- Other & to Remove -->
@@ -356,8 +361,6 @@
     <script src="js/components/itemModal.js"></script>
 
 
-    <script src="js/components/pages/PageInventoryCardsSearch.js"></script>
-    <script src="js/components/pages/PageTitleTable.js"></script>
 
 
     <script src="js/separationComponents/QuasarLayoutBuilt.js"></script>

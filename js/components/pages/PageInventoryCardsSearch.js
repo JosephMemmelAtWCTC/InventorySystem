@@ -109,6 +109,8 @@ app.component('PageInventoryCardsSearch', {
                     >
                     </cards-list>
 
+
+
 <!--                <cards-list v-bind:items="currentCategoriesList"-->
 <!--                            @card-clicked="this.editCategory = $event;-->
 <!--                            this.$nextTick(() => {-->
