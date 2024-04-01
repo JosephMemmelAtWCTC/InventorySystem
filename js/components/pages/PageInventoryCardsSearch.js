@@ -228,12 +228,6 @@ app.component('PageInventoryCardsSearch', {
 <!--                            </template>-->
 <!--                        </edit-modal>-->
 <!--                    </template>-->
-<!--                    <template v-slot="slotProps">-->
-<!--                        <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">-->
-<!--                            {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock-->
-<!--                            <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>-->
-<!--                        </div>-->
-<!--                    </template>-->
 <!--                </cards-list>-->
                 
             </div>

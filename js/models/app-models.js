@@ -76,7 +76,7 @@ Book.detailsComponent = "BookDetails";
 
 class Category { //Rename to Group?
     static type = "Category";
-    static cardDetailsComponent = "CategoryCard";
+    static cardDetailsComponent = "EditCategoryCard";
 
     items = [];
     title = "";
@@ -135,9 +135,3 @@ class Item { //Rename to Group?
         return this.inStockQty < this.reorderLevel;
     }
 }
-
-// let cleanCode = new LibraryItem(new Book('Clean Code', 600));
-// console.log(cleanCode);
-// let johnWick = new LibraryItem(new Movie('John Wick', 141));
-// console.log(johnWick);
-// let anything = new LibraryItem({name: 'Stapler'});

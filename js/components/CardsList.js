@@ -26,7 +26,6 @@ app.component('CardsList', {
 <!--        <div class="row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">-->
 
         <component v-for="(item, i) in items" :key="item.title" :is="item.constructor.cardDetailsComponent" :item="item">
-        
         </component>
 <!--        </div>-->
 <!--    </transition-group>-->

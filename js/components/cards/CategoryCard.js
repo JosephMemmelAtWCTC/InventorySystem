@@ -25,14 +25,6 @@ app.component('CategoryCard', {
             type: Object,
             required: false,
         },
-        wrapperClass: {
-            type: String,
-            required: false,
-        },
-        cardHeight: {
-            type: String,
-            required: false,
-        }
     },
     emits: ['card-clicked'],
     methods: {
