@@ -29,20 +29,20 @@ app.component('EditModal', {
     emits: ['save-it', 'remove-it'],
     methods: {
         openModal(){
-            this.editItem= {...this.item};
+            // this.editItem= {...this.item};
             this.appModal.openModal();
         },
         saveIt(e){
             this.$refs.myForm.validate().then(success => {
-                console.log("eeeeiitem", this.editItem)
+                console.log("SaveIt Start", this.editItem)
 
                 if (success) {
-                    Object.assign(this.item, this.editItem);
+                    Object.assign(this.editItem, this.item);
                     // if (this.$refs.myForm.validate()) {
                 //     Object.assign(this.item, this.editItem);
-                    console.log("Sending save-it request");
+                    console.log("=Sending save-it request");
                     this.$emit('save-it', this.item);
-                    console.log("eeeeiitem", this.item)
+                    console.log("SaveIt TRUE", this.item)
                     this.appModal.hideModal();
                 } else {
                     this.$q.notify({

@@ -1,7 +1,6 @@
 app.component('EditCategoryCard', {
     data() {
         return {
-            editItem: {},
         }
     },
     props: {
@@ -17,7 +16,7 @@ app.component('EditCategoryCard', {
         this.editItem = {...this.item};
     },
     template: `
-        <edit-card card-component="CategoryCard" :item="item" :editItem="item">
+        <edit-card card-component="CategoryCard" :item="item" :editItem="editItem">
             <template #form>
                 <q-input filled v-model="editItem.title"
                              autofocus

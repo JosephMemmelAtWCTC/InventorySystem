@@ -25,7 +25,7 @@ app.component('CardsList', {
 <!--    <transition-group name="fade" tag="div">    -->
 <!--        <div class="row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">-->
 
-        <component v-for="(item, i) in items" :key="item.title" :is="item.constructor.cardDetailsComponent" :item="item" :editItem="item">
+        <component v-for="(item, i) in items" :key="item.title" :is="item.constructor.cardDetailsComponent" :item="item" :edit-item="item" image-src="https://via.placeholder.com/400.png?text=Placeholder">
         </component>
 <!--        </div>-->
 <!--    </transition-group>-->

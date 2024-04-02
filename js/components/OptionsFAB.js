@@ -12,7 +12,7 @@ app.component('OptionsFAB', {
         //     TODO: Make easy selection for top/bottom & start/end
         },
         zIndex: {
-            type: Number,
+            type: String, //Number,
             required: false,
             default: 1001,
         },

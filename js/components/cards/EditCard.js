@@ -1,7 +1,7 @@
 app.component('EditCard', {
     data() {
         return {
-            editItem: {},
+            editItemNotTemplate: {},
         }
     },
     props: {

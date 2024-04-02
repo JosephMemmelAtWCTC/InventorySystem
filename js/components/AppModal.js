@@ -13,6 +13,9 @@ app.component('AppModal', {
         btnClass: {
             type: String,
         },
+        btnText: {
+            type: String,
+        },
         btnIconClass: {
             type: String,
         },
