@@ -134,6 +134,9 @@ const app = Vue.createApp({
 
     // computed: values that are updated and cached if dependencies change
     computed: {
+        libraryComputed(){
+            return this.library;
+        },
         currentCategoriesList() {
             let filteredList = [];
             // if (this.filterSettings.toggles[0].state) {
@@ -218,6 +221,12 @@ const app = Vue.createApp({
     // watch:   calls the function if the value changes
     // https://travishorn.com/add-localstorage-to-your-vue-app-in-2-lines-of-code-56eb2c9f371b
     watch: {
+        library: {
+            handler() {
+                console.log('Library changed:', "3eeeeee");
+            },
+            deep: true,
+        },
         currentPage: {
             handler() {//newList){
                 localStorage.setItem('openPage', this.currentPage);

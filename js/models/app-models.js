@@ -38,7 +38,7 @@ function LibraryCollection(arr = []) {
         const existingIndex = this.findIndex(i => i.title === itemOld.title);
         if(existingIndex === -1){
             console.log("arr.add(itemNew);", itemNew);
-            arr.add(itemNew);
+            arr.add(Object.assign(new Category(), itemNew));
         }else{
             this[existingIndex] = itemNew;
         }

@@ -14,6 +14,7 @@ app.component('CardsList', {
         saveItem(item){
             console.log("Saved send up CardsList");
             this.$emit('save-it', item);
+            this.$forceUpdate();
         },
         removeItem(item){
             console.log("Removed send up CardsList");
