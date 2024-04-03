@@ -38,7 +38,8 @@ function LibraryCollection(arr = []) {
         const existingIndex = this.findIndex(i => i.title === itemOld.title);
         if(existingIndex === -1){
             console.log("arr.add(itemNew);", itemNew);
-            arr.add(Object.assign(new Category(), itemNew));
+            // arr.add(Object.assign(new Category(), itemNew));
+            arr.add(itemNew);
         }else{
             this[existingIndex] = itemNew;
         }
@@ -133,8 +134,8 @@ class Category { //Rename to Group?
 }
 
 class Item { //Rename to Group?
-    static type = "Category";
-    static cardDetailsComponent = "ItemCard";
+    static type = "Item";
+    static cardDetailsComponent = "editItemCard";
 
     items = [];
     title = "";
