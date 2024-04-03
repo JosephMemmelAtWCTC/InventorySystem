@@ -12,6 +12,7 @@ app.component('CardsList', {
     emits: ['save-it', 'remove-it'],
     methods: {
         saveItem(item){
+            console.log("Saved send up CardsList");
             this.$emit('save-it', item);
         },
     },

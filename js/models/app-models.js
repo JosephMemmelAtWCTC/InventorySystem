@@ -21,6 +21,17 @@ function LibraryCollection(arr = []) {
         return this;
     }
 
+    arr.updateValue = function (itemOld, itemNew) {
+        console.log("updateValue called",itemOld,this.indexOf(itemOld));
+        console.log("updateValue called",this.filter(i => i.title === itemOld.title));
+
+        // const oldItemIndex = this.indexOf(itemOld);
+        // this.splice(oldItemIndex, 1)
+        // library = [];
+        this[this.indexOf(this.filter(i => i.title === itemOld.title))] = itemNew;
+        return this;
+    }
+
     return arr;
 }
 

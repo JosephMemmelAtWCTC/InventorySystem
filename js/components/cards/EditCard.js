@@ -10,6 +10,7 @@ app.component('EditCard', {
             type: String,
             required: true,
         },
+
         item: {
             type: Object,
             required: true,
@@ -26,8 +27,10 @@ app.component('EditCard', {
             // this.editItem = {...this.item};
         },
         saveItem(item){
-            console.log("SAVE ITEM");
-            this.$emit('save-it', item, this.editItem);
+            console.log("SAVE ITEMA",item);
+            console.log("SAVE ITEMB",this.editItem);
+            // TODO: Make object instead of a list
+            this.$emit('save-it', [item, this.editItem]);
         },
     },
     template: `
@@ -39,10 +42,11 @@ app.component('EditCard', {
                     @save-it="saveItem($event)"
                     @remove-it="removeItem"
                     can-remove
-                    title="Edit ___"
-                    submit-button-text="Update ___"
+                    :title="'Edit '+'Category'"
+                    :submit-button-text="'Update '+'Category'"
                     ref="editModal"
         >
+<!--        TODO: Move category to slots with editModal-->
             <template v-slot="slotProps">
                 <slot name="form">
                 </slot>

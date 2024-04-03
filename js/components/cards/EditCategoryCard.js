@@ -1,27 +1,30 @@
 app.component('EditCategoryCard', {
     data() {
         return {
-            editCategory: Object.assign(new Category(), this.category),
+            editCategory: null,
         }
     },
     props: {
-        category: {
+        item: {
             type: Object,
             required: true,
         },
     },
     emits: ['save-it', 'remove-it'],
     methods: {
-        // saveItem(item, editItem){
-        //     console.log("OOOA:", item);
-        //     console.log("OOOB:", this.editItem);
-        //     // @@@ TODO: FIX HERE SOMEHOW
-        //     this.$emit('save-it', item, this.editItem);
-        // },
+        saveItem(item){
+            console.log("OOOA:", item);
+            // console.log("OOOB:", this.editCategory);
+            // @@@ TODO: FIX HERE SOMEHOW
+            this.$emit('save-it', [this.item, this.editCategory]);
+        },
     },
-
+    created: function () {
+        this.editCategory = Object.assign(new Category(), this.item);
+        console.log('{{{}}}', this.item);
+    },
     template: `
-        <edit-card card-component="CategoryCard" :item="category" @save-it="saveItem($event)">
+        <edit-card card-component="CategoryCard" :item="this.item" @save-it="saveItem">
             <template #form v-slot="editCategory">
                 <q-input filled v-model="editCategory.title"
                              autofocus

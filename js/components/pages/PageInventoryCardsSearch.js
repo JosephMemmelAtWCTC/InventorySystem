@@ -48,11 +48,25 @@ app.component('PageInventoryCardsSearch', {
         removeItem(removeItem) {
             this.$emit('remove-item', this.editItem);
         },
-        saveItem(item, editItem){
-            this.$emit('save-it', item, editItem);
+        saveItem(item){
+            console.log("Saved send up PageInventoryCardsSearch");
+            this.$emit('save-it', item);
         },
     },
     created:  function () {
+
+        // // Based off of https://stackoverflow.com/a/5767332
+        // Array.prototype.replaceByValue = function (val, replacement) {
+        //     for (var i = 0; i < this.length; i++) {
+        //         if (this[i] === val) {
+        //             // this.splice(i, 1);
+        //             this[i] = replacement;
+        //             return this;
+        //             // i--;
+        //         }
+        //     }
+        //     return this;
+        // }
     },
     mounted: function () {
     },
@@ -104,6 +118,7 @@ app.component('PageInventoryCardsSearch', {
             </results-possibly-empty>
             <div class="row g-2 m-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">
                 <cards-list v-bind:items="currentCombinedItemsList"
+                            @save-it="saveItem"
                 >
                 </cards-list>
             </div>
