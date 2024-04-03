@@ -67,13 +67,6 @@ function InventoryItem(item){
     return item;
 }
 
-function Book(title){
-    this.title = title;
-}
-Book.type = "Book";
-Book.detailsComponent = "BookDetails";
-
-
 class Category { //Rename to Group?
     static type = "Category";
     static cardDetailsComponent = "EditCategoryCard";

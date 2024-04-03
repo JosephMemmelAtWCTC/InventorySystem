@@ -100,20 +100,13 @@ app.component('PageInventoryCardsSearch', {
                 :display-is-empty="currentCategoriesList.length === 0 && currentItemsList.length === 0"
                 empty-title="Whoops"
                 empty-text="It looks like there are no results that fit your search criteria, try loosing your requirements or adding more items."
-            >
+            >            
             </results-possibly-empty>
             <div class="row g-2 m-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">
-
-                    <cards-list v-bind:items="currentCombinedItemsList"
-                                @card-clicked="this.editItem = $event;
-                                this.$nextTick(() => {
-                                    this.$refs.editModal.openModal();
-                                });"
-                                @save-it="saveItem"
-                    >
-                    </cards-list>
-
-
+                <cards-list v-bind:items="currentCombinedItemsList"
+                >
+                </cards-list>
+            </div>
 
 <!--                <cards-list v-bind:items="currentCategoriesList"-->
 <!--                            @card-clicked="this.editCategory = $event;-->
@@ -234,7 +227,6 @@ app.component('PageInventoryCardsSearch', {
 <!--                    </template>-->
 <!--                </cards-list>-->
                 
-            </div>
             <slot name="extra">
             </slot>
         </main-content-page>

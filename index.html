@@ -2,8 +2,7 @@
 <html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
-    <title>Vue App Prototype</title>
-
+    <title>Vue App 2.5</title>
     <!-- Stylesheets -->
         <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.prod.css" type="text/css">
@@ -14,64 +13,50 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+<body>
 
-    <div id="app" class="d-flex flex-column h-100 vsc-initialized m-0 p-0">
+    <div id="app">
 
-    <!-- LOCATION - UNSPECIFIC START TODO: Remove section-->
-        <div id="newCategoryModel" class="modal fade" tabindex="-1" aria-labelledby="newCategoryModelLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="newCategoryModelLabel">New Category</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <quasar-app-layout
+            :editable-kiosk-name="pageConfigSettings.customName"
+            @update-kiosk-name="pageConfigSettings.customName = $event"
+            :current-page-title="computedCurrentPageTitle"
+        >
+<!-- SIDEBAR -->
+            <template #left class="d-none d-md-block h-100">
+                <div class="d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <navigate-icon-item tooltip-info="Home" @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="bi-house">
+                        </navigate-icon-item>
+                        <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="material-symbols-outlined" icon-content="package_2"><!--fa-solid fa-boxes-stacked-->
+                        </navigate-icon-item>
+                        <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
+                        </navigate-icon-item>
+                        <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
+                        </navigate-icon-item>
                     </div>
-                    <div class="modal-body">
-                        <form @submit.prevent="addCategory" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label for="new-category-name" class="col-form-label">Name:</label>
-                                <input type="text" class="form-control focus-ring-primary" id="new-category-name" required v-model="newCategory.title">
-                                <div class="invalid-feedback">
-                                    A name is required for the category
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="new-category-description" class="col-form-label">Description:</label>
-                                <textarea class="form-control focus-ring-primary" id="new-category-description"  v-model="newCategory.description"></textarea>
-                            </div>
-                            <div class="modal-footer row justify-content-center">
-                                <button type="submit" class="col-auto btn btn-primary justify-content-center">Create Category</button>
-                            </div>
-                        </form>
-                    </div>
+                    <footer>
+                        <button type="button" class="btn btn-primary rounded-0 p-0">
+                            <a class="icon-link link-secondary">
+                                <span class="p-2 ps-1 pe-0"><i class="bi bi-phone"></i></span>
+                                <strong><a href="#" class="link-secondary link-underline-opacity-0 pe-1">Download our app</a></strong>
+                            </a>
+                        </button>
+                    </footer>
                 </div>
-            </div>
-        </div>
-
-        <item-modal @add-item="addItem"
-            v-bind:new-item="this.newItem"
-            :submit-button-text="'Create Item'"
-            id="newItemModel"
-            title="New Item">
-        </item-modal>
-        <item-modal @add-item="editItem" v-bind:new-item="this.editItem" @remove-item="removeItem" :submit-button-text="'Update Item'" :exists=true id="editItemModel" title="Edit Item"></item-modal>
-
-        <footer id="bottomFooterFull" class="d-block d-md-none footer fixed-bottom bg-transparent">
-
-            <div class="container-fluid justify-content-center align-content-center row m-0 p-0">
-                <div class="container">
-                    <div class="row d-flex">
-
-                        <div id="footerFiller" class="bg-secondary-subtle position-fixed bottom-0 z-n1">
-
-                        </div>
-
-                        <div class="navbarSide1 col d-flex flex-column align-items-center mt-5 p-0">
-                            <div v-if="currentPage==='inventory'" class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                                <div class="dropup-center dropup">
-                                    <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
+            </template>
+<!-- FOOTER -->
+            <template #footer >
+                <div class="row q-gutter-none m-0 p-0">
+                    <div class="col mt-5 bg-body-secondary q-gutter-none">
+                        <div class="row h-100">
+                            <div class="col-12 h-50">
+                                <div class="dropup-center dropup row justify-content-center">
+                                    <div class="w-auto" v-if="currentPage==='inventory'">
+                                        <button id="addButton" type="button" class="rounded-1 btn btn-primary my-auto btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-plus text-secondary"></i>
+                                        </button>
+                                    </div>
                                     <div>
                                         <ul class="dropdown-menu pe-2">
                                             <li>
@@ -93,329 +78,199 @@
                                         </ul>
                                     </div>
                                 </div>
+
+
+
                             </div>
-
-                            <div class="col d-flex w-100 bg-secondary row-cols-2"><!-- gap-1 -->
-                                <navigate-icon-item @click="openNavPage('home')" icon-class="bi-house">
-                                </navigate-icon-item>
-                                <navigate-icon-item @click="openNavPage('inventory')" icon-class="material-symbols-outlined" icon-content="package_2">
+                            <div class="col h-50">
+                                <navigate-icon-item icon-class="bi-house" @click="openNavPage('home')" class="h-100">
                                 </navigate-icon-item>
                             </div>
-                        </div>
-
-                        <div class="navbarScan col-4 p-0">
-                            <button id="scanButton" data-navPageTarget="inventory" @click="openNavPage('inventory')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 rounded-top-pill">
-                                <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
-                            </button>
-
-                        </div>
-
-                        <div class="navbarSide2 col d-flex flex-column align-items-center mt-5 p-0">
-                            <div v-if="currentPage==='inventory'" class="col d-flex justify-content-center align-items-center w-100 bg-secondary-subtle">
-                            </div>
-
-                            <div class="col d-flex w-100 bg-secondary row-cols-2 position-relative"><!-- gap-1 -->
-                                <navigate-icon-item @click="openNavPage('recents')" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
-                                </navigate-icon-item>
-                                <navigate-icon-item @click="openNavPage('account')" icon-class="bi-person">
+                            <div class="col h-50">
+                                <navigate-icon-item icon-class="material-symbols-outlined" icon-content="package_2" @click="openNavPage('inventory')" class="h-100">
                                 </navigate-icon-item>
                             </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
-        </footer>
 
-        <main id="pageHolder" class="container-fluid row h-100 m-0 p-0">
-            <div class="col-auto d-none d-md-block m-0 p-0">
-
-                <div id="sidebar" class="h-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-2 border-end">
-                    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none mx-auto">
-                        <span class="fs-4">{{pageConfigSettings.customName}}</span> <i class="ms-2 bi bi-pencil-square"></i>
-
-                        <q-popup-edit v-model="pageConfigSettings.customName" auto-save v-slot="scope">
-                            <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set"
-                                     :rules="[val => val.length > 1 || 'Title requires at least 1 character', [val => val.length < 20 || 'Title cannot at least 1 character']]"/>
-                        </q-popup-edit>
-
-                    </a>
-                    <hr>
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <navigate-icon-item tooltip-info="Home" @click="openNavPage('home')" li-extra-classes="p-2 mb-2" icon-class="bi-house">
-                        </navigate-icon-item>
-                        <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="material-symbols-outlined" icon-content="package_2"><!--fa-solid fa-boxes-stacked-->
-                        </navigate-icon-item>
-                        <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
-                        </navigate-icon-item>
-                        <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
-                        </navigate-icon-item>
-                    </ul>
-                    <hr>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-primary rounded-0 p-0">
-                            <a class="icon-link link-secondary">
-                                <span class="p-2 ps-1 pe-0"><i class="bi bi-phone"></i></span>
-                                <strong><a href="#" class="link-secondary link-underline-opacity-0 pe-1">Download our app</a></strong>
-                            </a>
+                    <div class="col-4 centerNavTallOption">
+                        <button id="scanButton" data-navPageTarget="inventory" @click="openNavPage('inventory')" type="button" data-bs-toggle="modal" data-bs-target="#newItemModel" class="link-secondary primaryNavMovePage btn btn-primary w-100 p-3 rounded-0 rounded-top-5">
+                            <img src="./staticImages/upc-scan.svg" class="w-100" alt="Scan Barcode">
                         </button>
                     </div>
+
+                    <div class="col mt-5 bg-body-secondary">
+                        <div class="row h-100">
+                            <div class="col-12 h-50">
+
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item @click="openNavPage('recents')" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                            <div class="col h-50">
+                                <navigate-icon-item @click="openNavPage('account')" icon-class="bi-person" class="h-100">
+                                </navigate-icon-item>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </template>
 
 
-            <div class="col m-0 p-0 bg-secondary">
-                <header id="header" class="head bg-primary text-center py-1">
-                    <h6>
-                        <span id="pageTitle" class="mt-4 text-center text-secondary">
-                            {{currentPageTitle}}
-                        </span>
-                    </h6>
-                </header>
 
-                <div data-navPage="home" v-if="currentPage==='home'" data-pageTitle="TEST" class="page container-fluid m-0 p-0 bg-secondary">
-                    <!--  HERO/JUMBOTRON  -->
-                    <div class="m-2 jumbotron jumbotron-fluid bg-primary d-flex align-items-center text-center mt-5 pb-0">
-                        <h1 class="display-2 d-md-none d-col-block p-3 text-secondary fw-bold w-100 pb-0">Instant Inventory</h1>
-                    </div>
-                    <div class="d-flex align-items-center text-center justify-content-center mt-5 px-4 pb-0">
-                        <div class="jumbotron m-2 bg-primary">
-                            <h1 class="display-6 d-none d-md-block p-3 text-secondary fw-bold w-100 px-4">Instant Inventory</h1>
-                            <br>
-                            <div class="bg-secondary-subtle p-0 m-0">
-                                <p class="w-100">Connection Info</p>
-                                <p class="">{{appVersion}}</p>
-                            </div>
+            <template #content>
+                <page-title-table
+                        v-if="currentPage=='home'"
+                        :headers="['Categories', 'Items', 'Total Stock', 'Needs Refill']"
+                        :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.hasLowStock).length]"
+                        :jumbotron-title="this.appTitle"
+                >
+                    <template #jumbotronsubtext>
+                        <p class="w-100">ConnectionInfo</p>
+                        <p class="">{{appVersion}}</p>
+                    </template>
+                </page-title-table>
+
+
+                <page-inventory-cards-search
+                    v-if="currentPage=='inventory'"
+                    :filter-settings="filterSettings"
+                    :current-categories-list="currentCategoriesList"
+                    :current-items-list="currentItemsList"
+                    :current-combined-items-list="library"
+                    search-label="Filter Search"
+                    @remove-category="removeCategory"
+                    @remove-item="removeItem"
+                    @save-it="saveItem"
+                >
+                    <template #extra>
+                        <div class="position-fixed bottom-0 end-0 p-3">
+<!--                            <options-f-a-b z-index="1000"-->
+<!--                                           symbol-classes="bi bi-plus">-->
+<!--                                <template #open v-slot="slotProps">-->
+<!--                                    <li>-->
+<!--                                        <edit-modal :item="this.newCategory"-->
+<!--                                                    @save-it="addCategory"-->
+<!--                                                    title="New Category"-->
+<!--                                                    :submit-button-text="'Create Category'"-->
+<!--                                                    ref="newCategoryModal"-->
+<!--                                        >-->
+<!--                                            <template v-slot="slotProps">-->
+<!--                                                &lt;!&ndash;                                        TODO: Make use slotprops instead&ndash;&gt;-->
+<!--                                                <q-input filled v-model="slotProps.editItem.title"-->
+<!--                                                         autofocus-->
+<!--                                                         label="Name"-->
+<!--                                                         class="full-width"-->
+<!--                                                         :rules="[val => !!val || '* Required']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+<!--                                                <q-input filled v-model="slotProps.editItem.description"-->
+<!--                                                         type="textarea"-->
+<!--                                                         rows="4"-->
+<!--                                                         label="Description"-->
+<!--                                                         class="full-width"-->
+<!--                                                         :rules="[val => !!val || '* Required']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+<!--                                            </template>-->
+<!--                                        </edit-modal>-->
+<!--                                        <edit-modal :item="this.newItem"-->
+<!--                                                    @save-it="addItem"-->
+<!--                                                    title="New Item"-->
+<!--                                                    :submit-button-text="'Create Item'"-->
+<!--                                                    ref="newItemModal"-->
+<!--                                        >-->
+<!--                                            <template v-slot="slotProps">-->
+<!--                                                <q-input filled v-model="slotProps.editItem.title"-->
+<!--                                                         label="Name"-->
+<!--                                                         class="full-width"-->
+<!--                                                         autofocus-->
+<!--                                                         :rules="[val => !!val || '* Required']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+<!--                                                <q-input filled v-model="slotProps.editItem.productId"-->
+<!--                                                         label="Product ID"-->
+<!--                                                         class="full-width"-->
+<!--                                                         :rules="[val => !!val || '* Required']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+<!--                                                <q-input filled v-model="slotProps.editItem.description"-->
+<!--                                                         type="textarea"-->
+<!--                                                         rows="4"-->
+<!--                                                         label="Description"-->
+<!--                                                         class="full-width"-->
+<!--                                                         :rules="[val => !!val || '* Required']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+<!--                                                <q-input filled v-model.number="slotProps.editItem.reorderLevel"-->
+<!--                                                         type="number"-->
+<!--                                                         label="Reorder Level"-->
+<!--                                                         class="full-width clearable"-->
+<!--                                                         clearable-->
+<!--                                                         clear-icon="bi-x"-->
+<!--                                                         placeholder="Leave blank to ignore reorder"-->
+<!--                                                         :rules="[val => val >= 0 || 'Count cannot be less than 0']"-->
+<!--                                                         lazy-rules-->
+<!--                                                ></q-input>-->
+
+<!--                                                <div class="input-group mb-3 w-100">-->
+
+<!--                                                    <div class="col-2 d-block z-2">-->
+<!--                                                        <button type="button" @click="slotProps.editItem.qty -= (slotProps.editItem.qty > 0? 1:0)" class="h-100 d-block rounded-0 rounded-start-3 form-control focus-ring-primary">-->
+<!--                                                            <i class="bi bi-dash"></i>-->
+<!--                                                        </button>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-8 form-control m-0 p-0">-->
+
+<!--                                                        <q-input filled v-model.number="slotProps.editItem.qty"-->
+<!--                                                                 type="number"-->
+<!--                                                                 label="# in stock"-->
+<!--                                                                 class="full-width w-100"-->
+<!--                                                                 :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"-->
+<!--                                                                 lazy-rules-->
+<!--                                                        ></q-input>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-2 d-block z-2">-->
+<!--                                                        <button type="button" @click="slotProps.editItem.qty++" class="h-100 rounded-0 rounded-end-3 form-control focus-ring-primary">-->
+<!--                                                            <i class="bi bi-plus"></i>-->
+<!--                                                        </button>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </template>-->
+<!--                                        </edit-modal>-->
+<!--                                        <button type="button"-->
+<!--                                                @click="-->
+<!--                                            this.$refs.newCategoryModal.openModal();-->
+<!--                                        "-->
+<!--                                                class="btn btn-primary w-100 m-1">-->
+<!--                                            <a class="icon-link link-secondary text-decoration-none">-->
+<!--                                                <span class="p-2"><i class="bi bi-archive"></i></span>-->
+<!--                                                Category-->
+<!--                                            </a>-->
+<!--                                        </button>-->
+
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <button type="button"-->
+<!--                                                @click="-->
+<!--                                            this.$refs.newItemModal.openModal();-->
+<!--                                        "-->
+<!--                                                class="btn btn-primary w-100 m-1">-->
+<!--                                            <a class="icon-link link-secondary text-decoration-none">-->
+<!--                                                <span class="p-2"><i class="bi bi-box"></i></span>-->
+<!--                                                Item-->
+<!--                                            </a>-->
+<!--                                        </button>-->
+<!--                                    </li>-->
+<!--                                </template>-->
+<!--                            </options-f-a-b>-->
                         </div>
+                    </template>
+                </page-inventory-cards-search>
 
-                    </div>
-                    <div class="w-100 justify-content-center bg-secondary my-auto mb-0">
-                        <div class="mt-5 mx-auto m-4 p-2">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Categories</th>
-                                    <th scope="col">Items</th>
-                                    <th scope="col">Total Stock</th>
-                                    <th scope="col">Needs Refill</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-    <!--                                <th scope="row">1</th>-->
-                                    <td>{{categoriesList.length}}</td>
-                                    <td>{{itemsList.length}}</td>
-                                    <td>#</td>
-                                    <td>{{itemsList.filter(item => item.needsReorder()).length}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div data-navPage="inventory" v-if="currentPage==='inventory'" data-pageTitle="Explorer" class="position-relative page container-fluid mt-5 m-0 flex-grow-1">
-                    <header id="searchRibbon" class="bg-body-tertiary rounded-3">
-                        <div class="row align-items-center p-2">
-                            <div class="col-auto d-flex text-center align-items-center">
-                                <p class="ms-4">Filter Search</p>
-                            </div>
-
-                            <div class="col end-0">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="searchTextDescribe"><i class="bi ms-1 bi-search"></i></span>
-                                    <input type="text" v-model="filterSettings.searchString" class="form-control focus-ring-primary" placeholder="" aria-label="Search" aria-describedby="searchTextDescribe">
-                                </div>
-                            </div>
-
-                            <toggles-array :options="filterSettings.toggles">
-                            </toggles-array>
-
-                            <div class="col-12 ps-3 mb-0 pb-0">
-                                <nav aria-label="Inventory Explorer Breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="link-primary">Warehouse</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Category ____</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </header>
-
-                    <results-possibly-empty
-                            :display-is-empty="currentCategoriesList.length === 0 && currentItemsList.length === 0"
-                            empty-title="Whoops"
-                            empty-text="It looks like there are no results that fit your search criteria, try loosing your requirements or adding more items."
-                    >
-                        <template #results>
-                            <div id="items" class="row g-2 m-1">
-
-                                <cards-list v-bind:items="currentCategoriesList"
-                                            @card-clicked="this.editCategory = $event;
-                                            this.$nextTick(() => {
-                                                this.$refs.editModal.openModal();
-                                            });"
-                                >
-
-                                    <template #extra v-slot="slotProps">
-                                        <edit-modal :item="this.editCategory"
-                                                    @remove-it="removeCategory"
-                                                    can-remove
-                                                    title="Add Category"
-                                                    :submit-button-text="'Update Category'"
-                                                    ref="editModal"
-                                        >
-                                            <template v-slot="slotProps">
-                                                <q-input filled v-model="slotProps.editItem.title"
-                                                         autofocus
-                                                         label="Name"
-                                                         class="full-width"
-                                                         :rules="[val => !!val || '* Required']"
-                                                         lazy-rules
-                                                ></q-input>
-                                                <q-input filled v-model="slotProps.editItem.description"
-                                                         type="textarea"
-                                                         rows="4"
-                                                         label="Description"
-                                                         class="full-width"
-                                                         :rules="[val => !!val || '* Required']"
-                                                         lazy-rules
-                                                ></q-input>
-                                            </template>
-                                        </edit-modal>
-                                    </template>
-
-                                    <template v-slot="slotProps">
-            <!--                            <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">-->
-                                            {{ slotProps.item.items.length }} unique item{{ slotProps.item.items.length === 1? "":"s" }}
-            <!--                            </div>-->
-                                    </template>
-                                </cards-list>
-
-                                <!-- https://stackoverflow.com/a/65686099 for inline editing -->
-                                <!-- https://masteringjs.io/tutorials/vue/nexttick for waiting until the next tick to open with the changed value -->
-                                <cards-list v-bind:items="currentItemsList"
-                                            @card-clicked="this.editItem = $event;
-                                            this.$nextTick(() => {
-                                                this.$refs.editModal.openModal();
-                                            });"
-                                >
-                                    <template #extra v-slot="slotProps">
-                                        <!--TODO: Can I pass in an emit here for can-remove?-->
-                                        <edit-modal :item="this.editItem"
-                                                    @remove-it="removeItem"
-                                                    can-remove
-                                                    title="Edit Item"
-                                                    :submit-button-text="'Update Item'"
-                                                    ref="editModal"
-                                        >
-                                            <template v-slot="slotProps">
-                                                <q-input filled v-model="slotProps.editItem.title"
-                                                         label="Name"
-                                                         class="full-width"
-                                                         autofocus
-                                                         :rules="[val => !!val || '* Required']"
-                                                         lazy-rules
-                                                ></q-input>
-                                                <q-input filled v-model="slotProps.editItem.productId"
-                                                         label="Product ID"
-                                                         class="full-width"
-                                                         :rules="[val => !!val || '* Required']"
-                                                         lazy-rules
-                                                ></q-input>
-                                                <q-input filled v-model="slotProps.editItem.description"
-                                                         type="textarea"
-                                                         rows="4"
-                                                         label="Description"
-                                                         class="full-width"
-                                                         :rules="[val => !!val || '* Required']"
-                                                         lazy-rules
-                                                ></q-input>
-                                                <q-input filled v-model.number="slotProps.editItem.reorderLevel"
-                                                        type="number"
-                                                        label="Reorder Level"
-                                                        class="full-width clearable"
-                                                        clearable
-                                                        clear-icon="bi-x"
-                                                        placeholder="Leave blank to ignore reorder"
-                                                        :rules="[val => val >= 0 || 'Count cannot be less than 0']"
-                                                        lazy-rules
-                                                ></q-input>
-
-                                                <div class="input-group mb-3 w-100">
-
-                                                    <div class="col-2 d-block z-2">
-                                                        <button type="button" @click="slotProps.editItem.qty -= (slotProps.editItem.qty > 0? 1:0)" class="h-100 d-block rounded-0 rounded-start-3 form-control focus-ring-primary">
-                                                            <i class="bi bi-dash"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-8 form-control m-0 p-0">
-
-                                                        <q-input filled v-model.number="slotProps.editItem.qty"
-                                                                 type="number"
-                                                                 label="# in stock"
-                                                                 class="full-width w-100"
-                                                                 :rules="[val => !!val || 'You need to have a quantity', val => val > 0 || 'Count cannot be less than 0']"
-                                                                 lazy-rules
-                                                        ></q-input>
-                                                    </div>
-                                                    <div class="col-2 d-block z-2">
-                                                        <button type="button" @click="slotProps.editItem.qty++" class="h-100 rounded-0 rounded-end-3 form-control focus-ring-primary">
-                                                            <i class="bi bi-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </edit-modal>
-                                    </template>
-
-                                    <template v-slot="slotProps">
-                                        <div :class="{'text-warning-emphasis': slotProps.item.needsReorder()}">
-                                            {{ slotProps.item.qty }}{{ slotProps.item.reorderLevel === -1 || slotProps.item.reorderLevel === undefined || slotProps.item.reorderLevel === null ? "" : "/"+slotProps.item.reorderLevel }} item{{ slotProps.item.qty == 1 ? "" : "s" }} in stock
-                                            <i v-if="slotProps.item.needsReorder()" class="bi bi-exclamation-diamond-fill"></i>
-                                        </div>
-                                    </template>
-                                </cards-list>
-
-                            </div>
-                        </template>
-                    </results-possibly-empty>
-
-
-                    <div class="position-fixed bottom-0 end-0 p-3">
-                        <div id="addFab" class="dropup-center dropup rounded-circle">
-                            <button class="rounded-circle btn btn-primary end-0 m-4 p-4" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-                                <span class="d-inline-block fs-5 link-secondary">
-                                    <i class="bi bi-plus"></i>
-                                </span>
-                            </button>
-
-                            <ul class="dropdown-menu pe-2"  id="dropupAddHolder">
-                                <li>
-                                    <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newCategoryModel">
-                                        <a class="icon-link link-secondary text-decoration-none">
-                                            <span class="p-2"><i class="bi bi-archive"></i></span>
-                                            Category
-                                        </a>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary w-100 m-1" data-bs-toggle="modal" data-bs-target="#newItemModel">
-                                        <a class="icon-link link-secondary text-decoration-none">
-                                            <span class="p-2"><i class="bi bi-box"></i></span>
-                                            Item
-                                        </a>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div data-navPage="recents" v-if="currentPage==='recents'" data-pageTitle="Recents" class="page container-fluid mt-5"><!--flex-shrink-0-->
-                    <div id="inventoryCards" class="m-0 border-top border-2 border-primary p-0">
+                <main-content-page
+                    v-if="currentPage==='recents'">
                         <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-body-tertiary border-2 border-primary border-bottom"><!--card-->
 
                             <div class="bi-3x col-2 p-0 my-auto text-center">
@@ -431,37 +286,42 @@
                                 <i class="recentsArrowIn bi ms-1 bi-dash"></i>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div data-navPage="account" v-if="currentPage==='account'" data-pageTitle="Profile" class="page container-fluid m-0 p-0 h-100 overflow-y-hidden pt-sm-4 pt-4"><!--flex-shrink-0-->
-                    <div id="account" class="m-0 h-100 bg-secondary position-relative">
-                        <div class="p-md-4 p-md-0 rounded-0 row bg-secondary h-auto d-flex align-items-start bg-white">
-                            <div class="col-12 h-auto bg-white">
-                                <img width="15%" src="./staticImages/person-circle.svg" class="border-secondary p-2 border-2 mx-auto d-block bg-white" alt="Profile Picture">
+
+                </main-content-page>
+
+                <main-content-page
+                        v-if="currentPage==='account'">
+                    <div class="m-0 h-100 position-relative">
+                        <div class="p-md-4 p-md-0 rounded-0 row h-auto d-flex align-items-start">
+                            <div class="col-12 h-auto">
+                                <img width="15%" src="./staticImages/person-circle.svg" class="border-secondary p-2 border-2 mx-auto d-block" alt="Profile Picture">
                             </div>
-                            <div class="col-12 col-md-12 h-auto bg-white">
+                            <div class="col-12 col-md-12 h-auto">
                                 <label for="profile-name" class="col-12 col-form-label">Name:</label>
                                 <input type="text" class="form-control focus-ring-primary" id="profile-name" v-model="pageConfigSettings.profileName">
                             </div>
-                            <div id="permissionsChips" class="col-12 bg-body-tertiary h-auto">
-                                <p>Permissions
-                                    <span class="badge text-bg-secondary">Admin</span>
-                                    <span class="badge text-bg-secondary">Add Items</span>
+                            <div id="permissionsChips" class="col-12 h-auto mt-2">
+                                <p>Permissions</p>
+<!--                                TODO: Make settable via table-->
+                                <p>
+                                    <span class="badge text-bg-primary me-1">Admin</span>
+                                    <span class="badge text-bg-primary">Add Items</span>
                                 </p>
                             </div>
                         </div>
                         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
-    <!--                    <div class="col-auto pt-4 mx-auto h-auto position-absolute bottom-0 start-100 mb-5 translate-middle-x">-->
+                            <!--                    <div class="col-auto pt-4 mx-auto h-auto position-absolute bottom-0 start-100 mb-5 translate-middle-x">-->
                             <button type="button" class="btn btn-danger">Sign Out</button>
                         </div>
-
                     </div>
-                </div>
-            </div>
-        </main>
+                </main-content-page>
 
+            </template>
+        </quasar-app-layout>
 
     </div>
+
+
     <!-- Vue CDNs -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.4/dist/quasar.umd.js"></script>
@@ -472,23 +332,36 @@
     <!-- JS CDNs (REMOVE)-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Root -->
-    <script src="js/app.js"></script>
+    <script src="js/app2.js"></script>
+    <script src="js/separationComponents/QuasarAppLayout.js"></script>
     <!-- Configurations -->
     <script src="js/app-quasar.js"></script>
     <!-- Components -->
+        <!-- Models -->
+    <script src="js/models/app-models.js"></script>
         <!-- Basic/Core -->
     <script src="js/components/AppModal.js"></script>
     <script src="js/components/ResultsPossiblyEmpty.js"></script>
     <script src="js/components/ToggleItem.js"></script>
+    <script src="js/components/OptionsFAB.js"></script>
+    <!-- Pages -->
+    <script src="js/components/pages/MainContentPage.js"></script>
+    <script src="js/components/pages/PageInventoryCardsSearch.js"></script>
+    <script src="js/components/pages/PageTitleTable.js"></script>
+    <!-- Cards -->
+    <script src="js/components/cards/EditCategoryCard.js"></script>
+    <script src="js/components/cards/EditCard.js"></script>
+
     <script src="js/components/cards/ItemCard.js"></script>
-        <!-- Lists -->
+    <script src="js/components/cards/CategoryCard.js"></script>
+    <script src="js/components/cards/ImageCard.js"></script>
+    <!-- Lists -->
     <script src="js/components/CardsList.js"></script>
     <script src="js/components/TogglesArray.js"></script>
         <!-- Other & to Remove -->
     <script src="js/components/NavigateIconItem.js"></script>
     <script src="js/components/EditModal.js"></script>
 
-    <script src="js/components/itemModal.js"></script>
 
     <script src="js/separationComponents/QuasarLayoutBuilt.js"></script>
 <!--    <script src="js/QuasarLayoutBuilt.vue"></script>-->

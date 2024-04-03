@@ -46,60 +46,61 @@ const app = Vue.createApp({
                 image: './staticImages/folder.svg',
             },
             library: new LibraryCollection()
+                .add(new Category('Category 1','Category 1\'s description', '/staticImages/folder.svg'))
                 .add(new Category('Category 1','Category 1\'s description', '/staticImages/folder.svg')),
                 // .add(new Item('Fjallraven - Foldsack No. 1 Backpack','Your perfect pack for everyday use and walks in the forest.', 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg', '923087', 2, 4,Date.now() - 1000 * 60 * 60 * 9)),
-            categoriesList: [
-                new Category(
-                    categoryIdCounter--,
-                    'Category 1',
-                    'An example category description.',
-                    [
-                        {},
-                        {},
-                        {},
-                    ]
-                ),
-                new Category(
-                    categoryIdCounter--,
-                    'Category 2',
-                    'Another example category description.',
-                    [
-                        {},
-                    ]
-                ),
-            ],
-            itemsList: [
-                new Item(
-                    itemIdCounter++,
-                    'Fjallraven - Foldsack No. 1 Backpack',
-                    'Your perfect pack for everyday use and walks in the forest.',
-                    'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-                    4,
-                    923087,
-                    -1,
-                    Date.now() - 1000 * 60 * 60 * 9
-                ),
-                new Item(
-                    itemIdCounter++,
-                    'Mens Casual Premium Slim Fit T-Shirts',
-                    'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
-                    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-                    3,
-                    872892,
-                    5,
-                    Date(Date.now() - 1000 * 60 * 60 * 34)
-                ),
-                new Item(
-                    itemIdCounter++,
-                    'Mens Cotton Jacket',
-                    'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.',
-                    'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
-                    5,
-                    872893,
-                    2,
-                    Date.now()
-                ),
-            ],
+            // categoriesList: [
+            //     new Category(
+            //         categoryIdCounter--,
+            //         'Category 1',
+            //         'An example category description.',
+            //         [
+            //             {},
+            //             {},
+            //             {},
+            //         ]
+            //     ),
+            //     new Category(
+            //         categoryIdCounter--,
+            //         'Category 2',
+            //         'Another example category description.',
+            //         [
+            //             {},
+            //         ]
+            //     ),
+            // ],
+            // itemsList: [
+            //     new Item(
+            //         itemIdCounter++,
+            //         'Fjallraven - Foldsack No. 1 Backpack',
+            //         'Your perfect pack for everyday use and walks in the forest.',
+            //         'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+            //         4,
+            //         923087,
+            //         -1,
+            //         Date.now() - 1000 * 60 * 60 * 9
+            //     ),
+            //     new Item(
+            //         itemIdCounter++,
+            //         'Mens Casual Premium Slim Fit T-Shirts',
+            //         'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
+            //         'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+            //         3,
+            //         872892,
+            //         5,
+            //         Date(Date.now() - 1000 * 60 * 60 * 34)
+            //     ),
+            //     new Item(
+            //         itemIdCounter++,
+            //         'Mens Cotton Jacket',
+            //         'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.',
+            //         'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
+            //         5,
+            //         872893,
+            //         2,
+            //         Date.now()
+            //     ),
+            // ],
         }
     },
 

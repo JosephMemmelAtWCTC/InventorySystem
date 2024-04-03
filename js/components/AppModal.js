@@ -34,10 +34,10 @@ app.component('AppModal', {
     },
 
     template: `
-       <button :class="'btn ' + btnClass" @click="bsModal.show()">
-            <i v-if="btnIconClass" :class="btnIconClass"></i>
-            {{ btnText }}
-       </button>
+<!--       <button :class="'btn ' + btnClass" @click="bsModal.show()">-->
+<!--            <i v-if="btnIconClass" :class="btnIconClass"></i>-->
+<!--            {{ btnText }}-->
+<!--       </button>-->
        <teleport to="body">
        <div class="modal fade" @click.stop="" ref="theModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
