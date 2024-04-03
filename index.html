@@ -123,9 +123,9 @@
                 <page-title-table
                         v-if="currentPage=='home'"
                         :headers="['Categories', 'Items', 'Total Stock', 'Needs Refill']"
-                        :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.hasLowStock).length]"
                         :jumbotron-title="this.appTitle"
                 >
+                    <!--                :table-items="[categoriesList.length, itemsList.length, '#', itemsList.filter(item => item.hasLowStock).length]"-->
                     <template #jumbotronsubtext>
                         <p class="w-100">ConnectionInfo</p>
                         <p class="">{{appVersion}}</p>
