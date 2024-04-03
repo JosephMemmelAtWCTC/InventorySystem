@@ -28,9 +28,17 @@ function LibraryCollection(arr = []) {
         // const oldItemIndex = this.indexOf(itemOld);
         // this.splice(oldItemIndex, 1)
         // library = [];
-        this[this.indexOf(this.filter(i => i.title === itemOld.title))] = itemNew;
+        // console.log("PPP:",this.indexOf(this.filter(i => i.title === itemOld.title)));
+        // console.log("itemOld=",itemOld);
+        // console.log("itemNew=",itemNew);
+        // this[this.indexOf(this.filter(i => i.title === itemOld.title))] = itemNew;
+        // console.log("PPP:",this.indexOf(this.filter(i => i.title === itemOld.title)));
+
+        // FindIndex works for some reason over indexOf & filter
+        this[this.findIndex(i => i.title === itemOld.title)] = itemNew;
         return this;
     }
+
 
     return arr;
 }
