@@ -15,6 +15,10 @@ app.component('CardsList', {
             console.log("Saved send up CardsList");
             this.$emit('save-it', item);
         },
+        removeItem(item){
+            console.log("Removed send up CardsList");
+            this.$emit('remove-it', item);
+        },
     },
     template: `
 <!--TODO: Turn all :keys to use $refs-->
@@ -22,7 +26,8 @@ app.component('CardsList', {
                    :is="item.constructor.cardDetailsComponent"
                    :item="item"
                    :edit-item="item"
-                   @save-it="saveItem">
+                   @save-it="saveItem"
+                   @remove-it="removeItem">
         </component>
     `
 });

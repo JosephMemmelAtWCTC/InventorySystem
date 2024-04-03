@@ -32,6 +32,9 @@ app.component('EditCard', {
             // TODO: Make object instead of a list
             this.$emit('save-it', [item, this.editItem]);
         },
+        removeItem(item){
+            this.$emit('remove-it', item);
+        },
     },
     template: `
 <!--TODO: Fix @card-clicked="openEditModal" over @click-->

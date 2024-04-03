@@ -18,13 +18,16 @@ app.component('EditCategoryCard', {
             // @@@ TODO: FIX HERE SOMEHOW
             this.$emit('save-it', [this.item, this.editCategory]);
         },
+        removeItem(item){
+            this.$emit('remove-it', this.item);
+        },
     },
     created: function () {
         this.editCategory = Object.assign(new Category(), this.item);
-        console.log('{{{}}}', this.item);
+        // console.log('{{{}}}', this.item);
     },
     template: `
-        <edit-card card-component="CategoryCard" :item="this.item" @save-it="saveItem">
+        <edit-card card-component="CategoryCard" :item="this.item" @save-it="saveItem" @remove-it="removeItem">
             <template #form v-slot="editCategory">
                 <q-input filled v-model="editCategory.title"
                              autofocus

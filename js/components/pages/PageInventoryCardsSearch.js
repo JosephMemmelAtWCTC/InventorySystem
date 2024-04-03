@@ -119,6 +119,7 @@ app.component('PageInventoryCardsSearch', {
             <div class="row g-2 m-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-1">
                 <cards-list v-bind:items="currentCombinedItemsList"
                             @save-it="saveItem"
+                            @remove-it="removeItem"
                 >
                 </cards-list>
             </div>

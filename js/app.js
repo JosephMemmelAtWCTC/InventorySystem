@@ -127,7 +127,7 @@ const app = Vue.createApp({
             this.library.updateValue(item[0], item[1])
         },
         removeItem(removeItem) {
-            // this.itemsList.splice(this.itemsList.indexOf(removeItem), 1);
+            this.library.remove(removeItem);
         },
 
     },
