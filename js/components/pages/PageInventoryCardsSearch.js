@@ -40,13 +40,16 @@ app.component('PageInventoryCardsSearch', {
             required: true,
         },
     },
-    emits: ['remove-category', 'remove-item'],
+    emits: ['save-it','remove-category', 'remove-item'],
     methods: {
         removeCategory() {
             this.$emit('remove-category', this.editCategory);
         },
         removeItem(removeItem) {
             this.$emit('remove-item', this.editItem);
+        },
+        saveItem(item, editItem){
+            this.$emit('save-it', item, editItem);
         },
     },
     created:  function () {
@@ -106,6 +109,7 @@ app.component('PageInventoryCardsSearch', {
                                 this.$nextTick(() => {
                                     this.$refs.editModal.openModal();
                                 });"
+                                @save-it="saveItem"
                     >
                     </cards-list>
 

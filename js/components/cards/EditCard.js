@@ -1,7 +1,8 @@
 app.component('EditCard', {
     data() {
         return {
-            editItemNotTemplate: {},
+            editItem: {...this.item},
+            // editItem: JSON.parse(JSON.stringify(this.item)),
         }
     },
     props: {
@@ -13,23 +14,29 @@ app.component('EditCard', {
             type: Object,
             required: true,
         },
-        editItem: {
-            type: Object,
-            required: true,
-        }
+        // editItem: {
+        //     type: Object,
+        //     required: true,
+        // }
     },
-    emits: [],
+    emits: ['save-it', 'remove-it'],
     methods: {
         openEditModal(){
             this.$refs.editModal.openModal();
+            // this.editItem = {...this.item};
+        },
+        saveItem(item){
+            console.log("SAVE ITEM");
+            this.$emit('save-it', item, this.editItem);
         },
     },
     template: `
 <!--TODO: Fix @card-clicked="openEditModal" over @click-->
 <!--TODO: Put back item/category string in modal parts-->
-        <component :is="cardComponent" :item="item" @click="openEditModal">
+        <component :is="cardComponent" :item="item" @click="openEditModal" >
         </component>
         <edit-modal :item="this.editItem"
+                    @save-it="saveItem($event)"
                     @remove-it="removeItem"
                     can-remove
                     title="Edit ___"

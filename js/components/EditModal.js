@@ -3,8 +3,7 @@ app.component('EditModal', {
         return {
             uid: 'sli-' + Math.floor(Math.random() * 10e15),
             appModal: {},
-            editItem: {
-            },
+            editItem: {},
         }
     },
     props: {
@@ -29,7 +28,11 @@ app.component('EditModal', {
     emits: ['save-it', 'remove-it'],
     methods: {
         openModal(){
+            console.log("~~~~~~~1",this.item);
+            console.log("~~~~~~~2",this.editItem);
             // this.editItem= {...this.item};
+            // Object.assign(this.editItem, this.item);
+
             this.appModal.openModal();
         },
         saveIt(e){
@@ -40,9 +43,9 @@ app.component('EditModal', {
                     Object.assign(this.editItem, this.item);
                     // if (this.$refs.myForm.validate()) {
                 //     Object.assign(this.item, this.editItem);
-                    console.log("=Sending save-it request");
-                    this.$emit('save-it', this.item);
-                    console.log("SaveIt TRUE", this.item)
+                //     console.log("=Sending save-it request");
+                    this.$emit('save-it', this.item, this.editItem);
+                    // console.log("SaveIt TRUE", this.item)
                     this.appModal.hideModal();
                 } else {
                     this.$q.notify({
@@ -70,6 +73,8 @@ app.component('EditModal', {
         }
     },
     mounted(){
+        console.log("MOUNTEDA - ",this.item);
+        console.log("MOUNTEDB - ",this.editItem);
         this.appModal = this.$refs.theModal;
     },
     template: `
@@ -82,7 +87,7 @@ app.component('EditModal', {
 <!--                @submit="onSubmit"-->
 <!--                @reset="onReset"-->
 
-                <slot :editItem="editItem">
+                <slot :edit-item="editItem">
 <!--                            <q-input filled v-model="this.editItem.title"-->
 <!--                                label="What are you waiting for?"-->
 <!--                                class="full-width"-->
