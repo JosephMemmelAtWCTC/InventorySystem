@@ -6,10 +6,10 @@
 // Prototypes are simply objects that define a template for future objects.
 
 // Prototypes/Classes use TitleCase for naming
-function LibraryCollection(arr = []) {
+function InventoryCollection(arr = []) {
 
-    arr.add = function (media) {
-        this.push(new InventoryItem(media));
+    arr.add = function (item) {
+        this.push(new InventoryItem(item));
 
         // return this for chaining
         return this;
@@ -37,6 +37,9 @@ function LibraryCollection(arr = []) {
         // FindIndex works for some reason over indexOf & filter
         const existingIndex = this.findIndex(i => i.title === itemOld.title);
         if(existingIndex === -1){
+            // if(itemNew.itemConstructorType === ""){
+            itemNew = Object.assign(itemNew.constructor, itemNew);
+            // }
             console.log("arr.add(itemNew);", itemNew);
             // arr.add(Object.assign(new Category(), itemNew));
             arr.add(itemNew);
@@ -89,7 +92,6 @@ function InventoryItem(item){
         // return  === STOCKED_LEVEL_STATUSES.LOW_STOCK || STOCKED_LEVEL_STATUSES.OUT_OF_STOCK;
     }
 
-    // return the modified book/movie
     return item;
 }
 
@@ -101,6 +103,7 @@ class Category { //Rename to Group?
     title = "";
 
     constructor(title, description, imageURL, items = []) {
+         //TODO: FIND A BETTER WAY
         this.title       = title;
         this.description = description;
         this.imageSrc    = imageURL;

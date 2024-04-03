@@ -42,7 +42,7 @@ app.component('EditCard', {
         <component :is="cardComponent" :item="item" @click="openEditModal" >
         </component>
         <edit-modal :item="this.editItem"
-                    @save-it="saveItem($event)"
+                    @save-it="saveItem"
                     @remove-it="removeItem"
                     can-remove
                     :title="'Edit '+'Category'"

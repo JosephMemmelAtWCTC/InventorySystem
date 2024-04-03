@@ -23,6 +23,10 @@ app.component('EditModal', {
             type: Boolean,
             required: false,
             default: false,
+        },
+        itemConstructorType: {
+            type: String,
+            required: false,
         }
     },
     emits: ['save-it', 'remove-it'],
@@ -36,17 +40,22 @@ app.component('EditModal', {
             this.appModal.openModal();
         },
         saveIt(e){
-            console.log("SaveIt Start itm", this.item);
+            // console.log("SaveIt Start itm", this.item);
             console.log("SaveIt Start", this.editItem);
             this.$refs.myForm.validate().then(success => {
                 // if(typeof this.editItem == 'undefined'){
                 //     Object.assign(this.editItem, this.item);
                 // }
-                console.log("BBBSaveIt Start itm", this.item);
+                // console.log("BBBSaveIt Start itm", this.item);
                 console.log("BBBSaveIt Start", this.editItem);
 
                 if (success) {
+                    if(this.itemConstructorType){
+                        console.log("this.editItem.constructor = "+this.editItem.constructor);
+                        this.editItem.constructor = this.itemConstructorType;
+                        console.log("this.editItem.constructor = "+this.editItem.constructor);
 
+                    }
                     this.$emit('save-it', [{}, this.editItem]);
                     // Object.assign(this.editItem, this.item);
 

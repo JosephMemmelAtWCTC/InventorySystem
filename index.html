@@ -136,8 +136,6 @@
                 <page-inventory-cards-search
                     v-if="currentPage=='inventory'"
                     :filter-settings="filterSettings"
-                    :current-categories-list="currentCategoriesList"
-                    :current-items-list="currentItemsList"
                     :current-combined-items-list="libraryComputed"
                     search-label="Filter Search"
                     @remove-category="removeCategory"
@@ -151,6 +149,7 @@
                                 <template #open v-slot="slotProps">
                                     <li>
                                         <edit-modal :item="this.newCategory"
+                                                    :item-constructor-type="this.newCategory.constructor"
                                                     @save-it="saveItem($event)"
                                                     @remove-it="removeItem"
                                                     title="New Category"
@@ -191,6 +190,7 @@
 <!--                                    TODO: Try Convert to edit-item-card parts again, reuse-->
                                     <li>
                                         <edit-modal :item="this.newItem"
+                                                    :item-constructor-type="this.newItem.constructor"
                                                     @save-it="saveItem($event)"
                                                     @remove-it="removeItem"
                                                     title="New Item"

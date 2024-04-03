@@ -39,13 +39,8 @@ const app = Vue.createApp({
                 productId: null,
                 reorderLevel: null,
             },
-            newCategory: {
-                id: null,
-                title: '',
-                description: '',
-                image: './staticImages/folder.svg',
-            },
-            library: new LibraryCollection()
+            newCategory: new Category("","","/staticImages/folder.svg"),
+            library: new InventoryCollection()
                 .add(new Category('Category 1','Category 1\'s description', '/staticImages/folder.svg'))
                 .add(new Item('Fjallraven - Foldsack No. 1 Backpack','Your perfect pack for everyday use and walks in the forest.', 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg', '923087', 2, 4,Date.now() - 1000 * 60 * 60 * 9)),
             // categoriesList: [

@@ -12,9 +12,13 @@ app.component('CardsList', {
     emits: ['save-it', 'remove-it'],
     methods: {
         saveItem(item){
-            console.log("Saved send up CardsList");
+            console.log("Saved send up CardsList", item);
             this.$emit('save-it', item);
-            this.$forceUpdate();
+            // this.$forceUpdate();
+
+            // console.log("Saved send up CardsList - item.constructor",item.constructor);
+            // this.$emit('save-it', Object.assign(new item.constructor, item));
+
         },
         removeItem(item){
             console.log("Removed send up CardsList");
@@ -30,5 +34,7 @@ app.component('CardsList', {
                    @save-it="saveItem"
                    @remove-it="removeItem">
         </component>
+                <p v-for="(item, i) in items" :key="item.title"
+>{{item.constructor.cardDetailsComponent}}</p>
     `
 });
