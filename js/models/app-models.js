@@ -22,7 +22,7 @@ function LibraryCollection(arr = []) {
     }
 
     arr.updateValue = function (itemOld, itemNew) {
-        console.log("updateValue called",itemOld,this.indexOf(itemOld));
+        // console.log("updateValue called",itemOld,this.indexOf(itemOld));
         console.log("updateValue called",this.filter(i => i.title === itemOld.title));
 
         // const oldItemIndex = this.indexOf(itemOld);
@@ -35,7 +35,13 @@ function LibraryCollection(arr = []) {
         // console.log("PPP:",this.indexOf(this.filter(i => i.title === itemOld.title)));
 
         // FindIndex works for some reason over indexOf & filter
-        this[this.findIndex(i => i.title === itemOld.title)] = itemNew;
+        const existingIndex = this.findIndex(i => i.title === itemOld.title);
+        if(existingIndex === -1){
+            console.log("arr.add(itemNew);", itemNew);
+            arr.add(itemNew);
+        }else{
+            this[existingIndex] = itemNew;
+        }
         return this;
     }
 

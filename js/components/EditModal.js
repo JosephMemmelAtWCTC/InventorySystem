@@ -36,15 +36,24 @@ app.component('EditModal', {
             this.appModal.openModal();
         },
         saveIt(e){
+            console.log("SaveIt Start itm", this.item);
+            console.log("SaveIt Start", this.editItem);
             this.$refs.myForm.validate().then(success => {
-                console.log("SaveIt Start", this.editItem)
+                // if(typeof this.editItem == 'undefined'){
+                //     Object.assign(this.editItem, this.item);
+                // }
+                console.log("BBBSaveIt Start itm", this.item);
+                console.log("BBBSaveIt Start", this.editItem);
 
                 if (success) {
-                    Object.assign(this.editItem, this.item);
+
+                    this.$emit('save-it', [{}, this.editItem]);
+                    // Object.assign(this.editItem, this.item);
+
                     // if (this.$refs.myForm.validate()) {
                 //     Object.assign(this.item, this.editItem);
                 //     console.log("=Sending save-it request");
-                    this.$emit('save-it', this.item, this.editItem);
+    //     this.$emit('save-it', this.item, this.editItem);
                     // console.log("SaveIt TRUE", this.item)
                     this.appModal.hideModal();
                 } else {

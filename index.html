@@ -146,15 +146,58 @@
                 >
                     <template #extra>
                         <div class="position-fixed bottom-0 end-0 p-3">
-<!--                            <options-f-a-b z-index="1000"-->
-<!--                                           symbol-classes="bi bi-plus">-->
-<!--                                <template #open v-slot="slotProps">-->
-<!--                                    <li>-->
+                            <options-f-a-b z-index="1000"
+                                           symbol-classes="bi bi-plus">
+                                <template #open v-slot="slotProps">
+                                    <li>
+                                        <edit-modal :item="this.newCategory"
+                                                    @save-it="saveItem($event)"
+                                                    @remove-it="removeItem"
+                                                    can-remove
+                                                    :title="'Edit '+'Category'"
+                                                    :submit-button-text="'Update '+'Category'"
+                                                    ref="newCategoryModal"
+                                        >
+                                            <template v-slot="slotProps">
+                                                <!--                                        TODO: Make use slotprops instead-->
+                                                <q-input filled v-model="slotProps.editItem.title"
+                                                         autofocus
+                                                         label="Name"
+                                                         class="full-width"
+                                                         :rules="[val => !!val || '* Required']"
+                                                         lazy-rules
+                                                ></q-input>
+                                                <q-input filled v-model="slotProps.editItem.description"
+                                                         type="textarea"
+                                                         rows="4"
+                                                         label="Description"
+                                                         class="full-width"
+                                                         :rules="[val => !!val || '* Required']"
+                                                         lazy-rules
+                                                ></q-input>
+                                            </template>
+                                        </edit-modal>
+
+                                    <li>
+                                        <button type="button"
+                                                @click="
+                                                this.$refs.newCategoryModal.openModal();
+                                            "
+                                                class="btn btn-primary w-100 m-1">
+                                            <a class="icon-link link-secondary text-decoration-none">
+                                                <span class="p-2"><i class="bi bi-archive"></i></span>
+                                                Category
+                                            </a>
+                                        </button>
+                                    </li>
+<!--TODO: REMOVE BELOW-->
+
+
 <!--                                        <edit-modal :item="this.newCategory"-->
 <!--                                                    @save-it="addCategory"-->
 <!--                                                    title="New Category"-->
 <!--                                                    :submit-button-text="'Create Category'"-->
-<!--                                                    ref="newCategoryModal"-->
+<!--                                                    ref="newCategoryModalOld"-->
 <!--                                        >-->
 <!--                                            <template v-slot="slotProps">-->
 <!--                                                &lt;!&ndash;                                        TODO: Make use slotprops instead&ndash;&gt;-->
@@ -175,6 +218,9 @@
 <!--                                                ></q-input>-->
 <!--                                            </template>-->
 <!--                                        </edit-modal>-->
+
+
+
 <!--                                        <edit-modal :item="this.newItem"-->
 <!--                                                    @save-it="addItem"-->
 <!--                                                    title="New Item"-->
@@ -246,11 +292,11 @@
 <!--                                                class="btn btn-primary w-100 m-1">-->
 <!--                                            <a class="icon-link link-secondary text-decoration-none">-->
 <!--                                                <span class="p-2"><i class="bi bi-archive"></i></span>-->
-<!--                                                Category-->
+<!--                                                Category Old-->
 <!--                                            </a>-->
 <!--                                        </button>-->
 
-<!--                                    </li>-->
+                                    </li>
 <!--                                    <li>-->
 <!--                                        <button type="button"-->
 <!--                                                @click="-->
@@ -259,12 +305,12 @@
 <!--                                                class="btn btn-primary w-100 m-1">-->
 <!--                                            <a class="icon-link link-secondary text-decoration-none">-->
 <!--                                                <span class="p-2"><i class="bi bi-box"></i></span>-->
-<!--                                                Item-->
+<!--                                                Item Old-->
 <!--                                            </a>-->
 <!--                                        </button>-->
 <!--                                    </li>-->
-<!--                                </template>-->
-<!--                            </options-f-a-b>-->
+                                </template>
+                            </options-f-a-b>
                         </div>
                     </template>
                 </page-inventory-cards-search>

@@ -111,7 +111,7 @@ app.component('PageInventoryCardsSearch', {
                 </div>
             </header>
             <results-possibly-empty
-                :display-is-empty="currentCategoriesList.length === 0 && currentItemsList.length === 0"
+                :display-is-empty="currentCombinedItemsList.length === 0"
                 empty-title="Whoops"
                 empty-text="It looks like there are no results that fit your search criteria, try loosing your requirements or adding more items."
             >            
