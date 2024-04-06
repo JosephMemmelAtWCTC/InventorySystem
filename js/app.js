@@ -129,9 +129,6 @@ const app = Vue.createApp({
 
     // computed: values that are updated and cached if dependencies change
     computed: {
-        libraryComputed(){
-            return this.library;
-        },
         currentCategoriesList() {
             let filteredList = [];
             // if (this.filterSettings.toggles[0].state) {

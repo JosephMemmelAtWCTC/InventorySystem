@@ -53,14 +53,14 @@ function InventoryCollection(arr = []) {
     return arr;
 }
 
-function InventoryItem(item){
-    // const STOCKED_LEVEL_STATUSES = {
-    //     UNSET       : 'Unset',
-    //     IN_STOCK    : 'Stocked',
-    //     LOW_STOCK   : 'Under refill level',
-    //     OUT_OF_STOCK: '0 items remaining'
-    //     //Overstocked?
-    // };
+function InventoryItem(item, inStockLevel, reorderLevel = 0){
+    const STOCKED_LEVEL_STATUSES = {
+        UNSET       : 'Unset',
+        IN_STOCK    : 'Stocked',
+        LOW_STOCK   : 'Under refill level',
+        OUT_OF_STOCK: '0 items remaining'
+        //Overstocked?
+    };
 
     const REORDER_MESSAGE_THRESHOLD = {
         LOW_STOCK   : 'Under refill level',
@@ -72,10 +72,10 @@ function InventoryItem(item){
     // set the default status
     item.reorderMessageWhen = REORDER_MESSAGE_THRESHOLD.LOW_STOCK;
 
+    item.inStockQty   = inStockLevel;
+    item.reorderLevel = reorderLevel;
+    // item.lastUpdated  = lastUpdated;
     // methods
-    // item.remove = function(){
-    //     this.remove();
-    // }
 
     //Update message thresholds
 
@@ -148,9 +148,6 @@ class Item { //Rename to Group?
         this.description  = description;
         this.imageSrc     = imageURL;
         this.productId    = productId;
-        this.inStockQty   = inStockLevel;
-        this.reorderLevel = reorderLevel;
-        this.lastUpdated  = lastUpdated;
     }
 
     get hasLowStock(){
