@@ -22,17 +22,7 @@ function InventoryCollection(arr = []) {
     }
 
     arr.updateValue = function (itemOld, itemNew) {
-        // console.log("updateValue called",itemOld,this.indexOf(itemOld));
         console.log("updateValue called",this.filter(i => i.title === itemOld.title));
-
-        // const oldItemIndex = this.indexOf(itemOld);
-        // this.splice(oldItemIndex, 1)
-        // library = [];
-        // console.log("PPP:",this.indexOf(this.filter(i => i.title === itemOld.title)));
-        // console.log("itemOld=",itemOld);
-        // console.log("itemNew=",itemNew);
-        // this[this.indexOf(this.filter(i => i.title === itemOld.title))] = itemNew;
-        // console.log("PPP:",this.indexOf(this.filter(i => i.title === itemOld.title)));
 
         // FindIndex works for some reason over indexOf & filter
         const existingIndex = this.findIndex(i => i.title === itemOld.title);
@@ -49,11 +39,10 @@ function InventoryCollection(arr = []) {
         return this;
     }
 
-
     return arr;
 }
 
-function InventoryItem(item, inStockLevel, reorderLevel = 0){
+function InventoryItem(item){
     const STOCKED_LEVEL_STATUSES = {
         UNSET       : 'Unset',
         IN_STOCK    : 'Stocked',
@@ -72,9 +61,7 @@ function InventoryItem(item, inStockLevel, reorderLevel = 0){
     // set the default status
     item.reorderMessageWhen = REORDER_MESSAGE_THRESHOLD.LOW_STOCK;
 
-    item.inStockQty   = inStockLevel;
     item.reorderLevel = reorderLevel;
-    // item.lastUpdated  = lastUpdated;
     // methods
 
     //Update message thresholds
@@ -136,21 +123,33 @@ class Category { //Rename to Group?
     // }
 }
 
-class Item { //Rename to Group?
-    static type = "Item";
+class StoreItem {
+    static type = "StoreItem";
     static cardDetailsComponent = "editItemCard";
 
-    items = [];
-    title = "";
+    product = null;
 
-    constructor(title, description, imageURL, productId, inStockLevel, reorderLevel, lastUpdated=Date.now()) {
+    constructor(product, inStockLevel, reorderLevel, lastUpdated= Date.now()) {
+        this.product      = product;
+
+        this.inStockLevel = inStockLevel;
+        this.reorderLevel = reorderLevel;
+
+        this.lastUpdated  = lastUpdated;
+    }
+
+    get hasLowStock(){
+        return this.inStockLevel <= this.reorderLevel;
+    }
+}
+
+// "Generic" class to extend for product types
+class Product {
+    constructor(title, description, imageURL, productId) {
         this.title        = title;
         this.description  = description;
         this.imageSrc     = imageURL;
         this.productId    = productId;
     }
-
-    get hasLowStock(){
-        return this.inStockQty < this.reorderLevel;
-    }
 }
+
