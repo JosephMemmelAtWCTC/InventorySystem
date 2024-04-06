@@ -23,7 +23,7 @@ app.component('EditCategoryCard', {
         },
     },
     created: function () {
-        this.editCategory = Object.assign(new Category(), this.item);
+        this.editCategory = Object.assign(new Category(), this.item.item);
         // console.log('{{{}}}', this.item);
     },
     template: `

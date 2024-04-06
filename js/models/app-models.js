@@ -61,7 +61,6 @@ function InventoryItem(item){
     // set the default status
     item.reorderMessageWhen = REORDER_MESSAGE_THRESHOLD.LOW_STOCK;
 
-    item.reorderLevel = reorderLevel;
     // methods
 
     //Update message thresholds

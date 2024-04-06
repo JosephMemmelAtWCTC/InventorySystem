@@ -1,6 +1,7 @@
 app.component('editItemCard', {
     data() {
         return {
+            inventoryItem: null,
             editItem: null,
         }
     },
@@ -23,13 +24,14 @@ app.component('editItemCard', {
         },
     },
     created: function () {
-        this.editItem = Object.assign(new Item(), this.item);
-        // console.log('{{{}}}', this.item);
+        this.inventoryItem = Object.assign(new StoreItem(), this.item);
+        this.editItem = Object.assign(new Product(), this.inventoryItem.product);
+        console.log('{{{}}}', this.editItem);
     },
     template: `
-        <edit-card card-component="ItemCard" :item="this.item" @save-it="saveItem" @remove-it="removeItem">
-            <template #form v-slot="editItem">
-                <q-input filled v-model="editItem.title"
+        <edit-card card-component="ItemCard" :item="this.inventoryItem" @save-it="saveItem" @remove-it="removeItem">
+            <template #form v-slot="this.editItem">
+                <q-input filled v-model="this.editItem.title"
                          label="Name"
                          class="full-width"
                          autofocus

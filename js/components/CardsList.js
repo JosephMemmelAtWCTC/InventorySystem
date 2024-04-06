@@ -27,14 +27,14 @@ app.component('CardsList', {
     },
     template: `
 <!--TODO: Turn all :keys to use $refs-->
-        <component v-for="(item, i) in items" :key="item.title"
+        <component v-for="(item, i) in items" :key="i"
                    :is="item.constructor.cardDetailsComponent"
                    :item="item"
                    :edit-item="item"
                    @save-it="saveItem"
                    @remove-it="removeItem">
         </component>
-                <p v-for="(item, i) in items" :key="item.title"
->{{item.constructor.cardDetailsComponent}}</p>
+<!--                <p v-for="(item, i) in items" :key="item.title"-->
+<!--        >{{item.constructor.cardDetailsComponent}}</p>-->
     `
 });
