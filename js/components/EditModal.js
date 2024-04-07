@@ -31,7 +31,6 @@ app.component('EditModal', {
     emits: ['opened-modal', 'save-it', 'remove-it'],
     methods: {
         openModal(){
-            console.log("this.$emit('opened-modal')");
             this.$emit('opened-modal');
             this.appModal.openModal();
         },
@@ -40,6 +39,7 @@ app.component('EditModal', {
             this.$refs.myForm.validate().then(success => {
                 if (success) {
                     this.appModal.hideModal();
+                    this.$emit('save-it');
                 } else {
                     this.$q.notify({
                         message: 'All fields must be filled in properly',

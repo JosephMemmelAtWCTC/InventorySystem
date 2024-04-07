@@ -25,9 +25,7 @@ app.component('EditCard', {
         },
 
         saveItem(item){
-            console.log("SAVE ITEMA",item);
-            // TODO: Make object instead of a list
-            this.$emit('save-it', [item, this.editItem]);
+            this.$emit('save-it');
         },
         removeItem(item){
             this.$emit('remove-it', item);
@@ -39,7 +37,6 @@ app.component('EditCard', {
         <component :is="cardComponent" :item="item" @click="openEditModal" >
         </component>
         <edit-modal :item="this.editCopy"
-                    @opened-modal="this.updateItemCopy"
                     @save-it="saveItem"
                     @remove-it="removeItem"
                     can-remove
