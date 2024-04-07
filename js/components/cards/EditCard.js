@@ -1,8 +1,6 @@
 app.component('EditCard', {
     data() {
         return {
-            editItem: {...this.item},
-            // editItem: JSON.parse(JSON.stringify(this.item)),
         }
     },
     props: {
@@ -10,25 +8,24 @@ app.component('EditCard', {
             type: String,
             required: true,
         },
-
         item: {
             type: Object,
             required: true,
         },
-        // editItem: {
-        //     type: Object,
-        //     required: true,
-        // }
+        editCopy: {//Because I use template/slot variables- TODO: Ask
+            type: Object,
+            required: true,
+        },
     },
-    emits: ['save-it', 'remove-it'],
+    emits: ['opened-modal', 'save-it', 'remove-it'],
     methods: {
         openEditModal(){
             this.$refs.editModal.openModal();
-            // this.editItem = {...this.item};
+            this.$emit('opened-modal');
         },
+
         saveItem(item){
             console.log("SAVE ITEMA",item);
-            console.log("SAVE ITEMB",this.editItem);
             // TODO: Make object instead of a list
             this.$emit('save-it', [item, this.editItem]);
         },
@@ -41,7 +38,8 @@ app.component('EditCard', {
 <!--TODO: Put back item/category string in modal parts-->
         <component :is="cardComponent" :item="item" @click="openEditModal" >
         </component>
-        <edit-modal :item="this.editItem"
+        <edit-modal :item="this.editCopy"
+                    @opened-modal="this.updateItemCopy"
                     @save-it="saveItem"
                     @remove-it="removeItem"
                     can-remove
