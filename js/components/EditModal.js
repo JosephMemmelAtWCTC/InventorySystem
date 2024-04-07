@@ -34,6 +34,7 @@ app.component('EditModal', {
             this.$emit('opened-modal');
             this.appModal.openModal();
         },
+        // NEED TO MAKE PUSHED VALUE OF ACTUALL TYPE, make product insid
         saveIt(e){
             // console.log("SaveIt Start itm", this.item);
             this.$refs.myForm.validate().then(success => {

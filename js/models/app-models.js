@@ -94,7 +94,8 @@ class Category { //Rename to Group?
     title = "";
 
     constructor(title, description, imageURL, items = []) {
-         //TODO: FIND A BETTER WAY
+        this.constructorSaved = this.constructor;
+
         this.title       = title;
         this.description = description;
         this.imageSrc    = imageURL;

@@ -30,15 +30,7 @@ const app = Vue.createApp({
                 customName: "Custom Name",
             },
             itemsViewMode: false,
-            newItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 1,
-                productId: null,
-                reorderLevel: null,
-            },
+            newItem: new StoreItem(new Product("","","https://picsum.photos/200/300",""), 1, undefined),
             newCategory: new Category("","","/staticImages/folder.svg"),
             library: new InventoryCollection()
                 .add(new Category('Category 1','Category 1\'s description', '/staticImages/folder.svg'))
