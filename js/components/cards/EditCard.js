@@ -38,8 +38,8 @@ app.component('EditCard', {
         </component>
         <edit-modal :item="this.editCopy"
                     @save-it="saveItem"
-                    @remove-it="removeItem"
                     can-remove
+                    @remove-it="removeItem"
                     :title="'Edit '+'Category'"
                     :submit-button-text="'Update '+'Category'"
                     ref="editModal"

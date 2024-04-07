@@ -39,7 +39,9 @@ app.component('EditModal', {
             this.$refs.myForm.validate().then(success => {
                 if (success) {
                     this.appModal.hideModal();
-                    this.$emit('save-it');
+                    console.log("EventModal.js save-it");
+                    // NOTE TO SELF: Does not use this.item via $emit when using cards, is used when collected in creating new inventory items
+                    this.$emit('save-it', [undefined, this.item]);
                 } else {
                     this.$q.notify({
                         message: 'All fields must be filled in properly',

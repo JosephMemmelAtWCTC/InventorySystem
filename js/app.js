@@ -121,11 +121,11 @@ const app = Vue.createApp({
             // this.currentPageTitle = document.querySelectorAll(`*[data-navPage="${pageLabel}"]`)[0].getAttribute("data-pageTitle");
         },
         saveItem(item){
+            console.log("It came here", item);
             // // this.library
             console.log("Old", item[0]);
             console.log("New", item[1]);
-            // // library.replaceByValue('banana');
-            this.library.updateValue(item[0], item[1])
+            this.library.updateOrAddValue(item[0], item[1])
         },
         removeItem(removeItem) {
             this.library.remove(removeItem);

@@ -21,7 +21,12 @@ function InventoryCollection(arr = []) {
         return this;
     }
 
-    arr.updateValue = function (itemOld, itemNew) {
+    arr.updateOrAddValue = function (itemOld, itemNew) {
+        if(typeof itemOld === 'undefined'){
+            this.push(new InventoryItem(itemNew));
+            return;
+        }
+
         console.log("updateValue called",this.filter(i => i.title === itemOld.title));
 
         // FindIndex works for some reason over indexOf & filter

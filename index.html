@@ -138,20 +138,20 @@
                     :filter-settings="filterSettings"
                     :current-combined-items-list="library"
                     search-label="Filter Search"
-                    @remove-category="removeCategory"
                     @remove-item="removeItem"
                     @save-it="saveItem"
                 >
+<!--                    @remove-category="removeCategory"-->
+
                     <template #extra>
                         <div class="position-fixed bottom-0 end-0 p-3">
                             <options-f-a-b z-index="1000"
                                            symbol-classes="bi bi-plus">
                                 <template #open v-slot="slotProps">
                                     <li>
+<!--                                        :item-constructor-type="this.newCategory.constructor"-->
                                         <edit-modal :item="this.newCategory"
-                                                    :item-constructor-type="this.newCategory.constructor"
-                                                    @save-it="saveItem($event)"
-                                                    @remove-it="removeItem"
+                                                    @save-it="saveItem"
                                                     title="New Category"
                                                     submit-button-text="Create Category"
                                                     ref="newCategoryModal"

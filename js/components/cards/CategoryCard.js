@@ -9,10 +9,6 @@ app.component('CategoryCard', {
             type: String,
             required: false,
         },
-        imageSrc: {
-            type: String,
-            required: true,
-        },
         descriptionText: {
             type: String,
             required: false,
