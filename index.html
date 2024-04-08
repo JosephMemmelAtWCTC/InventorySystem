@@ -30,7 +30,7 @@
                         </navigate-icon-item>
                         <navigate-icon-item tooltip-info="Inventory" @click="openNavPage('inventory')" li-extra-classes="p-2 mb-2" icon-class="material-symbols-outlined" icon-content="package_2"><!--fa-solid fa-boxes-stacked-->
                         </navigate-icon-item>
-                        <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''">
+                        <navigate-icon-item tooltip-info="Recents" @click="openNavPage('recents')" li-extra-classes="p-2 mb-2" icon-class="bi-arrow-left-right" :badge-text="'recentItemsList.length'+''">
                         </navigate-icon-item>
                         <navigate-icon-item tooltip-info="Account" @click="openNavPage('account')" li-extra-classes="p-2 mb-2" icon-class="bi-person">
                         </navigate-icon-item>
@@ -105,7 +105,7 @@
 
                             </div>
                             <div class="col h-50">
-                                <navigate-icon-item @click="openNavPage('recents')" icon-class="bi-arrow-left-right" :badge-text="recentItemsList.length+''" class="h-100">
+                                <navigate-icon-item @click="openNavPage('recents')" icon-class="bi-arrow-left-right" :badge-text="'recentItemsList.length'+''" class="h-100">
                                 </navigate-icon-item>
                             </div>
                             <div class="col h-50">
@@ -273,21 +273,21 @@
 
                 <main-content-page
                     v-if="currentPage==='recents'">
-                        <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-body-tertiary border-2 border-primary border-bottom"><!--card-->
+<!--                        <div v-for="(item, i) in recentItemsList" :key="item.id" class="py-2 rounded-0 row bg-body-tertiary border-2 border-primary border-bottom">&lt;!&ndash;card&ndash;&gt;-->
 
-                            <div class="bi-3x col-2 p-0 my-auto text-center">
-                                <i class="recentsArrowIn bi ms-1 bi-plus"></i>
-                            </div>
-                            <div class="col">
-                                <h5 class="card-title">{{ item.title }}</h5>
-                                <span class="card-text ">{{ new Date(item.lastUpdated).toDateString()+" at "+new Date(item.lastUpdated).getHours()+":"+(new Date(item.lastUpdated).getMinutes()<10? "0":"")+new Date(item.lastUpdated).getMinutes() }}</span><br>
-                                <span class="card-text">{{ item.qty+' in stock'}}</span><br>
-                                <p class="card-text badge badge text-bg-info">Category Name</p>
-                            </div>
-                            <div class="bi-3x col-2 p-0 my-auto text-center">
-                                <i class="recentsArrowIn bi ms-1 bi-dash"></i>
-                            </div>
-                        </div>
+<!--                            <div class="bi-3x col-2 p-0 my-auto text-center">-->
+<!--                                <i class="recentsArrowIn bi ms-1 bi-plus"></i>-->
+<!--                            </div>-->
+<!--                            <div class="col">-->
+<!--                                <h5 class="card-title">{{ item.title }}</h5>-->
+<!--                                <span class="card-text ">{{ new Date(item.lastUpdated).toDateString()+" at "+new Date(item.lastUpdated).getHours()+":"+(new Date(item.lastUpdated).getMinutes()<10? "0":"")+new Date(item.lastUpdated).getMinutes() }}</span><br>-->
+<!--                                <span class="card-text">{{ item.qty+' in stock'}}</span><br>-->
+<!--                                <p class="card-text badge badge text-bg-info">Category Name</p>-->
+<!--                            </div>-->
+<!--                            <div class="bi-3x col-2 p-0 my-auto text-center">-->
+<!--                                <i class="recentsArrowIn bi ms-1 bi-dash"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                 </main-content-page>
 
