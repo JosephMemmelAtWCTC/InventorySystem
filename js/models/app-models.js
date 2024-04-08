@@ -16,6 +16,7 @@ function InventoryCollection(arr = []) {
     }
 
     arr.remove = function (item) {
+        console.log("arr.remove = ", item);
         this.splice(this.indexOf(item), 1)
 
         return this;

@@ -120,6 +120,8 @@ const app = Vue.createApp({
             this.library.updateOrAddValue(item[0], item[1])
         },
         removeItem(removeItem) {
+            console.log("It came here removeItem", removeItem);
+
             this.library.remove(removeItem);
         },
 
@@ -213,7 +215,7 @@ const app = Vue.createApp({
     watch: {
         library: {
             handler() {
-                console.log('Library changed:', "3eeeeee");
+                console.log('Library changed: ');
             },
             deep: true,
         },

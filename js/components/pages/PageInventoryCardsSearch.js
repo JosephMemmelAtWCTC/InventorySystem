@@ -1,21 +1,6 @@
 app.component('PageInventoryCardsSearch', {
     data: function () {
         return {
-            editCategory: {
-                id: null,
-                title: '',
-                description: '',
-                image: './staticImages/folder.svg',
-            },
-            editItem: {
-                id: undefined,
-                title: '',
-                description: '',
-                image: 'https://picsum.photos/200/300',
-                qty: 0,
-                productId: null,
-                reorderLevel: null,
-            },
         };
     },
     props: {
@@ -34,11 +19,8 @@ app.component('PageInventoryCardsSearch', {
     },
     emits: ['save-it','remove-category', 'remove-item'],
     methods: {
-        removeCategory() {
-            this.$emit('remove-category', this.editCategory);
-        },
         removeItem(removeItem) {
-            this.$emit('remove-item', this.editItem);
+            this.$emit('remove-item', removeItem);
         },
         saveItem(item){
             console.log("Saved send up PageInventoryCardsSearch");
