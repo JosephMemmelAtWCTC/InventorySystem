@@ -21,7 +21,7 @@ app.component('CardsList', {
 
         },
         removeItem(item){
-            console.log("Removed send up CardsList", item);
+            console.log("Removed send up CardsList");
             this.$emit('remove-it', item);
         },
     },

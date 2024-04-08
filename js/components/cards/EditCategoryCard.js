@@ -12,10 +12,7 @@ app.component('EditCategoryCard', {
     },
     emits: ['save-it', 'remove-it'],
     methods: {
-        saveItem(item){
-            console.log("OOOA:", item);
-            // console.log("OOOB:", this.editCategory);
-            // @@@ TODO: FIX HERE SOMEHOW
+        saveCategory(item){
             this.$emit('save-it', [this.item, this.editCategory]);
         },
         removeItem(item){
@@ -26,14 +23,13 @@ app.component('EditCategoryCard', {
         },
     },
     created: function () {
-        this.editCategory = Object.assign(new Category(), this.item);
-        // console.log('{{{}}}', this.item);
+        this.updateEditCategoryToValues();
     },
     template: `
         <edit-card card-component="CategoryCard"
                    :edit-copy="editCategory"
                    :item="this.item"
-                   @save-it="saveItem"
+                   @save-it="saveCategory"
                    @remove-it="removeItem"
                    @opened-modal="updateEditCategoryToValues">
             <template #form v-slot="editCategory">
